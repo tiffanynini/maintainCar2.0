@@ -97,6 +97,9 @@ try {
   components = {
     uniSearchBar: function() {
       return __webpack_require__.e(/*! import() | components/uni-search-bar/uni-search-bar */ "components/uni-search-bar/uni-search-bar").then(__webpack_require__.bind(null, /*! @/components/uni-search-bar/uni-search-bar.vue */ 53))
+    },
+    uniIcons: function() {
+      return Promise.all(/*! import() | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/components/uni-icons/uni-icons.vue */ 17))
     }
   }
 } catch (e) {
@@ -161,19 +164,231 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 
 {
   data: function data() {
-    return {};
+    return {
+      // 1、搜索框
+      msg1: '',
+      // 2、轮播图
+      // 面板指示点
+      indicatorDots: true,
+      // 自动切换
+      autoplay: true,
+      // 自动切换的时间间隔
+      interval: 2200,
+      // 滑动动画时长
+      duration: 500,
+      // 轮播图内的图片
+      info: [{
+        src: 'http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u21.jpg?token=b167736f74ca0844f32ea812cc20ec355461798e68bc6f382fbca051e41bb48f' },
+      {
+        src: 'http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u25.jpg?token=a4b341c029acae295c311e5bcac7c5a737960dcb7f181223a2ea7f1b44a953d1' }],
+
+      //3、小图标
+      //4、头条
+      // 上下轮播
+      info1: [{
+        con: '汽车维修保养七宗罪，看完再也不怕被坑！' },
+      {
+        con: '怎么检测汽车胎压？' }],
+
+      // 5、视频轮播
+      info2: [
+      {
+        videoSrc: "http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u82_div.jpg?token=44c7d934f83f79f4bf92164d381632c278944bfcaa9aaf6337369e188320556d",
+        videoText: "汽车维修保养七宗罪，看完再也不怕被坑" },
+
+      {
+        videoSrc: "http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u84_div.jpg?token=cd30d825d016f4e58f8e31a61acd11e8d416fb761e6ccc964824068341033d7c",
+        videoText: "汽车保养小心这4大陷阱，修车师傅都有小动作，可以多开..." },
+
+      {
+        videoSrc: "http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u86_div.jpg?token=26789baad773d562358a3305590bc2087090121a7c44a3c18394beb5d9f8c01f",
+        videoText: "汽车保养不只是更换汽油，还要做这些" }],
+
+
+      // 6、商家推荐 列表
+      list1: [
+      {
+        src: "http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u96.jpg?token=4b0bc658e09ee5c4b8e03726f5628b7cc6359658ff069ef246b962ded4670f54",
+        title: "auto汽车美容",
+        distance: "14km",
+        address: "广东省深圳市南山区沙河西路3181号" },
+
+      {
+        src: "http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u102.jpg?token=ee55357f0b66d91f859fa5cc0f96a17877561fea2bfebb93f4377305ac48ab85",
+        title: "taxi汽车美容",
+        distance: "66km",
+        address: "广东省深圳市福田区上步北路2005路" },
+
+      {
+        src: "http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u108.jpg?token=d7ac6be1fb021b11925be8ba3a539ed65b3d56bf0787fa1b538983d32c226e3f",
+        title: "汽车养生",
+        distance: "14km",
+        address: "广东省深圳市罗湖区翠菊路11655路" },
+
+      {
+        src: "http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u96.jpg?token=4b0bc658e09ee5c4b8e03726f5628b7cc6359658ff069ef246b962ded4670f54",
+        title: "百瑞特养车",
+        distance: "358km",
+        address: "广东省深圳市宝安区翻身路65405号" }] };
+
+
 
 
   },
+  methods: {
+    // 1、搜索框
+    search: function search(e) {
+      console.log(e);
+      this.msg1 = e.value;
+      console.log(this.msg1);
+    },
+    //2、轮播图
+    change: function change(e) {
+      // 点击轮播图，打印当前商品的id
+      console.log(e);
+    },
+    // 3、上下轮播
+    change1: function change1(e) {
+      console.log(e);
+    } },
 
   onLoad: function onLoad() {
 
-  },
-  methods: {} };exports.default = _default;
+  } };exports.default = _default;
 
 /***/ }),
 
