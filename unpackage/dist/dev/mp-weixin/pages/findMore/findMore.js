@@ -214,7 +214,13 @@ var _default =
     return {};
 
 
-  } };exports.default = _default;
+  },
+  methods: {
+    jump: function jump() {
+      wx.navigateTo({
+        url: '../findInfo/findInfo' });
+
+    } } };exports.default = _default;
 
 /***/ }),
 

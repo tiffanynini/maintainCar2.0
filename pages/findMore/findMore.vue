@@ -1,6 +1,6 @@
 <template>
 	<view class="list">
-		<view class="box">
+		<view class="box" @click="jump">
 			<view class="desc">
 				<image style="width: 100%;" src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E8%A7%86%E9%A2%91%E6%8E%A8%E8%8D%90/u462.jpg?token=343d08185e54af37d7abe0ed69125627ad9293a5d339996ef96a76da43444abf" mode="widthFix"></image>
 				<p>怎么检测汽车胎压？</p>
@@ -19,7 +19,7 @@
 		</view>
 		<!-- 假数据 -->
 		<!-- ---------------------------------------------------------------------- -->
-		<view class="box">
+		<view class="box" @click="jump">
 			<view class="desc">
 				<image style="width: 100%;" src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E8%A7%86%E9%A2%91%E6%8E%A8%E8%8D%90/u471.jpg?token=ebb96dc6c5577ab2a4fa38bb891bd9d4cb1ae13ed553de6a5ab64c34113953d5" mode="widthFix"></image>
 				<p>怎么检测汽车胎压？</p>
@@ -37,7 +37,7 @@
 			</view>
 		</view>
 		
-		<view class="box">
+		<view class="box" @click="jump">
 			<view class="desc">
 				<image style="width: 100%;" src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E8%A7%86%E9%A2%91%E6%8E%A8%E8%8D%90/u480.jpg?token=5e012816612da4a8beaffd326a2e5b3493ac4171a710dd866f0a43a54b66ee60" mode="widthFix"></image>
 				<p>怎么检测汽车胎压？</p>
@@ -55,7 +55,7 @@
 			</view>
 		</view>
 		
-		<view class="box">
+		<view class="box" @click="jump">
 			<view class="desc">
 				<image style="width: 100%;" src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E8%A7%86%E9%A2%91%E6%8E%A8%E8%8D%90/u489.jpg?token=c77ee32791606a5bf03e9f60bd9087f7a86d84b7c79ece8f65bc8e058045c597" mode="widthFix"></image>
 				<p>怎么检测汽车胎压？</p>
@@ -82,6 +82,13 @@
 			return {
 				
 			};
+		},
+		methods:{
+			jump(){
+				wx.navigateTo({
+					url:'../findInfo/findInfo'
+				})
+			}
 		}
 	}
 </script>

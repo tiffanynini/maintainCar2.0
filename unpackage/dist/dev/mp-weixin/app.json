@@ -4,7 +4,8 @@
     "pages/mechant/mechant",
     "pages/findMore/findMore",
     "pages/shopCar/shopCar",
-    "pages/personInfo/personInfo"
+    "pages/personInfo/personInfo",
+    "pages/findInfo/findInfo"
   ],
   "subPackages": [],
   "window": {

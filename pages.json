@@ -29,7 +29,13 @@
             "style" : {
 				"navigationBarTitleText": "个人中心"
 			}
-        }
+        },
+		{
+		    "path" : "pages/findInfo/findInfo",
+		    "style" : {
+				"navigationBarTitleText": "详情"
+			}
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
