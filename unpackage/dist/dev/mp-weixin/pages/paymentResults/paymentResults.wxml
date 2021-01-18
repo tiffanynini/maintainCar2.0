@@ -1,0 +1,1 @@
+<view class="container"><view class="iconfont icon-zhifuchenggong"></view><view class="p2">{{msg}}</view><view><view class="{{[state?'active':'']}}">返回首页</view><view class="{{[state?'':'active']}}">查看订单</view></view></view>

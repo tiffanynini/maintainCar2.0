@@ -4,7 +4,14 @@
     "pages/mechant/mechant",
     "pages/findMore/findMore",
     "pages/shopCar/shopCar",
-    "pages/personInfo/personInfo"
+    "pages/personInfo/personInfo",
+    "pages/confirmOrder/confirmOrder",
+    "pages/addressManage/addressManage",
+    "pages/addAddress/addAddress",
+    "pages/editAddress/editAddress",
+    "pages/orderDetail/orderDetail",
+    "pages/paymentResults/paymentResults",
+    "pages/lookOrder/lookOrder"
   ],
   "subPackages": [],
   "window": {
