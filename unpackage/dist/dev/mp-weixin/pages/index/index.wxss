@@ -449,7 +449,7 @@
 }
 ._div .mechantRecommend .autoBeautiful .autoTitle {
   height: 40rpx;
-  font-size: 38rpx;
+  font-size: 30rpx;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -463,6 +463,7 @@
 }
 ._div .mechantRecommend .autoBeautiful .autoTitle .autoTitle1 {
   font-weight: 600;
+  font-size: 38rpx;
 }
 ._div .mechantRecommend .autoBeautiful .autoGray {
   color: #7B7A7B;

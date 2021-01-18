@@ -516,13 +516,14 @@
 					// width: 100%;
 					height: 40rpx;
 					// background-color: red;
-					font-size: 38rpx;
+					font-size: 30rpx;
 					display: flex;
 					justify-content: space-between;
 					align-items: center;
 					padding: 20rpx;
 					.autoTitle1{
 						font-weight: 600;
+						font-size: 38rpx;
 					}
 				}
 				.autoGray{
