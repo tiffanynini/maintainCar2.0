@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/personInfo/personInfo",
     "pages/index/index",
     "pages/mechant/mechant",
     "pages/findMore/findMore",
-    "pages/shopCar/shopCar",
-    "pages/personInfo/personInfo"
+    "pages/shopCar/shopCar"
   ],
   "subPackages": [],
   "window": {
@@ -41,6 +41,11 @@
         "selectedIconPath": "static/images/person.png"
       }
     ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": ""
+    }
   },
   "usingComponents": {}
 }
