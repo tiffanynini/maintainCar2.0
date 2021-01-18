@@ -87,9 +87,10 @@
   left: 280rpx;
   flex-wrap: wrap;
   align-content: space-between;
+  flex-direction: column;
   height: 140rpx;
   text{
-   width: 100%;
+   // width: 100%;
    font-size: 28rpx;
   }
   text:nth-child(1){
