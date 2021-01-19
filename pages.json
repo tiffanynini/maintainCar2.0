@@ -3,7 +3,8 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "首页"
+				"navigationBarTitleText": "首页",
+				"enablePullDownRefresh":true
 			}
 		}
 	    ,{
@@ -35,7 +36,13 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#F8F8F8",
+		// 开启下拉列表
+		"enablePullDownRefresh":true,
+		// 下拉背景色
+		"backgroundColor":"#ffffff",
+		//页面上拉
+		 "onReachBottomDistance":2
 	},
 	"tabBar":{
 		"list":[
