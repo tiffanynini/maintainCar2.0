@@ -1,7 +1,8 @@
 <template>
-	<view class="container">
+	<view>
+		<view class="container">
 		<view class="context">
-			<view class="header">
+			<navigator class="header" url="../addressManage/addressManage" open-type="navigate">
 				<view>
 					<text class="iconfont icon-dingwei1 header-icon1"></text>
 				</view>
@@ -10,9 +11,9 @@
 					<text space="emsp">广东省佛山市某某镇某某街道某某村某某巷15号</text>
 				</view>
 				<view>
-					<navigator class="iconfont icon-jiantou header-icon2" url="../addressManage/addressManage" open-type="navigate"></navigator>
+					<view class="iconfont icon-jiantou header-icon2"></view>
 				</view>
-			</view>
+			</navigator>
 		</view>
 		<view class="section">
 			<view>
@@ -20,7 +21,7 @@
 			</view>
 			<view class="set-middle">
 				<view class="set1-middle">
-					<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=ed2c33fc3f37644f09247f0de49812ec563ceab3e7d8ec4c251f4a1ca413d8a1"></image>
+					<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=43c6cafcd9a3653c7c5079e3c439f2e742551157dae1b391451dc1137723ecc8"></image>
 				</view>
 				<view class="set1-bottom">
 					<text>汽车贴膜（每10CM）</text>
@@ -47,8 +48,92 @@
 			<view class="set-bottom">
 				<text>支付方式</text>
 				<view class="method">
-					<view class="payMethod" :class="status?'active':''" @click="payMethods">在线支付</view>
-					<view class="payMethod" :class="status?'':'active'" @click="payMethods">货到付款</view>
+					<view class="payMethod" :class="status == 1?'active':''" @click="payMethods1">在线支付</view>
+					<view class="payMethod" :class="status == 0?'active':''" @click="payMethods2">货到付款</view>
+				</view>
+			</view>
+			<view class="set-order">
+				<text class="beiZhu">订单备注</text>
+				<textarea />
+			</view>
+		</view>
+		<view class="section">
+			<view>
+				<text>自营店</text>
+			</view>
+			<view class="set-middle">
+				<view class="set1-middle">
+					<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=43c6cafcd9a3653c7c5079e3c439f2e742551157dae1b391451dc1137723ecc8"></image>
+				</view>
+				<view class="set1-bottom">
+					<text>汽车贴膜（每10CM）</text>
+					<text class="set1-p2">汽车类型：轿车  位置：全车</text>
+					<text>单价：1×29.9</text>
+				</view>
+			</view>
+			<view class="set-bottom">
+				<text>商品价格</text>
+				<text>¥ 29.9</text>
+			</view>
+			<view class="set-bottom">
+				<text>优惠</text>
+				<text>¥ 0</text>
+			</view>
+			<view class="set-bottom">
+				<text>小计</text>
+				<text id="xiaoJi">¥ 29.9</text>
+			</view>
+			<view class="set-bottom">
+				<text>邮费</text>
+				<text>¥ 29.9</text>
+			</view>
+			<view class="set-bottom">
+				<text>支付方式</text>
+				<view class="method">
+					<view class="payMethod" :class="status == 1?'active':''" @click="payMethods1">在线支付</view>
+					<view class="payMethod" :class="status == 0?'active':''" @click="payMethods2">货到付款</view>
+				</view>
+			</view>
+			<view class="set-order">
+				<text class="beiZhu">订单备注</text>
+				<textarea />
+			</view>
+		</view>
+		<view class="section">
+			<view>
+				<text>自营店</text>
+			</view>
+			<view class="set-middle">
+				<view class="set1-middle">
+					<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=43c6cafcd9a3653c7c5079e3c439f2e742551157dae1b391451dc1137723ecc8"></image>
+				</view>
+				<view class="set1-bottom">
+					<text>汽车贴膜（每10CM）</text>
+					<text class="set1-p2">汽车类型：轿车  位置：全车</text>
+					<text>单价：1×29.9</text>
+				</view>
+			</view>
+			<view class="set-bottom">
+				<text>商品价格</text>
+				<text>¥ 29.9</text>
+			</view>
+			<view class="set-bottom">
+				<text>优惠</text>
+				<text>¥ 0</text>
+			</view>
+			<view class="set-bottom">
+				<text>小计</text>
+				<text id="xiaoJi">¥ 29.9</text>
+			</view>
+			<view class="set-bottom">
+				<text>邮费</text>
+				<text>¥ 29.9</text>
+			</view>
+			<view class="set-bottom">
+				<text>支付方式</text>
+				<view class="method">
+					<view class="payMethod" :class="status == 1?'active':''" @click="payMethods1">在线支付</view>
+					<view class="payMethod" :class="status == 0?'active':''" @click="payMethods2">货到付款</view>
 				</view>
 			</view>
 			<view class="set-order">
@@ -64,19 +149,23 @@
 			</navigator>
 		</view>
 	</view>
+	</view>
 </template>
 
 <script>
 	export default{
 		data(){
 			return {
-				status:1 //在线支付为1，货到付款为0
+				status:1, //在线支付为1，货到付款为0
 			}
 		},
 		methods:{
-			payMethods(){
-				
-			}
+			payMethods1(){
+				this.status = 1;
+			},
+			payMethods2(){
+				this.status = 0;
+			},
 		}
 		
 	}
@@ -92,6 +181,7 @@
 		color:#333333;
 		background-color: #F4F4F3;
 		height: 100%;
+		overflow: hidden;
 		.context{
 			background-color: #fff;
 			padding-left: 10rpx;
@@ -101,6 +191,7 @@
 				display: flex;
 				justify-content: space-around;
 				>view:first-child{
+					margin-top: 12rpx;
 					.header-icon1{
 						color: #FD8F33;
 						line-height: 80rpx;
@@ -111,7 +202,7 @@
 					display: flex;
 					flex-direction: column;
 					font-size: 32rpx;
-					margin-top: 8rpx;
+					margin-top: 16rpx;
 					text:last-child{
 						font-size: 28rpx;
 						line-height: 44rpx;
@@ -122,6 +213,7 @@
 						color: #AAAABD;
 						line-height: 80rpx;
 						font-size: 30rpx;
+						margin-top: 16rpx;
 					}
 				}
 			}
@@ -209,7 +301,7 @@
 		color: #fff;
 	}
 	.bu{
-		height: 70rpx;
+		height: 80rpx;
 	}
 	.footer{
 		background-color: #fff;

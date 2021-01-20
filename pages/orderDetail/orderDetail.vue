@@ -1,5 +1,6 @@
 <template>
-	<view class="container">
+	<view>
+		<view class="container">
 		<view class="context">
 			<view class="header">
 				<text space="emsp">订单编号 2019102100000001</text>
@@ -17,7 +18,67 @@
 			</view>
 			<view class="set-middle">
 				<view class="set1-middle">
-					<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=ed2c33fc3f37644f09247f0de49812ec563ceab3e7d8ec4c251f4a1ca413d8a1"></image>
+					<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=43c6cafcd9a3653c7c5079e3c439f2e742551157dae1b391451dc1137723ecc8"></image>
+				</view>
+				<view class="set1-bottom">
+					<text>汽车贴膜（每10CM）</text>
+					<text class="set1-p2">汽车类型：轿车  位置：全车</text>
+					<text>1×29.9</text>
+				</view>
+			</view>
+			<view class="set-bottom">
+				<text>小计</text>
+				<text>¥ 29.9</text>
+			</view>
+			<view class="set-bottom">
+				<text>邮费</text>
+				<text>¥ 0</text>
+			</view>
+			<view class="set-bottom">
+				<text>应付金额</text>
+				<text>¥ 29.9</text>
+			</view>
+		</view>
+		<view class="section">
+			<view class="set-content">
+				<text space="emsp">下单时间：20191021 14:44</text>
+			</view>
+			<view class="set-content">
+				<text>订单备注：</text>
+			</view>
+			<view class="set-middle">
+				<view class="set1-middle">
+					<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=43c6cafcd9a3653c7c5079e3c439f2e742551157dae1b391451dc1137723ecc8"></image>
+				</view>
+				<view class="set1-bottom">
+					<text>汽车贴膜（每10CM）</text>
+					<text class="set1-p2">汽车类型：轿车  位置：全车</text>
+					<text>1×29.9</text>
+				</view>
+			</view>
+			<view class="set-bottom">
+				<text>小计</text>
+				<text>¥ 29.9</text>
+			</view>
+			<view class="set-bottom">
+				<text>邮费</text>
+				<text>¥ 0</text>
+			</view>
+			<view class="set-bottom">
+				<text>应付金额</text>
+				<text>¥ 29.9</text>
+			</view>
+		</view>
+		<view class="section">
+			<view class="set-content">
+				<text space="emsp">下单时间：20191021 14:44</text>
+			</view>
+			<view class="set-content">
+				<text>订单备注：</text>
+			</view>
+			<view class="set-middle">
+				<view class="set1-middle">
+					<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=43c6cafcd9a3653c7c5079e3c439f2e742551157dae1b391451dc1137723ecc8"></image>
 				</view>
 				<view class="set1-bottom">
 					<text>汽车贴膜（每10CM）</text>
@@ -65,13 +126,14 @@
 			<view></view>
 			<view>
 				<navigator url="../paymentResults/paymentResults?index=0" open-type="navigate">
-					<view class="footer-btn">取消订单</view>
+					<view class="footer-btn" :class="state?'':'active'" @click="clearPay">取消订单</view>
 				</navigator>
 				<navigator url="../paymentResults/paymentResults?index=1" open-type="navigate">
-					<view class="footer-btn">立即支付</view>
+					<view class="footer-btn" :class="state?'active':''" @click="pay">立即支付</view>
 				</navigator>
 			</view>
 		</view>
+	</view>
 	</view>
 </template>
 
@@ -79,7 +141,16 @@
 	export default{
 		data(){
 			return {
-				focus:true
+				// focus:true,
+				state:1 //1是立即支付，0是取消订单
+			}
+		},
+		methods:{
+			pay(){
+				this.state = 1;
+			},
+			clearPay(){
+				this.state = 0;
 			}
 		}
 	}
@@ -95,17 +166,16 @@
 		color:#333333;
 		background-color: #F4F4F3;
 		height: 100%;
+		overflow: hidden;
 		.context{
 			background-color: #fff;
-			    padding: 0rpx 20rpx;
-			    display: -webkit-box;
-			    display: -webkit-flex;
-			    display: flex;
-			    -webkit-justify-content: space-around;
-			    justify-content: space-between;
-			    font-size: 32rpx;
-			    height: 66rpx;
-			    align-items: center;
+			margin: 20rpx 0rpx;
+			display: flex;
+			justify-content: space-between;
+			font-size: 32rpx;
+			height: 66rpx;
+			align-items: center;
+			padding: 0rpx 20rpx;
 			.header{
 				>view:first-child{
 					>text{
@@ -229,6 +299,7 @@
 			padding: 10rpx 20rpx;
 			.set3-radio{
 				transform: scale(0.5);
+				margin-left: -18rpx;
 			}
 			.zfb-icon{
 				font-size: 58rpx;
@@ -241,7 +312,7 @@
 		}
 	}
 	.bu{
-		height: 70rpx;
+		height: 120rpx;
 	}
 	.footer{
 		background-color: #fff;
@@ -276,5 +347,9 @@
 				}
 			}
 		}
+	}
+	.active{
+		background-color: #F53218;
+		color: #fff;
 	}
 </style>

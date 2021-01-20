@@ -1,136 +1,152 @@
 <template>
-	<view class="container">
-		<view class="context">
-			<view class="header">
-				<label class="checkbox">
-					<checkbox value="cb" checked="true" />
-					<text>自营店</text>
-				</label>
-			</view>
-			<view class="section">
-				<view class="set1-top">
+	<view>
+		<view class="container">
+			<view class="context">
+				<view class="header">
 					<label class="checkbox">
-						<checkbox value="cb" checked="true" />
+						<checkbox value="cb" @click="checkChange" :checked="pCheckStatus"/>
+						<text>自营店</text>
 					</label>
 				</view>
-				<view class="set1-middle">
-					<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=ed2c33fc3f37644f09247f0de49812ec563ceab3e7d8ec4c251f4a1ca413d8a1"></image>
+				<view class="section">
+					<view class="set1-top">
+						<label class="checkbox">
+							<checkbox value="cb" :checked="cCheckStatus" @click="cCheckChange"/>
+						</label>
+					</view>
+					<view class="set1-middle">
+						<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=43c6cafcd9a3653c7c5079e3c439f2e742551157dae1b391451dc1137723ecc8"></image>
+					</view>
+					<view class="set1-bottom">
+						<view>
+							<text>汽车贴膜（每10CM）</text>
+							<image src="../../static/images/del.png"></image>
+						</view>
+						<text class="set1-p2">汽车类型：轿车  位置：全车</text>
+						<view>
+							<text>单价：29.9</text>
+							<view class="counter">
+								<text class="reduce-add" :disabled="true" @click="minusReduce" :data-id="id" :style="{'pointer-events': isPointer}">-</text>
+								<text class="amount" v-text="count"></text>
+								<text class="reduce-add1" :disabled="true" @click="addReduce" :data-id="id">+</text>
+							</view>
+						</view>
+					</view>
 				</view>
-				<view class="set1-bottom">
-					<text>汽车贴膜（每10CM）</text>
-					<text class="set1-p2">汽车类型：轿车  位置：全车</text>
-					<view>
-						<text>单价：29.9</text>
-						<view class="counter">
-							<text class="reduce-add" @click="addReduce(0)">-</text>
-							<text class="amount" v-text="count"></text>
-							<text class="reduce-add" @click="addReduce(1)">+</text>	
+				<view class="section">
+					<view class="set1-top">
+						<label class="checkbox">
+							<checkbox value="cb" :checked="cCheckStatus" @click="cCheckChange"/>
+						</label>
+					</view>
+					<view class="set1-middle">
+						<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=43c6cafcd9a3653c7c5079e3c439f2e742551157dae1b391451dc1137723ecc8"></image>
+					</view>
+					<view class="set1-bottom">
+						<view>
+							<text>汽车贴膜（每10CM）</text>
+							<image src="../../static/images/del.png"></image>
+						</view>
+						<text class="set1-p2">汽车类型：轿车  位置：全车</text>
+						<view>
+							<text>单价：29.9</text>
+							<view class="counter">
+								<text class="reduce-add" :disabled="true" @click="minusReduce" :data-id="id" :style="{'pointer-events': isPointer}">-</text>
+								<text class="amount" v-text="count"></text>
+								<text class="reduce-add1" :disabled="true" @click="addReduce" :data-id="id">+</text>
+							</view>
 						</view>
 					</view>
 				</view>
 			</view>
-			<view class="section">
-				<view class="set1-top">
+			<view class="context">
+				<view class="header">
 					<label class="checkbox">
-						<checkbox value="cb" checked="true" />
+						<checkbox value="cb"/>
+						<text>自营店</text>
 					</label>
 				</view>
-				<view class="set1-middle">
-					<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=ed2c33fc3f37644f09247f0de49812ec563ceab3e7d8ec4c251f4a1ca413d8a1"></image>
-				</view>
-				<view class="set1-bottom">
-					<text>汽车贴膜（每10CM）</text>
-					<text class="set1-p2">汽车类型：轿车  位置：全车</text>
-					<view>
-						<text>单价：29.9</text>
-						<view class="counter">
-							<text class="reduce-add" @click="addReduce(0)">-</text>
-							<text class="amount" v-text="count"></text>
-							<text class="reduce-add" @click="addReduce(1)">+</text>	
+				<view class="section">
+					<view class="set1-top">
+						<label class="checkbox">
+							<checkbox value="cb"/>
+						</label>
+					</view>
+					<view class="set1-middle">
+						<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=43c6cafcd9a3653c7c5079e3c439f2e742551157dae1b391451dc1137723ecc8"></image>
+					</view>
+					<view class="set1-bottom">
+						<view>
+							<text>汽车贴膜（每10CM）</text>
+							<image src="../../static/images/del.png"></image>
+						</view>
+						<text class="set1-p2">汽车类型：轿车  位置：全车</text>
+						<view>
+							<text>单价：29.9</text>
+							<view class="counter">
+								<text class="reduce-add" :disabled="true" @click="minusReduce" :data-id="id" :style="{'pointer-events': isPointer}">-</text>
+								<text class="amount" v-text="count"></text>
+								<text class="reduce-add1" :disabled="true" @click="addReduce" :data-id="id">+</text>
+							</view>
 						</view>
 					</view>
 				</view>
 			</view>
-			<view class="section">
-				<view class="set1-top">
-					<label class="checkbox">
-						<checkbox value="cb" checked="true" />
-					</label>
-				</view>
-				<view class="set1-middle">
-					<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=ed2c33fc3f37644f09247f0de49812ec563ceab3e7d8ec4c251f4a1ca413d8a1"></image>
-				</view>
-				<view class="set1-bottom">
-					<text>汽车贴膜（每10CM）</text>
-					<text class="set1-p2">汽车类型：轿车  位置：全车</text>
-					<view>
-						<text>单价：29.9</text>
-						<view class="counter">
-							<text class="reduce-add" @click="addReduce(0)">-</text>
-							<text class="amount" v-text="count"></text>
-							<text class="reduce-add" @click="addReduce(1)">+</text>	
-						</view>
-					</view>
-				</view>
+			<view class="bu"></view>
+			<view class="footer">
+				<text class="footer-font">总额：<text class="money" space="emsp"> xx </text> 元(不含运费)</text>
+				<navigator url="../confirmOrder/confirmOrder" open-type="navigate">
+				    <view class="footer-btn">去结算</view>
+				</navigator>
 			</view>
-			<view class="section">
-				<view class="set1-top">
-					<label class="checkbox">
-						<checkbox value="cb" checked="true" />
-					</label>
-				</view>
-				<view class="set1-middle">
-					<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=ed2c33fc3f37644f09247f0de49812ec563ceab3e7d8ec4c251f4a1ca413d8a1"></image>
-				</view>
-				<view class="set1-bottom">
-					<text>汽车贴膜（每10CM）</text>
-					<text class="set1-p2">汽车类型：轿车  位置：全车</text>
-					<view>
-						<text>单价：29.9</text>
-						<view class="counter">
-							<text class="reduce-add" @click="addReduce(0)">-</text>
-							<text class="amount" v-text="count"></text>
-							<text class="reduce-add" @click="addReduce(1)">+</text>	
-						</view>
-					</view>
-				</view>
-			</view>
-		</view>
-		<view class="bu"></view>
-		<view class="footer">
-			<text class="footer-font">总额：<text class="money" space="emsp"> xx </text> 元(不含运费)</text>
-			<navigator url="../confirmOrder/confirmOrder" open-type="navigate">
-			    <view class="footer-btn">去结算</view>
-			</navigator>
 		</view>
 	</view>
 </template>
 
 <script>
-	
 	export default {
 		components: {
-			
 		},
 		data() {
 			return {
-				count:0
-			};
+				count:1,
+				pCheckStatus:false,//父级的checkbox
+				cCheckStatus:false,//子级的checkbox
+				id:1,
+				isPointer:"auto"
+			}
 		},
 		methods:{
-			// 增加,减少按钮 id为0减少，为1增加
-			addReduce(id) {
-				if(id === 0) {
-					if(this.count > 1) {
-						this.count--;
-					}
-				}else {
-					this.count++
+			//增加
+			addReduce() {
+				//传递index过来判断对应的数组里面的数量进行修改
+				this.isPointer = "auto";
+				this.count++;
+			},
+			//减少
+			minusReduce(){
+				if(this.count > 1){
+					this.count--;
+				}else{
+					this.isPointer = "none";
 				}
 			},
 			totalMoney(){
 				
 			},
+			//父级的checkbox选中的时候
+			checkChange(){
+				this.pCheckStatus = !this.pCheckStatus;
+				this.cCheckStatus = !this.cCheckStatus;
+			},
+			//子级的checkbox选中的时候
+			cCheckChange(){
+				// let count = 0;
+				// this.cCheckStatus = !this.cCheckStatus;
+				// if(count === 3){
+				// 	this.pCheckStatus = !this.pCheckStatus;
+				// }
+			}
 		}
 	}
 </script>
@@ -142,10 +158,11 @@
 	.container{
 		background-color: #F4F4F3;
 		height: 100%;
-		.context{
-			background-color: #fff;
-			padding-left: 10rpx;
-		}
+		overflow: hidden;
+	}
+	.context{
+		background-color: #fff;
+		padding-left: 10rpx;
 	}
 	checkbox .wx-checkbox-input{
 	  border-radius: 50%;/* 圆角 */
@@ -175,6 +192,7 @@
 		border-bottom: 2px solid #F2F2F2;
 		height: 68rpx;
 		line-height: 68rpx;
+		margin-top: 20rpx;
 		text{
 			font-size: 32rpx;
 		}
@@ -198,14 +216,25 @@
 			flex-direction: column;
 			font-size: 32rpx;
 			width: 100%;
-			
+			>view:first-child{
+				display: flex;
+				justify-content: space-between;
+				>text{
+					font-size: 30rpx;
+				}
+				image{
+					width: 38rpx;
+					height: 40rpx;
+					padding-right: 20rpx;
+				}
+			}
 			.set1-p2{
 				margin-top: 50rpx;
 				color: #AAAAAA;
 				font-size: 30rpx;
 				line-height: 40rpx;
 			}
-			>view{
+			>view:last-child{
 				display: flex;
 				justify-content: space-between;
 				>text{
@@ -215,8 +244,10 @@
 					font-size: 26upx;
 					vertical-align: bottom;
 					display: inline-block;
-					height: 55rpx;
+					height: 34rpx;
 					padding-right: 22rpx;
+					display: flex;
+					margin-top: 4rpx;
 					.reduce-add {
 						display: inline-block;
 						border: 1px solid #707070;
@@ -224,8 +255,22 @@
 						height: 30rpx;
 						line-height: 28rpx;
 						text-align: center;
-						font-size: 32rpx;
+						font-size: 30rpx;
 						vertical-align: middle;
+						border-top-left-radius: 14rpx;
+						border-bottom-left-radius: 14rpx;
+					}
+					.reduce-add1 {
+						display: inline-block;
+						border: 1px solid #707070;
+						width: 40rpx;
+						height: 30rpx;
+						line-height: 28rpx;
+						text-align: center;
+						font-size: 30rpx;
+						vertical-align: middle;
+						border-top-right-radius: 14rpx;
+						border-bottom-right-radius: 14rpx;
 					}
 					.amount {
 						display: inline-block;
@@ -233,8 +278,8 @@
 						height: 30rpx;
 						line-height: 30rpx;
 						text-align: center;
-						border-top: 1px solid #707070;
-						border-bottom: 1px solid #707070;
+						border-top: 1px solid #AAAAAA;
+						border-bottom: 1px solid #AAAAAA;
 						vertical-align: middle;
 						color: #000;
 					}
@@ -244,7 +289,7 @@
 		}
 	}
 	.bu{
-		height: 70rpx;
+		height: 100rpx;
 	}
 	.footer{
 		background-color: #fff;

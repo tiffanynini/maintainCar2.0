@@ -198,6 +198,92 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -206,8 +292,11 @@ var _default =
     };
   },
   methods: {
-    payMethods: function payMethods() {
-
+    payMethods1: function payMethods1() {
+      this.status = 1;
+    },
+    payMethods2: function payMethods2() {
+      this.status = 0;
     } } };exports.default = _default;
 
 /***/ }),

@@ -164,38 +164,59 @@ page {
 .container {
   background-color: #F4F4F3;
   height: 100%;
+  overflow: hidden;
 }
-.container > view:first-child {
-  font-size: 200rpx;
-  color: #2BBA43;
+.header {
+  background-color: #fff;
+  border: 1px #eee solid;
+  border-radius: 24rpx;
+  height: 80rpx;
+  margin: 24rpx 12rpx;
+}
+.header navigator {
+  font-size: 36rpx;
   text-align: center;
-  padding-top: 100rpx;
+  display: block;
+  line-height: 80rpx;
 }
-.container .p2 {
-  font-size: 40rpx;
-  text-align: center;
-  margin-bottom: 60rpx;
-}
-.container > view:last-child {
+.section {
+  height: 120rpx;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-          justify-content: center;
+  -webkit-justify-content: space-around;
+          justify-content: space-around;
+  background: #fff;
+  margin-bottom: 24rpx;
 }
-.container > view:last-child navigator > view {
-  font-size: 36rpx;
-  border: 1px #AAAAAA solid;
-  width: 300rpx;
-  height: 80rpx;
-  border-radius: 14rpx;
-  margin-right: 20rpx;
-  text-align: center;
+.section > view:first-child {
+  margin-top: 20rpx;
+}
+.section > view:first-child .header-icon1 {
+  color: #FD8F33;
   line-height: 80rpx;
+  font-size: 66rpx;
 }
-.active {
-  background-color: #F53218;
-  color: #fff;
+.section .head-middle {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  font-size: 32rpx;
+  margin-top: 20rpx;
+}
+.section .head-middle text:last-child {
+  font-size: 28rpx;
+  line-height: 44rpx;
+}
+.section > view:last-child {
+  margin-top: 40rpx;
+}
+.section > view:last-child navigator image {
+  width: 50rpx;
+  height: 50rpx;
 }
 

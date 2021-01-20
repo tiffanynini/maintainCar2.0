@@ -1,0 +1,78 @@
+page,
+page {
+  height: 100%;
+}
+.container {
+  color: #333333;
+  background-color: #F4F4F3;
+  height: 100%;
+}
+.container .context {
+  background-color: #fff;
+  padding-left: 10rpx;
+}
+.container .context .inputContent {
+  border-bottom: 1px #D7D7D7 solid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  font-size: 34rpx;
+  height: 70rpx;
+  width: 98%;
+}
+.container .context .inputContent label {
+  margin-right: 20rpx;
+  display: block;
+  width: 140rpx;
+  margin-left: 12rpx;
+}
+.container .context .inputBottom {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  font-size: 34rpx;
+  height: 70rpx;
+}
+.container .context .inputBottom label {
+  font-size: 32rpx;
+  line-height: 70rpx;
+}
+.container .context .inputBottom label radio {
+  -webkit-transform: scale(0.6);
+          transform: scale(0.6);
+  margin-left: -10rpx;
+}
+.container .context .delAddress {
+  color: red;
+  font-size: 32rpx;
+  padding: 30rpx 0rpx 20rpx 10rpx;
+}
+.footer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+.footer .footer-content {
+  background-color: #FD8F33;
+  border-radius: 40rpx;
+  height: 80rpx;
+  margin: 50rpx 12rpx;
+  text-align: center;
+  width: 94%;
+}
+.footer .footer-content navigator {
+  font-size: 36rpx;
+  display: block;
+  line-height: 80rpx;
+  color: #fff;
+}
+

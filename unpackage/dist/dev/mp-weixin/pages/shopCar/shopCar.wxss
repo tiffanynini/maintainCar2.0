@@ -5,8 +5,9 @@ page {
 .container {
   background-color: #F4F4F3;
   height: 100%;
+  overflow: hidden;
 }
-.container .context {
+.context {
   background-color: #fff;
   padding-left: 10rpx;
 }
@@ -45,6 +46,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   border-bottom: 2px solid #F2F2F2;
   height: 68rpx;
   line-height: 68rpx;
+  margin-top: 20rpx;
 }
 .header text {
   font-size: 32rpx;
@@ -77,13 +79,7 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   font-size: 32rpx;
   width: 100%;
 }
-.section .set1-bottom .set1-p2 {
-  margin-top: 50rpx;
-  color: #AAAAAA;
-  font-size: 30rpx;
-  line-height: 40rpx;
-}
-.section .set1-bottom > view {
+.section .set1-bottom > view:first-child {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -91,39 +87,79 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   -webkit-justify-content: space-between;
           justify-content: space-between;
 }
-.section .set1-bottom > view > text {
+.section .set1-bottom > view:first-child > text {
   font-size: 30rpx;
 }
-.section .set1-bottom > view .counter {
+.section .set1-bottom > view:first-child image {
+  width: 38rpx;
+  height: 40rpx;
+  padding-right: 20rpx;
+}
+.section .set1-bottom .set1-p2 {
+  margin-top: 50rpx;
+  color: #AAAAAA;
+  font-size: 30rpx;
+  line-height: 40rpx;
+}
+.section .set1-bottom > view:last-child {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+}
+.section .set1-bottom > view:last-child > text {
+  font-size: 30rpx;
+}
+.section .set1-bottom > view:last-child .counter {
   font-size: 26rpx;
   vertical-align: bottom;
   display: inline-block;
-  height: 55rpx;
+  height: 34rpx;
   padding-right: 22rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  margin-top: 4rpx;
 }
-.section .set1-bottom > view .counter .reduce-add {
+.section .set1-bottom > view:last-child .counter .reduce-add {
   display: inline-block;
   border: 1px solid #707070;
   width: 40rpx;
   height: 30rpx;
   line-height: 28rpx;
   text-align: center;
-  font-size: 32rpx;
+  font-size: 30rpx;
   vertical-align: middle;
+  border-top-left-radius: 14rpx;
+  border-bottom-left-radius: 14rpx;
 }
-.section .set1-bottom > view .counter .amount {
+.section .set1-bottom > view:last-child .counter .reduce-add1 {
+  display: inline-block;
+  border: 1px solid #707070;
+  width: 40rpx;
+  height: 30rpx;
+  line-height: 28rpx;
+  text-align: center;
+  font-size: 30rpx;
+  vertical-align: middle;
+  border-top-right-radius: 14rpx;
+  border-bottom-right-radius: 14rpx;
+}
+.section .set1-bottom > view:last-child .counter .amount {
   display: inline-block;
   width: 60rpx;
   height: 30rpx;
   line-height: 30rpx;
   text-align: center;
-  border-top: 1px solid #707070;
-  border-bottom: 1px solid #707070;
+  border-top: 1px solid #AAAAAA;
+  border-bottom: 1px solid #AAAAAA;
   vertical-align: middle;
   color: #000;
 }
 .bu {
-  height: 70rpx;
+  height: 100rpx;
 }
 .footer {
   background-color: #fff;

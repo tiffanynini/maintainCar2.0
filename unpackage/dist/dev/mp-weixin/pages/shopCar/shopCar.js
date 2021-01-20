@@ -235,33 +235,49 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
-//
-//
-//
 var _default =
-
 {
   components: {},
 
-
   data: function data() {
     return {
-      count: 0 };
+      count: 1,
+      pCheckStatus: false, //父级的checkbox
+      cCheckStatus: false, //子级的checkbox
+      id: 1,
+      isPointer: "auto" };
 
   },
   methods: {
-    // 增加,减少按钮 id为0减少，为1增加
-    addReduce: function addReduce(id) {
-      if (id === 0) {
-        if (this.count > 1) {
-          this.count--;
-        }
+    //增加
+    addReduce: function addReduce() {
+      //传递index过来判断对应的数组里面的数量进行修改
+      this.isPointer = "auto";
+      this.count++;
+    },
+    //减少
+    minusReduce: function minusReduce() {
+      if (this.count > 1) {
+        this.count--;
       } else {
-        this.count++;
+        this.isPointer = "none";
       }
     },
     totalMoney: function totalMoney() {
 
+    },
+    //父级的checkbox选中的时候
+    checkChange: function checkChange() {
+      this.pCheckStatus = !this.pCheckStatus;
+      this.cCheckStatus = !this.cCheckStatus;
+    },
+    //子级的checkbox选中的时候
+    cCheckChange: function cCheckChange() {
+      // let count = 0;
+      // this.cCheckStatus = !this.cCheckStatus;
+      // if(count === 3){
+      // 	this.pCheckStatus = !this.pCheckStatus;
+      // }
     } } };exports.default = _default;
 
 /***/ }),
