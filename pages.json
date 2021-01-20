@@ -6,7 +6,25 @@
 				"navigationBarTitleText": "首页"
 			}
 		}
-	    ,{
+		,{
+			"path": "pages/productEvaluation/productEvaluation",
+			"style": {
+				"navigationBarTitleText": "产品评价"
+			}
+		}
+		,{
+			"path": "pages/details/details",
+			"style": {
+				"navigationBarTitleText": "详情"
+			}
+		}
+		,{
+			"path": "pages/freeWash/freeWash",
+			"style": {
+				"navigationBarTitleText": "免费洗车"
+			}
+		}
+		,{
             "path" : "pages/mechant/mechant",
             "style" : {
 				"navigationBarTitleText": "商家"
@@ -34,6 +52,12 @@
 		    "path" : "pages/findInfo/findInfo",
 		    "style" : {
 				"navigationBarTitleText": "详情"
+			}
+		},
+		{
+		    "path" : "pages/login/login",
+		    "style" : {
+				"navigationBarTitleText": "登录/注册"
 			}
 		}
     ],

@@ -1,0 +1,1 @@
+<view class="box"><view class="list"><block wx:for="{{arr}}" wx:for-item="v" wx:for-index="i" wx:key="i"><view data-event-opts="{{[['tap',[['change',[i]]]]]}}" class="{{[sel===i?'selected':'']}}" bindtap="__e">{{v}}</view></block></view></view>

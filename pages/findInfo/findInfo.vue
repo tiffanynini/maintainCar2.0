@@ -7,14 +7,14 @@
 			发表于2020-10-20 20:17:36  阅读:1238
 		</view>
 		<view class="video">
-			<video src="http://player.youku.com/embed/XMzAzMjE2NTk4MA" controls style="width: 100%;"></video>
+			<video src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" controls style="width: 100%;"></video>
 		</view>
 		<view class="comment">
 			评论
 		</view>
 		<view class="content" :key="i" v-for="(v,i) in arr">
 			<view class="left">
-				<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E4%BF%9D%E5%85%BB%E5%85%AD%E5%AE%97%E7%BD%AA/u505.svg?token=869c853d04e98132a61297fb381b7afc5e636bce4d88113c8d1f548de433b6b5" style="width: 50rpx;" mode="widthFix"></image>
+				<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E4%BF%9D%E5%85%BB%E5%85%AD%E5%AE%97%E7%BD%AA/u505.svg?token=8a52108a5aa7827263f06213206aec5daa5a2d123982674ad67b26bf88514a29" style="width: 50rpx;" mode="widthFix"></image>
 			</view>
 			<view class="right">
 				<view class="right-top">

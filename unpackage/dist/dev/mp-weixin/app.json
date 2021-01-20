@@ -1,11 +1,15 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/productEvaluation/productEvaluation",
+    "pages/details/details",
+    "pages/freeWash/freeWash",
     "pages/mechant/mechant",
     "pages/findMore/findMore",
     "pages/shopCar/shopCar",
     "pages/personInfo/personInfo",
-    "pages/findInfo/findInfo"
+    "pages/findInfo/findInfo",
+    "pages/login/login"
   ],
   "subPackages": [],
   "window": {
@@ -43,6 +47,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap40.json"
+  "usingComponents": {}
 }

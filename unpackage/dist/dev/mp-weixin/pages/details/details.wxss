@@ -1,0 +1,67 @@
+.box {
+  background-color: #F4F4F3;
+}
+.box .banner {
+  background-color: #fff;
+}
+.red {
+  color: red;
+}
+.container {
+  background-color: #fff;
+  padding: 16rpx 12rpx;
+}
+.container .title {
+  font-size: 30rpx;
+  padding-bottom: 16rpx;
+  border-bottom: 1px solid #AAAAAA;
+}
+.container .price {
+  margin-top: 18rpx;
+}
+.container .info {
+  color: #7F7F7F;
+  margin-top: 10rpx;
+  font-size: 28rpx;
+}
+.container .info text:nth-child(2) {
+  margin-left: 20rpx;
+}
+.evaluate {
+  padding: 16rpx 12rpx;
+  margin-top: 30rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  background-color: #fff;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 28rpx;
+}
+.product {
+  padding: 16rpx 12rpx;
+  margin-top: 30rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  background-color: #fff;
+  font-size: 28rpx;
+}
+.product .title {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  padding-bottom: 16rpx;
+  border-bottom: 1px solid #AAAAAA;
+}
+.product .detailImage {
+  margin-top: 20rpx;
+}
+
