@@ -56,7 +56,7 @@
         "usingComponents" : true,
         "permission" : {
             "scope.userLocation" : {
-                "desc" : ""
+                "desc" : "scope.userLocation"
             }
         }
     }

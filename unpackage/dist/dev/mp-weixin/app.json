@@ -1,6 +1,8 @@
 {
   "pages": [
+    "pages/basic-information/basic-information",
     "pages/personInfo/personInfo",
+    "pages/set/set",
     "pages/index/index",
     "pages/mechant/mechant",
     "pages/findMore/findMore",
@@ -44,7 +46,7 @@
   },
   "permission": {
     "scope.userLocation": {
-      "desc": ""
+      "desc": "scope.userLocation"
     }
   },
   "usingComponents": {}
