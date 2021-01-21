@@ -185,8 +185,13 @@
 .middle_nav view {
   font-size: 27rpx;
 }
+.middle_nav_child {
+  color: #000000;
+}
+.middle_nav_child.active {
+  color: #04C4E0;
+}
 .arrows {
-  background-color: pink;
   display: inline-block;
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);

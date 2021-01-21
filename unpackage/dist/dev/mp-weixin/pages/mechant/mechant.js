@@ -176,12 +176,17 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
+//
+//
 var _default =
 {
   data: function data() {
     return {
+      text1: true,
+      text2: false,
+      text3: false,
       // 人气箭头图标绑定值
-      arrow1: true, //true为原始（原型图上的），false为翻转
+      arrow1: true, //true为原始（从大到小），false为翻转
       // 距离箭头图标绑定值
       arrow2: true,
       // 活动图片处绑定值
@@ -193,51 +198,104 @@ var _default =
         shopid: 1,
         shoptitle: '某某汽车美容店',
         shopaddress: '广东省某某市某某区150号',
-        shopdistance: '1345.5km',
+        shopdistance: '134.5km',
+        popular: 11,
         shopheadimg: 'http://photocdn.sohu.com/20151225/mp50507226_1451010451322_1_th.jpeg' },
       {
         shopid: 2,
         shoptitle: '某某汽车美容店',
         shopaddress: '广东省某某市某某区150号',
         shopdistance: '1345.5km',
+        popular: 44,
         shopheadimg: 'http://photocdn.sohu.com/20151225/mp50507226_1451010451322_1_th.jpeg' },
       {
         shopid: 3,
         shoptitle: '某某汽车美容店',
         shopaddress: '广东省某某市某某区150号',
-        shopdistance: '1345.5km',
+        shopdistance: '13.5km',
+        popular: 22,
         shopheadimg: 'http://photocdn.sohu.com/20151225/mp50507226_1451010451322_1_th.jpeg' },
       {
         shopid: 4,
         shoptitle: '某某汽车美容店',
         shopaddress: '广东省某某市某某区150号',
-        shopdistance: '1345.5km',
+        shopdistance: '1.5km',
+        popular: 33,
         shopheadimg: 'http://photocdn.sohu.com/20151225/mp50507226_1451010451322_1_th.jpeg' },
       {
         shopid: 5,
         shoptitle: '某某汽车美容店',
         shopaddress: '广东省某某市某某区150号',
-        shopdistance: '1345.5km',
+        shopdistance: '1345km',
+        popular: 55,
         shopheadimg: 'http://photocdn.sohu.com/20151225/mp50507226_1451010451322_1_th.jpeg' }] };
 
 
   },
   methods: {
-    // 人气箭头图标换向
-    arrowRotate1: function arrowRotate1() {
-      this.arrow1 = !this.arrow1;
+    // 点击综合按id排序
+    arrowRotate: function arrowRotate() {
+      var arr = this.shoplist;
+      this.text1 = true;
+      this.text2 = false;
+      this.text3 = false;
+      arr.sort(function (a, b) {
+        return a.shopid - b.shopid;
+      });
     },
-    // 距离箭头图标换向
+    // 人气排序
+    arrowRotate1: function arrowRotate1() {
+      var arr1 = this.shoplist;
+      this.text1 = false;
+      this.text2 = true;
+      this.text3 = false;
+      this.arrow1 = !this.arrow1;
+      if (this.arrow1) {
+        arr1.sort(function (a, b) {
+          return a.popular - b.popular;
+        });
+      } else {
+        arr1.sort(function (a, b) {
+          return b.popular - a.popular;
+        });
+      }
+    },
+    // 距离排序
     arrowRotate2: function arrowRotate2() {
+      var arr2 = this.shoplist;
+      this.text1 = false;
+      this.text2 = false;
+      this.text3 = true;
       this.arrow2 = !this.arrow2;
+
+      arr2.map(function (v) {
+        v.shopdistance = parseFloat(v.shopdistance);
+        return v.shopdistance;
+      });
+      if (this.arrow2) {
+        arr2.sort(function (a, b) {
+          return a.shopdistance - b.shopdistance;
+        });
+      } else {
+        arr2.sort(function (a, b) {
+          return b.shopdistance - a.shopdistance;
+        });
+      };
+      arr2.map(function (v) {
+        v.shopdistance = v.shopdistance + "km";
+        return v.shopdistance;
+      });
     },
     // 点击跳转店铺详情页
     shopindex: function shopindex(val) {
-      console.log(val);
       wx.navigateTo({
         url: "../shopindex/shopindex?id='" + val + "'" });
 
-    } } };exports.default = _default;
+    } },
+
+  onLoad: function onLoad() {
+
+  } };exports.default = _default;
 
 /***/ }),
 
