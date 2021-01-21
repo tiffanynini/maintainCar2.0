@@ -18,4 +18,8 @@
 	.dhzdeshangpingleibiaokapianxianran .uni-card__content--pd[data-v-3afcb0a4]{
 		padding: 14rpx;
 	}
+	page{
+		height: 100%;
+		width: 100%;
+	}
 </style>
