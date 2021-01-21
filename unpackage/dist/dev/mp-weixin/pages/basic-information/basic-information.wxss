@@ -159,14 +159,20 @@
 }
 page.data-v-4bf807bc {
   height: 100%;
-  background-color: #F4F4F3;
 }
 .body.data-v-4bf807bc {
-  margin-top: 100rpx;
-  background-color: #fff;
-  border-bottom: 2rpx solid #D7D7D7;
+  height: 100%;
+  background-color: #F4F4F3;
 }
 .body view.data-v-4bf807bc:first-child {
+  height: 100rpx;
+}
+.content.data-v-4bf807bc {
+  background-color: #fff;
+  border-bottom: 2rpx solid #D7D7D7;
+  border-top: 2rpx solid #D7D7D7;
+}
+.content view.data-v-4bf807bc:first-child {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -175,7 +181,7 @@ page.data-v-4bf807bc {
   -webkit-flex-direction: row;
           flex-direction: row;
 }
-.body view:first-child text.data-v-4bf807bc:first-child {
+.content view:first-child text.data-v-4bf807bc:first-child {
   padding-left: 30rpx;
   height: 80rpx;
   line-height: 80rpx;
@@ -184,7 +190,7 @@ page.data-v-4bf807bc {
           flex: 1;
   font-size: 28rpx;
 }
-.body view:first-child .right.data-v-4bf807bc {
+.content view:first-child .right.data-v-4bf807bc {
   line-height: 80rpx;
   display: -webkit-box;
   display: -webkit-flex;
@@ -196,7 +202,7 @@ page.data-v-4bf807bc {
   height: 80rpx;
   padding: 0 20rpx;
 }
-.body view:first-child .right image.data-v-4bf807bc {
+.content view:first-child .right image.data-v-4bf807bc {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
           flex: 1;
@@ -204,64 +210,10 @@ page.data-v-4bf807bc {
   width: 70rpx;
   margin: 4rpx 10rpx 0 0;
 }
-.body view:first-child .right text.data-v-4bf807bc {
+.content view:first-child .right text.data-v-4bf807bc {
   color: #BBBECA;
 }
-.preview.data-v-4bf807bc {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 3;
-}
-.camera.data-v-4bf807bc {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-}
-camera.data-v-4bf807bc {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-.save.data-v-4bf807bc {
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 4;
-  background-color: #828074;
-  border-radius: 50%;
-}
-.take.data-v-4bf807bc {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  margin-left: -60rpx;
-  z-index: 4;
-  background-color: #828074;
-  border-radius: 50%;
-  padding: 20rpx;
-}
-.switchover.data-v-4bf807bc {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  z-index: 4;
-  background-color: #828074;
-  border-radius: 50%;
-}
-.rephotograph.data-v-4bf807bc,
-.shut.data-v-4bf807bc {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 4;
-  border-radius: 50%;
-  background-color: #828074;
+.date.data-v-4bf807bc {
+  text-align: center;
 }
 

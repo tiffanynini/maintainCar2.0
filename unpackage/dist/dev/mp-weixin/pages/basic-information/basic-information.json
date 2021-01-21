@@ -6,6 +6,8 @@
     "uni-list": "/components/uni-list/uni-list",
     "uni-list-item": "/components/uni-list-item/uni-list-item",
     "min-action-sheet": "/components/min-action-sheet/min-action-sheet",
-    "uni-icons": "/components/uni-icons/uni-icons"
+    "neil-modal": "/components/neil-modal/neil-modal",
+    "uni-icons": "/components/uni-icons/uni-icons",
+    "time-selector": "/components/wing-time-selector/wing-time-selector"
   }
 }
