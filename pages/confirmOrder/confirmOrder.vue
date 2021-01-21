@@ -21,7 +21,7 @@
 			</view>
 			<view class="set-middle">
 				<view class="set1-middle">
-					<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=43c6cafcd9a3653c7c5079e3c439f2e742551157dae1b391451dc1137723ecc8"></image>
+					<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=c3b4ff848a61a132357823e9cdfb1a74d38de325077b43e61feb69e9d413f2a9"></image>
 				</view>
 				<view class="set1-bottom">
 					<text>汽车贴膜（每10CM）</text>
@@ -44,13 +44,6 @@
 			<view class="set-bottom">
 				<text>邮费</text>
 				<text>¥ 29.9</text>
-			</view>
-			<view class="set-bottom">
-				<text>支付方式</text>
-				<view class="method">
-					<view class="payMethod" :class="status == 1?'active':''" @click="payMethods1">在线支付</view>
-					<view class="payMethod" :class="status == 0?'active':''" @click="payMethods2">货到付款</view>
-				</view>
 			</view>
 			<view class="set-order">
 				<text class="beiZhu">订单备注</text>
@@ -63,7 +56,7 @@
 			</view>
 			<view class="set-middle">
 				<view class="set1-middle">
-					<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=43c6cafcd9a3653c7c5079e3c439f2e742551157dae1b391451dc1137723ecc8"></image>
+					<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=c3b4ff848a61a132357823e9cdfb1a74d38de325077b43e61feb69e9d413f2a9"></image>
 				</view>
 				<view class="set1-bottom">
 					<text>汽车贴膜（每10CM）</text>
@@ -86,59 +79,17 @@
 			<view class="set-bottom">
 				<text>邮费</text>
 				<text>¥ 29.9</text>
-			</view>
-			<view class="set-bottom">
-				<text>支付方式</text>
-				<view class="method">
-					<view class="payMethod" :class="status == 1?'active':''" @click="payMethods1">在线支付</view>
-					<view class="payMethod" :class="status == 0?'active':''" @click="payMethods2">货到付款</view>
-				</view>
 			</view>
 			<view class="set-order">
 				<text class="beiZhu">订单备注</text>
 				<textarea />
 			</view>
 		</view>
-		<view class="section">
-			<view>
-				<text>自营店</text>
-			</view>
-			<view class="set-middle">
-				<view class="set1-middle">
-					<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=43c6cafcd9a3653c7c5079e3c439f2e742551157dae1b391451dc1137723ecc8"></image>
-				</view>
-				<view class="set1-bottom">
-					<text>汽车贴膜（每10CM）</text>
-					<text class="set1-p2">汽车类型：轿车  位置：全车</text>
-					<text>单价：1×29.9</text>
-				</view>
-			</view>
-			<view class="set-bottom">
-				<text>商品价格</text>
-				<text>¥ 29.9</text>
-			</view>
-			<view class="set-bottom">
-				<text>优惠</text>
-				<text>¥ 0</text>
-			</view>
-			<view class="set-bottom">
-				<text>小计</text>
-				<text id="xiaoJi">¥ 29.9</text>
-			</view>
-			<view class="set-bottom">
-				<text>邮费</text>
-				<text>¥ 29.9</text>
-			</view>
-			<view class="set-bottom">
-				<text>支付方式</text>
-				<view class="method">
-					<view class="payMethod" :class="status == 1?'active':''" @click="payMethods1">在线支付</view>
-					<view class="payMethod" :class="status == 0?'active':''" @click="payMethods2">货到付款</view>
-				</view>
-			</view>
-			<view class="set-order">
-				<text class="beiZhu">订单备注</text>
-				<textarea />
+		<view class="section2">
+			<text>支付方式</text>
+			<view class="method">
+				<view class="payMethod" :class="status == 1?'active':''" @click="payMethods1">在线支付</view>
+				<view class="payMethod" :class="status == 0?'active':''" @click="payMethods2">货到付款</view>
 			</view>
 		</view>
 		<view class="bu"></view>
@@ -299,6 +250,54 @@
 	.active{
 		background-color:#50C6F8;
 		color: #fff;
+	}
+	.section2{
+		background-color: #fff;
+		height: 80rpx;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		>text:first-child{
+			font-size: 30rpx;
+			padding-left: 20rpx;
+			flex: 2;
+		}
+		.method{
+			display: flex;
+			.payMethod{
+				width: 142rpx;
+				height: 42rpx;
+				border: 1px #D7D7D7 solid;
+				text-align: center;
+				font-size: 24rpx;
+				line-height: 42rpx;
+				border-radius: 10rpx;
+				margin-right: 20rpx;
+			}
+		}
+		.head-middle{
+			display: flex;
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			-webkit-flex-direction: column;
+			flex-direction: column;
+			font-size: 32rpx;
+			margin-top: 18rpx;
+			-webkit-box-flex: 4;
+			-webkit-flex: 4;
+			flex: 8;
+			text:last-child{
+				font-size: 28rpx;
+				line-height: 44rpx;
+			}
+		}
+		>view:last-child{
+			.header-icon2{
+				color: #AAAABD;
+				line-height: 80rpx;
+				font-size: 30rpx;
+			}
+		}
 	}
 	.bu{
 		height: 80rpx;

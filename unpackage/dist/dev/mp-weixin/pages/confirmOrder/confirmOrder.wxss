@@ -305,6 +305,63 @@ page {
   background-color: #50C6F8;
   color: #fff;
 }
+.section2 {
+  background-color: #fff;
+  height: 80rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-around;
+          justify-content: space-around;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.section2 > text:first-child {
+  font-size: 30rpx;
+  padding-left: 20rpx;
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+          flex: 2;
+}
+.section2 .method {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.section2 .method .payMethod {
+  width: 142rpx;
+  height: 42rpx;
+  border: 1px #D7D7D7 solid;
+  text-align: center;
+  font-size: 24rpx;
+  line-height: 42rpx;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+}
+.section2 .head-middle {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  font-size: 32rpx;
+  margin-top: 18rpx;
+  -webkit-box-flex: 4;
+  -webkit-flex: 4;
+  flex: 8;
+}
+.section2 .head-middle text:last-child {
+  font-size: 28rpx;
+  line-height: 44rpx;
+}
+.section2 > view:last-child .header-icon2 {
+  color: #AAAABD;
+  line-height: 80rpx;
+  font-size: 30rpx;
+}
 .bu {
   height: 80rpx;
 }

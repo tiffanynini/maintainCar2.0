@@ -16,7 +16,7 @@
 				</view>
 				<view class="section2">
 					<view class="set1-middle">
-						<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=43c6cafcd9a3653c7c5079e3c439f2e742551157dae1b391451dc1137723ecc8"></image>
+						<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=c3b4ff848a61a132357823e9cdfb1a74d38de325077b43e61feb69e9d413f2a9"></image>
 					</view>
 					<view class="set1-bottom">
 						<view>
@@ -46,67 +46,7 @@
 				</view>
 				<view class="section2">
 					<view class="set1-middle">
-						<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=43c6cafcd9a3653c7c5079e3c439f2e742551157dae1b391451dc1137723ecc8"></image>
-					</view>
-					<view class="set1-bottom">
-						<view>
-							<text>汽车贴膜（每10CM）</text>
-							<text>￥29.9</text>
-						</view>
-						<view>
-							<text class="set1-p2">汽车类型：轿车  位置：全车</text>
-							<text class="set1-p2">×3</text>
-						</view>
-					</view>
-				</view>
-				<view class="addCar">
-					<view></view>
-					<view>加入购物车</view>
-				</view>
-				<view class="totalMoney">
-					<view></view>
-					<view>实付款：
-						<text>￥151.05</text>
-					</view>
-				</view>
-			</view>
-			<view class="section">
-				<view class="section1">
-					<text>自营店</text>
-				</view>
-				<view class="section2">
-					<view class="set1-middle">
-						<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=43c6cafcd9a3653c7c5079e3c439f2e742551157dae1b391451dc1137723ecc8"></image>
-					</view>
-					<view class="set1-bottom">
-						<view>
-							<text>汽车贴膜（每10CM）</text>
-							<text>￥29.9</text>
-						</view>
-						<view>
-							<text class="set1-p2">汽车类型：轿车  位置：全车</text>
-							<text class="set1-p2">×3</text>
-						</view>
-					</view>
-				</view>
-				<view class="addCar">
-					<view></view>
-					<view>加入购物车</view>
-				</view>
-				<view class="totalMoney">
-					<view></view>
-					<view>实付款：
-						<text>￥151.05</text>
-					</view>
-				</view>
-			</view>
-			<view class="section">
-				<view class="section1">
-					<text>自营店</text>
-				</view>
-				<view class="section2">
-					<view class="set1-middle">
-						<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=43c6cafcd9a3653c7c5079e3c439f2e742551157dae1b391451dc1137723ecc8"></image>
+						<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=c3b4ff848a61a132357823e9cdfb1a74d38de325077b43e61feb69e9d413f2a9"></image>
 					</view>
 					<view class="set1-bottom">
 						<view>

@@ -15,7 +15,7 @@
 						</label>
 					</view>
 					<view class="set1-middle">
-						<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=43c6cafcd9a3653c7c5079e3c439f2e742551157dae1b391451dc1137723ecc8"></image>
+						<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=c3b4ff848a61a132357823e9cdfb1a74d38de325077b43e61feb69e9d413f2a9"></image>
 					</view>
 					<view class="set1-bottom">
 						<view>
@@ -40,7 +40,7 @@
 						</label>
 					</view>
 					<view class="set1-middle">
-						<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=43c6cafcd9a3653c7c5079e3c439f2e742551157dae1b391451dc1137723ecc8"></image>
+						<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=c3b4ff848a61a132357823e9cdfb1a74d38de325077b43e61feb69e9d413f2a9"></image>
 					</view>
 					<view class="set1-bottom">
 						<view>
@@ -73,7 +73,7 @@
 						</label>
 					</view>
 					<view class="set1-middle">
-						<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=43c6cafcd9a3653c7c5079e3c439f2e742551157dae1b391451dc1137723ecc8"></image>
+						<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=c3b4ff848a61a132357823e9cdfb1a74d38de325077b43e61feb69e9d413f2a9"></image>
 					</view>
 					<view class="set1-bottom">
 						<view>

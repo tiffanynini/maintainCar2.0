@@ -18,7 +18,7 @@
 			</view>
 			<view class="set-middle">
 				<view class="set1-middle">
-					<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=43c6cafcd9a3653c7c5079e3c439f2e742551157dae1b391451dc1137723ecc8"></image>
+					<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=c3b4ff848a61a132357823e9cdfb1a74d38de325077b43e61feb69e9d413f2a9"></image>
 				</view>
 				<view class="set1-bottom">
 					<text>汽车贴膜（每10CM）</text>
@@ -48,37 +48,7 @@
 			</view>
 			<view class="set-middle">
 				<view class="set1-middle">
-					<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=43c6cafcd9a3653c7c5079e3c439f2e742551157dae1b391451dc1137723ecc8"></image>
-				</view>
-				<view class="set1-bottom">
-					<text>汽车贴膜（每10CM）</text>
-					<text class="set1-p2">汽车类型：轿车  位置：全车</text>
-					<text>1×29.9</text>
-				</view>
-			</view>
-			<view class="set-bottom">
-				<text>小计</text>
-				<text>¥ 29.9</text>
-			</view>
-			<view class="set-bottom">
-				<text>邮费</text>
-				<text>¥ 0</text>
-			</view>
-			<view class="set-bottom">
-				<text>应付金额</text>
-				<text>¥ 29.9</text>
-			</view>
-		</view>
-		<view class="section">
-			<view class="set-content">
-				<text space="emsp">下单时间：20191021 14:44</text>
-			</view>
-			<view class="set-content">
-				<text>订单备注：</text>
-			</view>
-			<view class="set-middle">
-				<view class="set1-middle">
-					<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=43c6cafcd9a3653c7c5079e3c439f2e742551157dae1b391451dc1137723ecc8"></image>
+					<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=c3b4ff848a61a132357823e9cdfb1a74d38de325077b43e61feb69e9d413f2a9"></image>
 				</view>
 				<view class="set1-bottom">
 					<text>汽车贴膜（每10CM）</text>
