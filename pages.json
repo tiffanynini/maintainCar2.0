@@ -9,13 +9,34 @@
 	    ,{
             "path" : "pages/mechant/mechant",
             "style" : {
-				"navigationBarTitleText": "商家"
+				"navigationBarTitleText": "商家",
+				"navigationBarBackgroundColor": "#04C4E0",
+				"navigationBarTextStyle": "white"
 			}
         }
         ,{
             "path" : "pages/findMore/findMore",
             "style" : {
 				"navigationBarTitleText": "发现"
+			}
+        },{
+            "path" : "pages/shopindex/shopindex",
+            "style" : {
+				"navigationBarTitleText": "店铺详情"
+			}
+        },{
+            "path" : "pages/productindex/productindex",
+            "style" : {
+				"navigationBarTitleText": "商品详情",
+				"navigationBarBackgroundColor": "#FD8F33",
+				"navigationBarTextStyle": "white"
+			}
+        },{
+            "path" : "pages/reviewindex/reviewindex",
+            "style" : {
+				"navigationBarTitleText": "产品评价",
+				"navigationBarBackgroundColor": "#FD8F33",
+				"navigationBarTextStyle": "white"
 			}
         }
         ,{
@@ -29,6 +50,25 @@
             "style" : {
 				"navigationBarTitleText": "个人中心"
 			}
+        }
+        
+        ,{
+            "path" : "pages/productindex/productindex",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/reviewindex/reviewindex",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
         }
     ],
 	"globalStyle": {

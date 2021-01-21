@@ -15,7 +15,7 @@
 				人气
 				<view class="arrows" :class="arrow1?'active':''" @click="arrowRotate1">
 					<!-- 字体图标旋转必须套一层容器，让容器旋转，字体图标本身不能旋转 -->
-					<text class="iconfont icon-paixu1 "></text>
+					<text class="iconfont icon-paixu1"></text>
 				</view>
 			</view>
 			<view>
@@ -27,17 +27,17 @@
 			</view>
 		</view>
 		<!-- 店铺列表 -->
-		<view class="shoplist">
-			<view class="shop">
-				<view>
-					<image src="shopicon" mode=""></image>
+		<view class="shoplist" v-for="(v,i) in shoplist" :key="i">
+			<view class="shop" @click="shopindex(i)">
+				<view class="shopimg">
+					<image :src="v.shopheadimg"></image>
 				</view>
-				<view>
-					<view>
-						<view>某某 汽车美容店</view>
-						<view>1345.5km</view>
+				<view class="shopcontent">
+					<view class="shoptit">
+						<view>{{v.shoptitle}}</view>
+						<view>{{v.shopdistance}}</view>
 					</view>
-					<view>地址：广东省某某市某某区150号</view>
+					<view class="shopaddress">地址：{{v.shopaddress}}</view>
 				</view>
 			</view>
 		</view>
@@ -54,10 +54,40 @@
 				arrow2: true,
 				// 活动图片处绑定值
 				activityimg: {
-					src: 'http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E5%95%86%E5%AE%B6/u1646.jpg?token=98b796f1d34e66e630e7febd19d5c522b619545128a6a8ad66489b4551986f17',
+					src: 'http://image.bitauto.com/dealer/news/100037731/a381f373-752b-4984-ac3b-a271c4ed4ead.jpg',
 				},
-				shopicon: 'https://image.baidu.com/search/detail?ct=503316480&z=undefined&tn=baiduimagedetail&ipn=d&word=%E6%B1%BD%E8%BD%A6%E5%BA%97%E5%9B%BE&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=undefined&hd=undefined&latest=undefined&copyright=undefined&cs=1003150980,2169898863&os=1051421730,2290698046&simid=3563433758,412843510&pn=1&rn=1&di=89430&ln=1574&fr=&fmq=1610951967884_R&fm=&ic=undefined&s=undefined&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&is=0,0&istype=0&ist=&jit=&bdtype=0&spn=0&pi=0&gsm=0&hs=2&objurl=https%3A%2F%2Fgimg2.baidu.com%2Fimage_search%2Fsrc%3Dhttp%253A%252F%252Ffangzhi.csc86.com%252Fuploadfile%252F2015%252F0305%252F20150305020323727.jpg%26refer%3Dhttp%253A%252F%252Ffangzhi.csc86.com%26app%3D2002%26size%3Df9999%2C10000%26q%3Da80%26n%3D0%26g%3D0n%26fmt%3Djpeg%3Fsec%3D1613543967%26t%3D836d3d4f18328433bf6c1edc6a3cb3ba&rpstart=0&rpnum=0&adpicid=0&force=undefined',
-
+				// 商家列表渲染数据
+				shoplist:[{
+					shopid: 1,
+					shoptitle: '某某汽车美容店',
+					shopaddress: '广东省某某市某某区150号',
+					shopdistance: '1345.5km',
+					shopheadimg: 'http://photocdn.sohu.com/20151225/mp50507226_1451010451322_1_th.jpeg',
+				}, {
+					shopid: 2,
+					shoptitle: '某某汽车美容店',
+					shopaddress: '广东省某某市某某区150号',
+					shopdistance: '1345.5km',
+					shopheadimg: 'http://photocdn.sohu.com/20151225/mp50507226_1451010451322_1_th.jpeg',
+				}, {
+					shopid: 3,
+					shoptitle: '某某汽车美容店',
+					shopaddress: '广东省某某市某某区150号',
+					shopdistance: '1345.5km',
+					shopheadimg: 'http://photocdn.sohu.com/20151225/mp50507226_1451010451322_1_th.jpeg',
+				}, {
+					shopid: 4,
+					shoptitle: '某某汽车美容店',
+					shopaddress: '广东省某某市某某区150号',
+					shopdistance: '1345.5km',
+					shopheadimg: 'http://photocdn.sohu.com/20151225/mp50507226_1451010451322_1_th.jpeg',
+				}, {
+					shopid: 5,
+					shoptitle: '某某汽车美容店',
+					shopaddress: '广东省某某市某某区150号',
+					shopdistance: '1345.5km',
+					shopheadimg: 'http://photocdn.sohu.com/20151225/mp50507226_1451010451322_1_th.jpeg',
+				}],
 			};
 		},
 		methods: {
@@ -69,11 +99,18 @@
 			arrowRotate2() {
 				this.arrow2 = !this.arrow2;
 			},
+			// 点击跳转店铺详情页
+			shopindex(val){
+				console.log(val);
+				wx.navigateTo({
+					url: "../shopindex/shopindex?id='"+val+"'"
+				})
+			}
 		}
 	}
 </script>
 
-<style>
+<style lang="less">
 	@import url("../../static/font/iconfont.css");
 
 	/* 活动图 */
@@ -88,7 +125,7 @@
 	/* 中部导航栏 */
 	.middle_nav {
 		padding: 0 80rpx;
-		border-bottom: 1rpx solid #ccc;
+		border-bottom: 2rpx solid #ececec;
 		height: 64rpx;
 		display: flex;
 		align-items: center;
@@ -112,16 +149,37 @@
 	/* 店铺列表 */
 	.shop {
 		height: 150rpx;
-		background-color: pink;
+		border-bottom: 2rpx solid #ececec;
 		display: flex;
 		justify-content: space-between;
 	}
-	.shop view image {
-		height: 150rpx;
+	.shopimg{
+		padding-left: 10rpx;
+	}
+	.shopcontent{
+		padding-top: 30rpx;
+		padding-left: 10rpx;
+		flex: 1;
+	}
+	.shopimg>image {
+		padding: 20rpx 0;
+		height: 110rpx;
 		width: 150rpx;
 	}
-	.shop view view:first-child {
+	.shoptit {
+		font-size: 32rpx;
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
+	}
+	.shoptit>view:last-child{
+		font-size: 26rpx;
+		color: #aaa;
+	}
+	.shopaddress {
+		font-size: 26rpx;
+		line-height: 50rpx;
+		height: 50rpx;
+		color: #aaa;
 	}
 </style>

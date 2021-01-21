@@ -3,8 +3,11 @@
     "pages/index/index",
     "pages/mechant/mechant",
     "pages/findMore/findMore",
+    "pages/shopindex/shopindex",
     "pages/shopCar/shopCar",
-    "pages/personInfo/personInfo"
+    "pages/personInfo/personInfo",
+    "pages/productindex/productindex",
+    "pages/reviewindex/reviewindex"
   ],
   "subPackages": [],
   "window": {
