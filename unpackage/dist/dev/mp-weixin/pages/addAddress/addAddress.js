@@ -165,25 +165,51 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
-//
-//
 var _default =
 {
   data: function data() {
     return {
-      consignee: '',
-      phone: '',
-      area: '',
-      region: ['广东省', '广州市', '海珠区'],
-      selStatus: 0 //0是未选中，1是选中
+      address: {
+        receiverName: '',
+        receiverPhone: '',
+        receiverProvince: '',
+        receiverCity: '',
+        receiverTown: '',
+        receiverAddress: '',
+        status: '' //0是未选中，1是选中,
+      },
+      region: ['广东省', '广州市', '海珠区']
+      // //用来存放选择的省
+      // provice:'',
+      // //用来存放选择的市
+      // city:'',
+      // //用来存放选择的区
+      // town:'',
     };
   },
   methods: {
     bindRegionChange: function bindRegionChange(e) {
-      this.region = e.detail.value;
+      console.log(this.region);
+      address.receiverProvince = this.region[0];
+      address.receiverCity = this.region[1];
+      address.receiverTown = this.region[2];
+      address.region = e.detail.value;
     },
     changeRadio: function changeRadio() {
       this.selStatus = !this.selStatus;
+    },
+    baoCun: function baoCun() {
+      wx.request({
+        url: 'http://172.17.1.221:6060/order/addAddress',
+        method: 'post',
+        data: address,
+        success: function success(res) {
+          console.log(res);
+        },
+        fail: function fail(err) {
+          console.log(err);
+        } });
+
     } } };exports.default = _default;
 
 /***/ }),

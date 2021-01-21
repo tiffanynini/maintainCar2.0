@@ -242,7 +242,18 @@ var _default =
       status: 1 //在线支付为1，货到付款为0
     };
   },
+  mounted: function mounted() {
+    // wx.showLoading({
+    // 	title:"加载中",
+    // 	success:()=>{
+    // 		this.init();
+    // 	}
+    // })
+  },
   methods: {
+    init: function init() {
+
+    },
     payMethods1: function payMethods1() {
       this.status = 1;
     },

@@ -2,15 +2,15 @@
 	<view class="container">
 		<view class="context">
 			<view class="inputContent">
-				<label for="consignee">收货人</label>
-				<input v-model="consignee" placeholder="请输入收货人" id="consignee" />
+				<label for="address.receiverName">收货人</label>
+				<input v-model="receiverName" placeholder="请输入收货人" id="receiverName" />
 			</view>
 			<view class="inputContent">
-				<label for="phone">手机号码</label>
-				<input v-model="phone" placeholder="请输入手机号码" id="phone" />
+				<label for="receiverPhone">手机号码</label>
+				<input v-model="address.receiverPhone" placeholder="请输入手机号码" id="receiverPhone" />
 			</view>
 			<view class="inputContent">
-				<label for="area">所在地区</label>
+				<label for="region">所在地区</label>
 				<picker mode="region" value="region" @change="bindRegionChange">
 				    <view class="picker">
 						{{region[0]}}/{{region[1]}}/{{region[2]}}
@@ -18,8 +18,8 @@
 				</picker>
 			</view>
 			<view class="inputContent">
-				<label for="area">详细地址</label>
-				<input v-model="area" placeholder="请输入详细地址" id="area" />
+				<label for="receiverAddress">详细地址</label>
+				<input v-model="address.receiverAddress" placeholder="请输入详细地址" id="receiverAddress" />
 			</view>
 			<view class="inputBottom">
 				 <label class="radio"><radio value="r1" :checked="selStatus" @click="changeRadio"/>设置默认地址</label>
@@ -27,11 +27,9 @@
 		</view>
 		<view class="footer">	
 			<view class="footer-content">
-				<navigator url="../addressManage/addressManage" open-type="navigate">保存</navigator>
+				<navigator url="../addressManage/addressManage" open-type="navigate" @click="baoCun">保存</navigator>
 			</view>
 		</view>
-		
-		
 	</view>
 </template>
 
@@ -39,19 +37,47 @@
 	export default{
 		data(){
 			return {
-				consignee:'',
-				phone:'',
-				area:'',
+				address:{
+					receiverName:'',
+					receiverPhone:'',
+					receiverProvince:'',
+					receiverCity:'',
+					receiverTown:'',
+					receiverAddress:'',
+					status:''//0是未选中，1是选中,
+				},
 				region: ['广东省', '广州市', '海珠区'],
-				selStatus:0,//0是未选中，1是选中
+				// //用来存放选择的省
+				// provice:'',
+				// //用来存放选择的市
+				// city:'',
+				// //用来存放选择的区
+				// town:'',
 			}
 		},
 		methods:{
 			bindRegionChange(e){
-				this.region = e.detail.value;
+				console.log(this.region);
+				address.receiverProvince = this.region[0];
+				address.receiverCity = this.region[1];
+				address.receiverTown = this.region[2];
+				address.region = e.detail.value;
 			},
 			changeRadio(){
 				this.selStatus = !this.selStatus;
+			},
+			baoCun(){
+				wx.request({
+					url:'http://172.17.1.221:6060/order/addAddress',
+					method:'post',
+					data:address,
+					success: (res) => {
+						console.log(res);
+					},
+					fail: (err) => {
+						console.log(err);
+					}
+				})
 			}
 		}
 	}

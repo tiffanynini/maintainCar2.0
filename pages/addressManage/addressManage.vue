@@ -3,27 +3,13 @@
 		<view class="header">
 			<navigator url="../addAddress/addAddress" open-type="navigate">添加收货地址</navigator>
 		</view>
-		<view class="section">
+		<view class="section" v-for="(v,i) in addressMsg" :key="i">
 			<view>
 				<text class="iconfont icon-dingwei1 header-icon1"></text>
 			</view>
 			<view class="head-middle">
-				<text space="emsp">梁先森 17600000000</text>
-				<text space="emsp">广东省佛山市某某镇某某街道某某村某某巷15号</text>
-			</view>
-			<view>
-				<navigator url="../editAddress/editAddress" open-type="navigate">
-					<image src="../../static/images/edit.png"></image>
-				</navigator>
-			</view>
-		</view>
-		<view class="section">
-			<view>
-				<text class="iconfont icon-dingwei1 header-icon1"></text>
-			</view>
-			<view class="head-middle">
-				<text space="emsp">梁先森 17600000000</text>
-				<text space="emsp">广东省佛山市某某镇某某街道某某村某某巷15号</text>
+				<text space="emsp">{{v.receiverName}} {{v.receiverPhone}}</text>
+				<text space="emsp">{{v.receiverProvince}}{{v.receiverCity}}{{v.receiverTown}}{{v.receiverAddress}}</text>
 			</view>
 			<view>
 				<navigator url="../editAddress/editAddress" open-type="navigate">
@@ -35,6 +21,41 @@
 </template>
 
 <script>
+	export default {
+		data(){
+			return {
+				addressMsg:[
+					{
+						receiverName:'梁先森',
+						receiverPhone:'17600000000',
+						receiverProvince:'广东省',
+						receiverCity:'佛山市',
+						receiverTown:'某某镇',
+						receiverAddress:'某某街道某某村某某巷15号',
+						status:1
+					},
+					{
+						receiverName:'梁先森',
+						receiverPhone:'17600000000',
+						receiverProvince:'广东省',
+						receiverCity:'佛山市',
+						receiverTown:'某某镇',
+						receiverAddress:'某某街道某某村某某巷15号',
+						status:0
+					}
+				],
+			}
+		},
+		methods:{
+			init(){
+				//初始化渲染页面
+			}
+		},
+		mounted() {
+			this.init();
+		},
+		
+	}
 </script>
 
 <style lang="less">

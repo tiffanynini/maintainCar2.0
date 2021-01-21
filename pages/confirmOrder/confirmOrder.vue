@@ -110,7 +110,18 @@
 				status:1, //在线支付为1，货到付款为0
 			}
 		},
+		mounted(){
+			// wx.showLoading({
+			// 	title:"加载中",
+			// 	success:()=>{
+			// 		this.init();
+			// 	}
+			// })
+		},
 		methods:{
+			init(){
+				
+			},
 			payMethods1(){
 				this.status = 1;
 			},
