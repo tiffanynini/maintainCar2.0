@@ -236,11 +236,12 @@
 				this.birthdayStatus=false;
 				this.feedback("修改成功");
 			},
-			// 时间选择器改变事件，参数为e
+			// 时间选择器改变事件，参数为ev
 			dateChange(ev){
 			    console.log(ev);
 				this.uncertainBirthday=ev.detail.value.toString();
 			},
+			//初始化时间选择器最大值
 			setEndDate(){
 				let d=new Date();
 				d=d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();

@@ -1,12 +1,14 @@
 {
   "pages": [
-    "pages/basic-information/basic-information",
     "pages/personInfo/personInfo",
+    "pages/msg/msg",
     "pages/set/set",
+    "pages/basic-information/basic-information",
     "pages/index/index",
     "pages/mechant/mechant",
     "pages/findMore/findMore",
-    "pages/shopCar/shopCar"
+    "pages/shopCar/shopCar",
+    "pages/orderStatus/orderStatus"
   ],
   "subPackages": [],
   "window": {
@@ -49,6 +51,5 @@
       "desc": "scope.userLocation"
     }
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap97.json"
+  "usingComponents": {}
 }

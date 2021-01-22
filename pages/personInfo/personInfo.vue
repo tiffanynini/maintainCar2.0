@@ -5,11 +5,11 @@
 	   <!-- 设置路由 -->
 	   <navigator url="/pages/set/set" hover-class="none"><uni-icons type="gear" size="28"></uni-icons></navigator>
 	   <!-- 消息路由 -->
-	   <navigator url="" hover-class="none"><uni-icons type="chat" size="28"></uni-icons></navigator>
+	   <navigator url="/pages/msg/msg" hover-class="none"><uni-icons type="chat" size="28"></uni-icons></navigator>
    </view>
    <view>
     <view class="img">
-     <image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/我的/u1718.svg?token=107019ad7a9089608691b165738d0c7cf785eca02cac18b29c9d5f4486c35dd0" mode="heightFix"></image>
+     <image src="../../static/neil-modal/logo.png" mode="heightFix"></image>
     </view>
    </view>
    <view>
@@ -24,43 +24,31 @@
   		<text>我的购物</text>
   	</view>
 	<view>
-		<navigator url="" class="option" hover-class="none">
+		<navigator url="/pages/orderStatus/orderStatus?status=0" class="option" hover-class="none">
 				<span class="iconfont icon-daifukuan"></span>
 				<text>待付款</text>
 		</navigator>
-		<navigator url="" class="option" hover-class="none">
+		<navigator url="/pages/orderStatus/orderStatus?status=1" class="option" hover-class="none">
 				<span class="iconfont icon-daifahuo"></span>
 				<text>待发货</text>
 		</navigator>
-		<navigator url="" class="option" hover-class="none">
+		<navigator url="/pages/orderStatus/orderStatus?status=2" class="option" hover-class="none">
 				<span class="iconfont icon-daishouhuo"></span>
 				<text>待收获</text>
 		</navigator>
-		<navigator url="" class="option" hover-class="none">
+		<navigator url="/pages/orderStatus/orderStatus?status=3" class="option" hover-class="none">
 				<span class="iconfont icon-daipingjia"></span>
 				<text>待评价</text>
 		</navigator>
-		<navigator url="" class="option" hover-class="none">
+		<navigator url="/pages/orderStatus/orderStatus?status=4" class="option" hover-class="none">
 				<span class="iconfont icon-tuikuan"></span>
 				<text>待退款</text>
 		</navigator>
-		<navigator url="" class="option" hover-class="none">
+		<navigator url="/pages/orderStatus/orderStatus?status=5" class="option" hover-class="none">
 				<span class="iconfont icon-gouwuche"></span>
 				<text>购物车</text>
 		</navigator>
-		<navigator url="" class="option" hover-class="none">
-				<span class="iconfont icon-huiyuanqia"></span>
-				<text>会员卡</text>
-		</navigator>
-		<navigator url="" class="option" hover-class="none">
-				<span class="iconfont icon-youhuiquan"></span>
-				<text>优惠券</text>
-		</navigator>
-		<navigator url="" class="option" hover-class="none">
-				<span class="iconfont icon-liulanjilu"></span>
-				<text>浏览记录</text>
-		</navigator>
-		<navigator url="" class="option" hover-class="none">
+		<navigator url="/pages/orderStatus/orderStatus?status=6" class="option" hover-class="none">
 				<span class="iconfont icon-weibiaoti2fuzhi08"></span>
 				<text>收货地址</text>
 		</navigator>
@@ -126,6 +114,7 @@
   top: 84rpx;
   left: 60rpx;
   border: 6rpx solid rgba(255,255,255,.8);
+  overflow: hidden;
   image{
    height: 180rpx;
   }
@@ -155,6 +144,7 @@
  .body{
 	 margin-top: 20rpx;
 	 background-color: #fff;
+	 
 	 view:first-child{
 		 border-bottom: 4rpx solid #F2F2F2;
 		 margin: 0 20rpx;
@@ -166,17 +156,20 @@
 		 flex-wrap: wrap;
 		 justify-content: space-around;
 		 .option{
-			 width: 20%;
+			 width: 25%;
 			 display: flex;
 			 flex-wrap: wrap;
 			 justify-content: space-around;
 			 align-content: center;
 			 height: 180rpx;
+			 text-align: center;
 			 span{
+				 width: 100%;
 				 color: #FDAE6B;
 				 font-size: 80rpx;
 			 }
 			 text{
+				 width: 100%;
 				 font-size: 28rpx;
 			 }
 		 }

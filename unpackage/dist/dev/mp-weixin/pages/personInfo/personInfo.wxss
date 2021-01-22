@@ -232,6 +232,7 @@ page.data-v-a164e934 {
   top: 84rpx;
   left: 60rpx;
   border: 6rpx solid rgba(255, 255, 255, 0.8);
+  overflow: hidden;
 }
 .img image.data-v-a164e934 {
   height: 180rpx;
@@ -285,7 +286,7 @@ page.data-v-a164e934 {
           justify-content: space-around;
 }
 .body view:nth-child(2) .option.data-v-a164e934 {
-  width: 20%;
+  width: 25%;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -296,12 +297,15 @@ page.data-v-a164e934 {
   -webkit-align-content: center;
           align-content: center;
   height: 180rpx;
+  text-align: center;
 }
 .body view:nth-child(2) .option ._span.data-v-a164e934 {
+  width: 100%;
   color: #FDAE6B;
   font-size: 80rpx;
 }
 .body view:nth-child(2) .option text.data-v-a164e934 {
+  width: 100%;
   font-size: 28rpx;
 }
 
