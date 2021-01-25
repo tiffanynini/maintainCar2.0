@@ -157,6 +157,12 @@
 .icon-pinglun:before {
   content: "\e60d";
 }
+.noComment {
+  margin-top: 50rpx;
+  text-align: center;
+  color: #AAAAAA;
+  font-size: 24rpx;
+}
 .box {
   padding: 10rpx 20rpx;
 }

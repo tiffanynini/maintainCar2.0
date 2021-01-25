@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/login/login",
     "pages/index/index",
     "pages/productEvaluation/productEvaluation",
     "pages/details/details",
@@ -8,8 +9,7 @@
     "pages/findMore/findMore",
     "pages/shopCar/shopCar",
     "pages/personInfo/personInfo",
-    "pages/findInfo/findInfo",
-    "pages/login/login"
+    "pages/findInfo/findInfo"
   ],
   "subPackages": [],
   "window": {

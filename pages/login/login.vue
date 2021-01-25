@@ -1,14 +1,22 @@
 <template>
 	<view id="app">
+		<view :class="isShow?'layer':''">
+			<view class="infoModel" v-show="isShow">
+				<view class="infoText">请输入验证码</view>
+				<view class="inputCode">
+					<input type="number" v-model="input" maxlength="6">
+				</view>
+				<view class="confirmBtn" :class="input.length===6?'pass':'disabled'" @click="confirm">确定</view>
+				</view>
+			</view>
 		<view class="title">欢迎登录养车呗</view>
 		<view class="input_box">
 			<input type="text" placeholder="请输入手机号" v-model="phone" class="phone" placeholder-style="color:#AAAAAA"/>
-			<input type="password" placeholder="请输入密码" v-model="password" class="password" placeholder-style="color:#AAAAAA" v-show="isPass"/>
-			<view class="login">登录</view>
-			<view @click="change" class="loginType">{{loginText}}</view>
+			<text class="info">未注册则手机验证后自动创建新账号</text>
+			<view class="login" @click="getCode">获取验证码</view>
 		</view>
 		<view class="wechatLogin">
-			<i class="iconfont icon-iconfontzhizuobiaozhunbduan32"></i>
+			<i class="iconfont icon-iconfontzhizuobiaozhunbduan32" @click="wechatLogin"></i>
 			<text>微信登录</text>
 			<view class="radio">
 				<radio color="#EF8D34" @click="changeRadio" :checked="isChecked"></radio><view>我已阅读并同意<view @click="userProtocol" class="protocolColor">用户协议</view>和<view @click="privacityProtocol" class="protocolColor">隐私协议</view></view>
@@ -21,25 +29,199 @@
 	export default{
 		data(){
 			return {
+				canIUse: wx.canIUse('button.open-type.getUserInfo'),
 				phone:"",
 				password:"",
-				loginText:"快速登录",
 				isPass:true,
-				isChecked:false
+				isChecked:false,
+				reg:/^1[3-9]\d{9}$/,
+				selTag:0,
+				isFocus:true,
+				input:"",
+				isShow:false
 			}
 		},
 		methods:{
-			change(){
-				this.isPass = !this.isPass;
-				if(this.isPass){
-					this.loginText = "快速登录";
+			//微信登录
+			wechatLogin(){
+				wx.checkSession({
+				  success () {
+				    wx.showToast({
+				      title: '已经登录',
+				      icon: 'success',
+				      duration: 2000
+				    })
+				  },
+				  fail:()=>{
+				    if(!this.isChecked){
+				    	wx.showModal({
+				    	  title: '提示',
+				    	  content: '请先同意下方协议',
+				    	  showCancel: false,
+				    	});
+				    	return;
+				    }
+				    wx.login({
+				    	success:(res)=>{
+				    		if(res.code){
+				    			wx.showLoading({
+				    			  title: '正在处理',
+				    			})
+				    			wx.request({
+				    				url:'http://172.17.1.203:9090/user/wx/login',
+				    				method:'post',
+				    				data:{
+				    					code:res.code
+				    				},
+				    				success:(res)=>{
+				    					console.log(res)
+				    					if(res.data.data.token){
+				    						wx.setStorage({
+				    							key:"token",
+				    							data:res.data.data.token
+				    						});
+				    						wx.getStorage({
+				    							key:"token",
+				    							success(res){
+				    								wx.hideLoading();
+				    								wx.showToast({
+				    								  title: '登录成功',
+				    								  icon: 'success',
+				    								  duration: 2000
+				    								})
+				    							},
+				    							fail() {
+				    								wx.hideLoading();
+				    								wx.showToast({
+				    								  title: '登录失败',
+				    								  icon: 'none',
+				    								  duration: 2000
+				    								})
+				    							}
+				    						})
+				    					}else{
+				    						wx.showToast({
+				    						  title: '授权失败',
+				    						  icon: 'none',
+				    						  duration: 2000
+				    						})
+				    					}
+				    				},
+				    				fail:(res)=>{
+				    					wx.showToast({
+				    					  title: '连接失败',
+				    					  icon: 'none',
+				    					  duration: 2000
+				    					})
+				    				}
+				    			}) 
+				    		}else{
+				    			wx.showLoading({
+				    			  title: '请求失败',
+				    			}) 
+				    		}
+				    	}
+				    })
+				  }
+				})
+			},
+			//手机号登录
+			confirm(){
+				if(this.input.length !== 6){
+					return;
+				}
+				this.isShow = false;
+				wx.request({
+					url:'http://172.17.1.203:9090/user/login',
+					data:{
+						code:this.input,
+						phone:this.phone
+					},
+					success:(res)=>{
+						wx.setStorage({
+							key:"token",
+							data:res.data.data.token
+						});
+						wx.getStorage({
+							key:"token",
+							success(res){
+								wx.hideLoading();
+								wx.showToast({
+								  title: '登录成功',
+								  icon: 'success',
+								  duration: 2000
+								})
+							},
+							fail() {
+								wx.hideLoading();
+								wx.showToast({
+								  title: '登录失败',
+								  icon: 'none',
+								  duration: 2000
+								})
+							}
+						})
+					}
+				})
+			},
+			//获取验证码
+			getCode(){
+				if(!this.isChecked){
+					wx.showModal({
+					  title: '提示',
+					  content: '请先同意下方协议',
+					  showCancel: false,
+					});
+					return;
+				}
+				if(this.reg.test(this.phone)){
+					wx.showLoading({
+					  title: '请稍后',
+					})
+					wx.request({
+						url:'http://172.17.1.203:9090/sms/login',
+						data:{
+							phone:this.phone
+						},
+						fail:(res)=>{
+							wx.hideLoading();
+							wx.showToast({
+							  title: '服务器错误',
+							  icon: 'none',
+							  duration: 2000
+							})
+						},
+						success:(res)=>{
+							wx.hideLoading();
+							console.log(res)
+							if(res.data.code === 0){
+								this.isShow = true;
+								wx.showToast({
+								  title: '验证码已下发',
+								  icon: 'success',
+								  duration: 1000
+								})
+							}
+						}
+					})
 				}else{
-					this.loginText = "密码登录";
+					wx.showModal({
+					  title: '提示',
+					  content: '请输入正确的手机号',
+					  showCancel: false,
+					  success: (res)=> {
+					    if (res.confirm) {
+					      this.phone='';
+					    }
+					  }
+					})
 				}
 			},
+			//勾选是否同意协议
 			changeRadio(){
 				this.isChecked = !this.isChecked;
 			},
+			//用户协议展开
 			userProtocol(){
 				wx.showModal({
 				  title: '用户协议',
@@ -60,8 +242,14 @@
 
 <style lang="less">
 	@import url("@/static/font/iconfont.css");
+	.info{
+		font-size: 26rpx;
+		margin-top: 10rpx;
+		color: #AAAAAA;
+	}
 	#app{
 		padding: 50rpx;
+		position: relative;
 	}
 	.title{
 		font-size: 50rpx;
@@ -101,7 +289,7 @@
 		border-radius: 10rpx;
 	}
 	.wechatLogin{
-		margin-top: 100rpx;
+		margin-top: 140rpx;
 		display: flex;
 		flex-direction: column;
 		text-align: center;
@@ -125,5 +313,60 @@
 	}
 	.protocolColor{
 		color: #4CBF2A;
+	}
+	.infoModel{
+		z-index: 60;
+		width: 80%;
+		height: 320rpx;
+		background-color: #fff;
+		position: absolute;
+		top: 30%;
+		left: 10%;
+		margin-top: -160rpx;
+		border-radius: 10rpx;
+		.hideInput{
+			width: 0;
+			height: 0;
+			position: absolute;
+		}
+		.inputCode{
+			display: flex;
+			margin: 20rpx;
+			justify-content: space-around;
+			>input{
+				text-align: center;
+				margin-top: 30rpx;
+				border-bottom: 1px solid #EF8D34;
+			}
+		}
+		.infoText{
+			text-align: center;
+			margin-top: 20rpx;
+		}
+	}
+	.layer{
+		background-color: rgba(0,0,0,.3);
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 50;
+	}
+	.confirmBtn{
+		width:calc(100%-40rpx);
+		margin: 50rpx 20rpx;
+		border-radius: 10rpx;
+		color: #fff;
+		text-align: center;
+		height: 70rpx;
+		line-height: 70rpx;
+		transition: background-color .3s linear;
+	}
+	.pass{
+		background-color: #EF8D34;
+	}
+	.disabled{
+		background-color: #808080;
 	}
 </style>

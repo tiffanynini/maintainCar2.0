@@ -1,11 +1,11 @@
 <template>
 	<view class="list">
-		<view class="box" @click="jump" v-for="(v,i) in arrList" :key="i">
+		<view class="box" @click="jump(v.title,v.time,v.watch,v.url,v.id)" v-for="(v,i) in arrList" :key="i">
 			<view class="desc">
 				<image style="width: 100%;" :src=v.thumbnail mode="widthFix"></image>
 				<p>{{v.title}}</p>
 			</view>
-			<view class="flex box_footer">
+			<view class="flex box_footer"> 
 				<view class="flex">
 					<i class="iconfont icon-pinglun logo"></i>
 					<view class="number">{{v.msg}}</view>
@@ -13,7 +13,7 @@
 					<view class="number">{{v.watch}}</view>
 				</view>
 				<view>
-					{{v.time.substring(0,10)}}
+					{{v.time.split(' ')[0]}}
 				</view>
 			</view>
 		</view>
@@ -37,9 +37,9 @@
 			};
 		},
 		methods:{
-			jump(){
+			jump(i,t,r,v,d){
 				wx.navigateTo({
-					url:'../findInfo/findInfo'
+					url:'../findInfo/findInfo?title='+i+'&&time='+t+'&&read='+r+'&&url='+v+'&&id='+d
 				})
 			}
 		}
