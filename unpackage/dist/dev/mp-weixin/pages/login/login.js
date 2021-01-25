@@ -211,7 +211,6 @@ var _default =
                     code: res.code },
 
                   success: function success(res) {
-                    console.log(res);
                     if (res.data.data.token) {
                       wx.setStorage({
                         key: "token",
@@ -253,8 +252,10 @@ var _default =
                   } });
 
               } else {
-                wx.showLoading({
-                  title: '请求失败' });
+                wx.showToast({
+                  title: '登录失败',
+                  icon: 'none',
+                  duration: 2000 });
 
               }
             } });
@@ -372,7 +373,26 @@ var _default =
         showCancel: false,
         content: '养车呗小程序（以下简称“养车呗”），在使用前，请务必认真阅读和理解本协议（以下简称《协议》）中规定的所有权利和限制。除非您接受本《协议》条款，否则您无权下载、安装或使用本“养车呗”及其相关服务。您一旦安装、复制、下载、访问或以其它方式使用养车呗产品，将视为对本《协议》的接受，即表示您同意接受本《协议》各项条款的约束。如果您不同意本《协议》中的条款，请不要安装、复制或使用养车呗手机客户端软件。本《协议》是用户与养车呗之间关于用户下载、安装、使用、复制的法律协议。' });
 
-    } } };exports.default = _default;
+    } },
+
+  onLoad: function onLoad() {
+    // wx.getUserInfo({
+    // 	success: (res)=>{
+    // 		console.log(res)
+    // 	  wx.setStorage({
+    // 		key:"img",
+    // 		data:res.userInfo.avatarUrl
+    // 	});
+    // 	wx.setStorage({
+    // 		key:"nickname",
+    // 		data:res.userInfo.nickName
+    // 	});
+    // 	},
+    // 	bindGetUserInfo(e){
+    // 		console.log(e.detail.userInfo)
+    // 	}
+    // })
+  } };exports.default = _default;
 
 /***/ }),
 /* 17 */
