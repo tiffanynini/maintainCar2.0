@@ -63,7 +63,29 @@
             "path" : "pages/orderStatus/orderStatus",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": ""
+                "navigationBarTitleText": "商品",
+				"navigationBarBackgroundColor":"#FD8F33",
+				"navigationBarTextStyle":"white"
+            }
+            
+        }
+        ,{
+            "path" : "pages/location/location",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "地址管理",
+				"navigationBarBackgroundColor":"#FD8F33",
+				"navigationBarTextStyle":"white"
+            }
+            
+        }
+        ,{
+            "path" : "pages/addLocation/addLocation",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "添加收货地址",
+				"navigationBarBackgroundColor":"#FD8F33",
+				"navigationBarTextStyle":"white"
             }
             
         }

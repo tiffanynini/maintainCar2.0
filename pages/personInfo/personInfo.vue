@@ -24,31 +24,27 @@
   		<text>我的购物</text>
   	</view>
 	<view>
-		<navigator url="/pages/orderStatus/orderStatus?status=0" class="option" hover-class="none">
+		<navigator url="/pages/orderStatus/orderStatus?status=1" class="option" hover-class="none">
 				<span class="iconfont icon-daifukuan"></span>
 				<text>待付款</text>
 		</navigator>
-		<navigator url="/pages/orderStatus/orderStatus?status=1" class="option" hover-class="none">
+		<navigator url="/pages/orderStatus/orderStatus?status=2" class="option" hover-class="none">
 				<span class="iconfont icon-daifahuo"></span>
 				<text>待发货</text>
 		</navigator>
-		<navigator url="/pages/orderStatus/orderStatus?status=2" class="option" hover-class="none">
-				<span class="iconfont icon-daishouhuo"></span>
-				<text>待收获</text>
-		</navigator>
 		<navigator url="/pages/orderStatus/orderStatus?status=3" class="option" hover-class="none">
+				<span class="iconfont icon-daishouhuo"></span>
+				<text>待收货</text>
+		</navigator>
+		<navigator url="/pages/orderStatus/orderStatus?status=4" class="option" hover-class="none">
 				<span class="iconfont icon-daipingjia"></span>
 				<text>待评价</text>
 		</navigator>
-		<navigator url="/pages/orderStatus/orderStatus?status=4" class="option" hover-class="none">
-				<span class="iconfont icon-tuikuan"></span>
-				<text>待退款</text>
-		</navigator>
-		<navigator url="/pages/orderStatus/orderStatus?status=5" class="option" hover-class="none">
+		<navigator url="" class="option" hover-class="none">
 				<span class="iconfont icon-gouwuche"></span>
 				<text>购物车</text>
 		</navigator>
-		<navigator url="/pages/orderStatus/orderStatus?status=6" class="option" hover-class="none">
+		<navigator url="/pages/location/location" class="option" hover-class="none">
 				<span class="iconfont icon-weibiaoti2fuzhi08"></span>
 				<text>收货地址</text>
 		</navigator>
@@ -156,7 +152,7 @@
 		 flex-wrap: wrap;
 		 justify-content: space-around;
 		 .option{
-			 width: 25%;
+			 width: calc(100%/3);
 			 display: flex;
 			 flex-wrap: wrap;
 			 justify-content: space-around;

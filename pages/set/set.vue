@@ -26,7 +26,7 @@
 					</view>
 				</view>
 			</view>
-			<view url="" hover-class="none" @click="loading" >
+			<view hover-class="none" @click="loading" >
 				<view>
 					<span class="iconfont icon-gengxin font"></span>
 				</view>
@@ -37,7 +37,7 @@
 					</text>
 				</view>
 			</view>
-			<view url="" hover-class="none" @click="setShowCache">
+			<view hover-class="none" @click="setShowCache">
 				<view>
 					<span class="iconfont icon-lajiqinglifei font"></span>
 				</view>
@@ -225,7 +225,7 @@
 		top: 0;
 		width: 100%;
 		height: 100%;
-		background-color: rgba(146,146,146,.7);
+		background-color: rgba(153,153,153,.7);
 	}
 	.content{
 		position: fixed;

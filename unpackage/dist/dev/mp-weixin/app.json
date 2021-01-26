@@ -8,7 +8,9 @@
     "pages/mechant/mechant",
     "pages/findMore/findMore",
     "pages/shopCar/shopCar",
-    "pages/orderStatus/orderStatus"
+    "pages/orderStatus/orderStatus",
+    "pages/location/location",
+    "pages/addLocation/addLocation"
   ],
   "subPackages": [],
   "window": {
@@ -51,5 +53,6 @@
       "desc": "scope.userLocation"
     }
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap29.json"
 }

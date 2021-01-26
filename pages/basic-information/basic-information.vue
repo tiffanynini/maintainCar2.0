@@ -290,7 +290,7 @@
 					flex: 1;
 					height: 70rpx;
 					width: 70rpx;
-					margin: 4rpx 10rpx 0 0;
+					margin: 16rpx 10rpx 0 0;
 				}
 				text{
 					color: #BBBECA;

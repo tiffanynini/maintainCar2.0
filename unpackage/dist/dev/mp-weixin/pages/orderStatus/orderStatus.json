@@ -1,4 +1,6 @@
 {
-  "navigationBarTitleText": "",
+  "navigationBarTitleText": "商品",
+  "navigationBarBackgroundColor": "#FD8F33",
+  "navigationBarTextStyle": "white",
   "usingComponents": {}
 }

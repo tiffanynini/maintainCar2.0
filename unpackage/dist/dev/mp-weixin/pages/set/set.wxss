@@ -602,7 +602,7 @@ page.data-v-21926b68 {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(146, 146, 146, 0.7);
+  background-color: rgba(153, 153, 153, 0.7);
 }
 .content.data-v-21926b68 {
   position: fixed;

@@ -286,7 +286,7 @@ page.data-v-a164e934 {
           justify-content: space-around;
 }
 .body view:nth-child(2) .option.data-v-a164e934 {
-  width: 25%;
+  width: calc(100%/3);
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
