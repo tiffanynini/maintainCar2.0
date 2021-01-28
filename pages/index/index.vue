@@ -6,9 +6,9 @@
 		<!-- 轮播图 -->
 		<swiper class="swiper" :indicator-dots="indicatorDots" circular="true" :autoplay="autoplay" :interval="interval"
 		 :duration="duration">
-			<swiper-item v-for="(item ,index) in info" :key="index" @click="change(index)">
+			<swiper-item v-for="(item ,index) in info" :key="index" @click="change(index+1)">
 				<view class="swiper-item uni-bg-red">
-					<image :src="item.src" mode=""></image>
+					<image :src="item.image" mode=""></image>
 				</view>
 			</swiper-item>
 		</swiper>
@@ -242,10 +242,22 @@
 			change(e) {
 				// 点击轮播图，打印当前商品的id
 				console.log(e);
+				wx.navigateTo({
+					url: '../index-beauty/index-beauty?id=' + e
+				});
 			},
+
 			// 3、上下轮播
 			change1(e) {
 				console.log(e);
+				
+			},
+			// 4、进入商品列表页
+			enterList(i) {
+				console.log(i);
+				wx.navigateTo({
+					url: '../index-beauty/index-beauty?id=' + i
+				});
 			},
 			//新用户洗车跳转
 			newUserJump() {
@@ -287,7 +299,8 @@
 						console.log(res)
 						let obj = res.data.data[0]
 						wx.navigateTo({
-							url: '../findInfo/findInfo?title=' + obj.title + '&&time=' + obj.time + '&&read=' + obj.watch + '&&url=' + obj.url + '&&id=' + i + 1
+							url: '../findInfo/findInfo?title=' + obj.title + '&&time=' + obj.time + '&&read=' + obj.watch + '&&url=' +
+								obj.url + '&&id=' + i + 1
 						})
 					}
 				})
