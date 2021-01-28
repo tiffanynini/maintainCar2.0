@@ -27,7 +27,7 @@
 			</view>
 		</view>
 		<view class="footerBar">
-			<i class="iconfont icon-gouwuche"><text></text></i>
+			<i class="iconfont icon-gouwuche" @click='jumpShopCar'><text v-if="isShow"></text></i>
 			<view class="addCart" @click="add">加入购物车</view>
 		</view>
 	</view>
@@ -40,13 +40,19 @@
 				id:0,
 				dataArr:[],
 				inventory:0,
-				num:0
+				num:0,
+				isShow:false
 			}
 		},
 		created() {
 			
 		},
 		methods:{
+			jumpShopCar(){
+				wx.switchTab({
+					url:'../shopCar/shopCar'
+				});
+			},
 			goEvaluate(){
 				wx.navigateTo({
 					url:'../productEvaluation/productEvaluation?id='+this.id
@@ -54,7 +60,7 @@
 			},
 			add(){
 				wx.request({
-					url:'http://172.16.14.29:6067/cart/add?num=1&skuId='+this.id,
+					url:this.pageUrl.pageUrl+'/cart/add?num=1&skuId='+this.id,
 					method:'post',
 					header: {
 						'token': '88318de7a5b44fc0aa43fadf22e1980a' //自定义请求头信息
@@ -65,7 +71,8 @@
 							  title: '添加成功',
 							  icon: 'success',
 							  duration: 2000
-							})
+							});
+							this.isShow = true;
 						}else{
 							wx.showToast({
 							  title: '添加失败',

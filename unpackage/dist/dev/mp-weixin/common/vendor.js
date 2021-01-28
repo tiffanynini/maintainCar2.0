@@ -1865,7 +1865,7 @@ function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var pageUrl = 'http://172.16.14.29:6067';var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var pageUrl = 'http://8.135.26.228:6067';var _default =
 {
   pageUrl: pageUrl };exports.default = _default;
 
@@ -7960,7 +7960,7 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 96:
+/***/ 98:
 /*!***********************************************!*\
   !*** F:/Car2.0/components/uni-icons/icons.js ***!
   \***********************************************/
