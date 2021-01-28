@@ -45,7 +45,9 @@
         ,{
             "path" : "pages/shopCar/shopCar",
             "style" : {
-				"navigationBarTitleText": "购物车"
+				"navigationBarTitleText": "购物车",
+				"navigationBarBackgroundColor":"#FD8F33",
+				"navigationBarTextStyle":"white"
 			}
         }
         ,{
@@ -58,6 +60,62 @@
 		    "path" : "pages/findInfo/findInfo",
 		    "style" : {
 				"navigationBarTitleText": "文章详情"
+			}
+		},
+		{
+			"path" : "pages/confirmOrder/confirmOrder",
+			"style" : {
+				"navigationBarTitleText": "确认订单",
+				"navigationBarBackgroundColor":"#FD8F33",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path" : "pages/addressManage/addressManage",
+			"style" : {
+				"navigationBarTitleText": "地址管理",
+				"navigationBarBackgroundColor":"#FD8F33",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path" : "pages/addAddress/addAddress",
+			"style" : {
+				"navigationBarTitleText": "添加收货地址",
+				"navigationBarBackgroundColor":"#FD8F33",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path" : "pages/editAddress/editAddress",
+			"style" : {
+				"navigationBarTitleText": "编辑收货地址",
+				"navigationBarBackgroundColor":"#FD8F33",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path" : "pages/orderDetail/orderDetail",
+			"style" : {
+				"navigationBarTitleText": "订单详情",
+				"navigationBarBackgroundColor":"#FD8F33",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path" : "pages/paymentResults/paymentResults",
+			"style" : {
+				"navigationBarTitleText": "支付结果",
+				"navigationBarBackgroundColor":"#FD8F33",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path" : "pages/lookOrder/lookOrder",
+			"style" : {
+				"navigationBarTitleText": "查看订单",
+				"navigationBarBackgroundColor":"#FD8F33",
+				"navigationBarTextStyle":"white"
 			}
 		}
     ],

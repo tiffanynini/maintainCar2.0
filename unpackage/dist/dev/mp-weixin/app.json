@@ -9,7 +9,14 @@
     "pages/findMore/findMore",
     "pages/shopCar/shopCar",
     "pages/personInfo/personInfo",
-    "pages/findInfo/findInfo"
+    "pages/findInfo/findInfo",
+    "pages/confirmOrder/confirmOrder",
+    "pages/addressManage/addressManage",
+    "pages/addAddress/addAddress",
+    "pages/editAddress/editAddress",
+    "pages/orderDetail/orderDetail",
+    "pages/paymentResults/paymentResults",
+    "pages/lookOrder/lookOrder"
   ],
   "subPackages": [],
   "window": {
@@ -47,6 +54,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap99.json"
+  "usingComponents": {}
 }
