@@ -62,7 +62,7 @@
 			this.addressId = options.id;
 			//初始化渲染页面
 			wx.request({
-				url:'http://172.16.14.29:6067/order/{id}?id='+options.id,
+				url:this.pageUrl.pageUrl+'/order/{id}?id='+options.id,
 				method:'get',
 				header:{
 					token: wx.getStorageSync('token')
@@ -119,7 +119,7 @@
 				    if (res.confirm) {
 					  //删除成功后提示并且可以跳回地址管理页面
 					  wx.request({
-						  url:'http://172.16.14.29:6067/order/delete/{id}?id='+id,
+						  url:this.pageUrl.pageUrl+'/order/delete/{id}?id='+id,
 						  method:'GET',
 						  header:{
 						  	token: wx.getStorageSync('token')
@@ -168,7 +168,7 @@
 						})
 					}else{
 						wx.request({
-							url:'http://172.16.14.29:6067/order/updateAddress',
+							url:this.pageUrl.pageUrl+'/order/updateAddress',
 							method:'post',
 							data:this.address,
 							header:{

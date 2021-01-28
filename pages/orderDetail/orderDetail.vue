@@ -150,7 +150,7 @@
 			initAddress(){
 				//初始化渲染页面
 				wx.request({
-					url:'http://172.16.14.29:6067/order/{id}?id='+wx.getStorageSync('addressId'),
+					url:this.pageUrl.pageUrl+'/order/{id}?id='+wx.getStorageSync('addressId'),
 					method:'get',
 					header:{
 						token: wx.getStorageSync('token')

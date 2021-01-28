@@ -137,7 +137,7 @@
 			//初始化地址
 			initAddress(){
 				wx.request({
-					url:'http://172.16.14.29:6067/order/address?userId='+wx.getStorageSync('userId'),
+					url:this.pageUrl.pageUrl+'/order/address?userId='+wx.getStorageSync('userId'),
 					method:'get',
 					header:{
 						token:wx.getStorageSync('token')
@@ -165,7 +165,7 @@
 				//当前收货地址的id
 				wx.setStorageSync('addressId',e.currentTarget.dataset.id);
 				wx.request({
-					url:'http://172.16.14.29:6067/order/create',
+					url:this.pageUrl.pageUrl+'/order/create',
 					method:'post',
 					header:{
 						token:wx.getStorageSync('token')

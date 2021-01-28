@@ -14,6 +14,7 @@ _vue.default.config.productionTip = false;
 
 _App.default.mpType = 'app';
 
+
 var app = new _vue.default(_objectSpread({},
 _App.default));
 

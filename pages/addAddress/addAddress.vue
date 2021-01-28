@@ -99,7 +99,7 @@
 						})
 					}else{
 						wx.request({
-							url:'http://172.16.14.29:6067/order/addAddress',
+							url:this.pageUrl.pageUrl+'/order/addAddress',
 							method:'post',
 							header:{
 								token: wx.getStorageSync('token')

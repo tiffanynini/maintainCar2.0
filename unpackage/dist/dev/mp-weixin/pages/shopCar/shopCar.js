@@ -204,7 +204,7 @@ var _default =
       wx.setStorageSync('userId', '1');
       wx.setStorageSync('token', '88318de7a5b44fc0aa43fadf22e1980a');
       wx.request({
-        url: 'http://172.16.14.29:6067/cart/queryUserCart',
+        url: this.pageUrl.pageUrl + '/cart/queryUserCart',
         header: {
           token: wx.getStorageSync('token') },
 
@@ -334,7 +334,7 @@ var _default =
     //增加或者减少数量调用的接口
     addOrMinus: function addOrMinus(count, id, status) {var _this3 = this;
       wx.request({
-        url: 'http://172.16.14.29:6067/cart/update?num=' + count + '&skuId=' + id,
+        url: this.pageUrl.pageUrl + '/cart/update?num=' + count + '&skuId=' + id,
         method: 'post',
         header: {
           token: wx.getStorageSync('token') },
@@ -433,7 +433,7 @@ var _default =
         success: function success(res) {
           if (res.confirm) {
             wx.request({
-              url: 'http://172.16.14.29:6067/cart/removeCartItem?skuId=' + id,
+              url: this.pageUrl.pageUrl + '/cart/removeCartItem?skuId=' + id,
               method: 'POST',
               header: {
                 token: wx.getStorageSync('token') },
