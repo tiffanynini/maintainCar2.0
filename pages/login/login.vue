@@ -6,14 +6,14 @@
 				<view class="inputCode">
 					<input type="number" v-model="input" maxlength="6">
 				</view>
-				<view class="confirmBtn" :class="input.length===6?'pass':'disabled'" @click="confirm">确定</view>
+				<view class="confirmBtn" :class="input.length===6?'pass':'disabled'" @click="confirm" disabled="isDisabled?true:false">确定</view>
 				</view>
 			</view>
 		<view class="title">欢迎登录养车呗</view>
 		<view class="input_box">
 			<input type="text" placeholder="请输入手机号" v-model="phone" class="phone" placeholder-style="color:#AAAAAA"/>
 			<text class="info">未注册则手机验证后自动创建新账号</text>
-			<view class="login" @click="getCode">获取验证码</view>
+			<view class="login" @click="getCode">{{codeText}}</view>
 		</view>
 		<view class="wechatLogin">
 			<i class="iconfont icon-iconfontzhizuobiaozhunbduan32" @click="wechatLogin"></i>
@@ -38,21 +38,144 @@
 				selTag:0,
 				isFocus:true,
 				input:"",
-				isShow:false
+				isShow:false,
+				code:'',
+				isDisabled:false,
+				codeText:"获取验证码"
 			}
 		},
 		methods:{
 			//微信登录
 			wechatLogin(){
+				//检查微信登录状态
 				wx.checkSession({
-				  success () {
-				    wx.showToast({
-				      title: '已经登录',
-				      icon: 'success',
-				      duration: 2000
-				    })
+				  success: ()=>{
+					  wx.getStorage({
+					  	key:"token",
+						//如果是登录状态
+					  	success(res){
+					  		wx.showToast({
+					  		  title: '已是登录状态',
+					  		  icon: 'success',
+					  		  duration: 2000
+					  		})
+					  	},
+						//如果wx.login为登录状态，而token不存在，重新进行token存储
+						fail:()=>{
+							//协议检查
+							if(!this.isChecked){
+								wx.showModal({
+								  title: '提示',
+								  content: '请先同意下方协议',
+								  showCancel: false,
+								});
+								return;
+							}
+							wx.showLoading({
+							  title: '正在处理',
+							}); 
+							//请求接口
+							wx.request({
+								url:'http://172.17.1.203:9090/user/wx/login',
+								method:'post',
+								data:{
+									code:this.code
+								},
+								success:(res)=>{
+									//成功并返回token值
+									if(res.data.data.token){
+										wx.setStorage({
+											key:"token",
+											data:res.data.data.token
+										});
+										//检查token是否存在
+										wx.getStorage({
+											key:"token",
+											success(res){
+												//存在并请求接口返回用户id
+												console.log(res.data);
+												wx.request({
+													url:'http://49.234.8.137:9090/user/queryuser?token='+res.data,
+													method:'post',
+													success:(res)=>{
+														//设置用户id
+														wx.setStorage({
+															key:"id",
+															data:res.data.data.id
+														});
+														//检查用户id是否存在
+														wx.getStorage({
+															key:"id",
+															//存在返回登录成功
+															success: () => {
+																wx.hideLoading();
+																wx.showToast({
+																  title: '登录成功',
+																  icon: 'success',
+																  duration: 2000
+																});
+																setTimeout(function(){
+																	wx.navigateBack({
+																		delta:1
+																	});
+																},2200);
+															},
+															//不存在则返回登录失败
+															fail: () => {
+																wx.hideLoading();
+																wx.showToast({
+																  title: '用户信息设置失败',
+																  icon: 'none',
+																  duration: 2000
+																})
+															}
+														})
+													},
+													//请求接口失败
+													fail: () => {
+														wx.hideLoading();
+														wx.showToast({
+														  title: '用户信息设置失败',
+														  icon: 'none',
+														  duration: 2000
+														})
+													}
+												})
+											},
+											//检查token不存在，登录失败
+											fail() {
+												wx.hideLoading();
+												wx.showToast({
+												  title: '登录失败',
+												  icon: 'none',
+												  duration: 2000
+												})
+											}
+										})
+										//如果后台返回的数据中不包含token，则授权失败
+									}else{
+										wx.showToast({
+										  title: '授权失败',
+										  icon: 'none',
+										  duration: 2000
+										})
+									}
+								},
+								//接口请求失败
+								fail:(res)=>{
+									wx.showToast({
+									  title: '连接失败',
+									  icon: 'none',
+									  duration: 2000,
+									})
+								}
+							})
+						}
+					})
 				  },
+				  //如果wx.login未登录
 				  fail:()=>{
+					  //协议检查
 				    if(!this.isChecked){
 				    	wx.showModal({
 				    	  title: '提示',
@@ -61,19 +184,23 @@
 				    	});
 				    	return;
 				    }
+					//调用wx.login
 				    wx.login({
 				    	success:(res)=>{
 				    		if(res.code){
 				    			wx.showLoading({
 				    			  title: '正在处理',
-				    			})
+				    			});
+								//将code存入变量，避免接口请求失败时wx.login仍为登录状态出现的问题
+								this.code = res.code;
 				    			wx.request({
-				    				url:'http://172.17.1.203:9090/user/wx/login',
+				    				url:'http://49.234.8.137:9090/user/wx/login',
 				    				method:'post',
 				    				data:{
 				    					code:res.code
 				    				},
 				    				success:(res)=>{
+										console.log(res);
 				    					if(res.data.data.token){
 				    						wx.setStorage({
 				    							key:"token",
@@ -82,12 +209,49 @@
 				    						wx.getStorage({
 				    							key:"token",
 				    							success(res){
-				    								wx.hideLoading();
-				    								wx.showToast({
-				    								  title: '登录成功',
-				    								  icon: 'success',
-				    								  duration: 2000
-				    								})
+													console.log(res.data);
+													wx.request({
+														url:'http://49.234.8.137:9090/user/queryuser?token='+res.data,
+														method:'post',
+														success:(res)=>{
+															wx.setStorage({
+																key:"id",
+																data:res.data.data.id
+															});
+															wx.getStorage({
+																key:"id",
+																success: () => {
+																	wx.hideLoading();
+																	wx.showToast({
+																	  title: '登录成功',
+																	  icon: 'success',
+																	  duration: 2000
+																	});
+																	setTimeout(function(){
+																		wx.navigateBack({
+																			delta:1
+																		});
+																	},2200);
+																},
+																fail: () => {
+																	wx.hideLoading();
+																	wx.showToast({
+																	  title: '用户信息设置失败',
+																	  icon: 'none',
+																	  duration: 2000
+																	})
+																}
+															})
+														},
+														fail: () => {
+															wx.hideLoading();
+															wx.showToast({
+															  title: '用户信息设置失败',
+															  icon: 'none',
+															  duration: 2000
+															})
+														}
+													})
 				    							},
 				    							fail() {
 				    								wx.hideLoading();
@@ -103,17 +267,17 @@
 				    						  title: '授权失败',
 				    						  icon: 'none',
 				    						  duration: 2000
-				    						})
+				    						});
 				    					}
 				    				},
 				    				fail:(res)=>{
 				    					wx.showToast({
 				    					  title: '连接失败',
 				    					  icon: 'none',
-				    					  duration: 2000
+				    					  duration: 2000,
 				    					})
 				    				}
-				    			}) 
+				    			})
 				    		}else{
 				    			wx.showToast({
 				    			  title: '登录失败',
@@ -133,12 +297,13 @@
 				}
 				this.isShow = false;
 				wx.request({
-					url:'http://172.17.1.203:9090/user/login',
+					url:'http://49.234.8.137:9090/user/login',
 					data:{
 						code:this.input,
 						phone:this.phone
 					},
 					success:(res)=>{
+						console.log(res)
 						wx.setStorage({
 							key:"token",
 							data:res.data.data.token
@@ -146,11 +311,52 @@
 						wx.getStorage({
 							key:"token",
 							success(res){
-								wx.hideLoading();
-								wx.showToast({
-								  title: '登录成功',
-								  icon: 'success',
-								  duration: 2000
+								wx.request({
+									url:'http://49.234.8.137:9090/user/queryuser?token='+res.data,
+									method:'post',
+									success:(res)=>{
+										//设置用户id
+										wx.setStorage({
+											key:"id",
+											data:res.data.data.id
+										});
+										//检查用户id是否存在
+										wx.getStorage({
+											key:"id",
+											//存在返回登录成功
+											success: () => {
+												wx.hideLoading();
+												wx.showToast({
+												  title: '登录成功',
+												  icon: 'success',
+												  duration: 2000
+												});
+												setTimeout(function(){
+													wx.navigateBack({
+														delta:1
+													});
+												},2200);
+											},
+											//不存在则返回登录失败
+											fail: () => {
+												wx.hideLoading();
+												wx.showToast({
+												  title: '用户信息设置失败',
+												  icon: 'none',
+												  duration: 2000
+												})
+											}
+										})
+									},
+									//请求接口失败
+									fail: () => {
+										wx.hideLoading();
+										wx.showToast({
+										  title: '用户信息设置失败',
+										  icon: 'none',
+										  duration: 2000
+										})
+									}
 								})
 							},
 							fail() {
@@ -161,6 +367,13 @@
 								  duration: 2000
 								})
 							}
+						})
+					},
+					fail:()=>{
+						wx.showToast({
+						  title: '连接失败',
+						  icon: 'none',
+						  duration: 2000
 						})
 					}
 				})
@@ -180,7 +393,7 @@
 					  title: '请稍后',
 					})
 					wx.request({
-						url:'http://172.17.1.203:9090/sms/login',
+						url:'http://49.234.8.137:9090/sms/login',
 						data:{
 							phone:this.phone
 						},
@@ -201,7 +414,7 @@
 								  title: '验证码已下发',
 								  icon: 'success',
 								  duration: 1000
-								})
+								});
 							}
 						}
 					})

@@ -163,8 +163,32 @@
   color: #AAAAAA;
   font-size: 24rpx;
 }
+.evaInput {
+  position: fixed;
+  width: 100%;
+  height: 100rpx;
+  background-color: #DD4A68;
+  bottom: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  background-color: #f8f8f8;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+}
+.evaInput input {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+}
 .box {
+  margin-bottom: 100rpx;
   padding: 10rpx 20rpx;
+  position: relative;
 }
 .box .title {
   font-size: 36rpx;

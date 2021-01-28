@@ -3,6 +3,41 @@ page {
   height: 100%;
   background-color: #F4F4F3;
 }
+.empty {
+  text-align: center;
+  margin-top: 20rpx;
+}
+.evaluation {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  min-height: 150rpx;
+  padding: 10rpx 16rpx;
+  background-color: #fff;
+  padding-top: 6rpx;
+  border-top: 1px solid #CCCCCC;
+}
+.evaluation .left {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.evaluation .left image {
+  width: 50rpx;
+  height: 50rpx;
+}
+.evaluation .left > view {
+  margin-left: 20rpx;
+}
+.evaluation .context {
+  margin-left: 30rpx;
+}
 .box .list {
   display: -webkit-box;
   display: -webkit-flex;

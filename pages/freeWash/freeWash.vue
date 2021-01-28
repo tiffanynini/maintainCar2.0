@@ -11,30 +11,30 @@
 				1.姓名<text class="red">*</text>
 			</view>
 			<view>
-				<input type="text">
+				<input type="text" v-model="name">
 			</view>
 			<view class="gray">
 				2.联系方式<text class="red">*</text>
 			</view>
 			<view>
-				<input type="text">
+				<input type="text" v-model="tel">
 			</view>
 			<view class="gray">
 				3.洗车时间<text class="red">*</text>
 			</view>
 			<view>
 				<picker mode="date" @change="dateCahnge">
-					<input type="text" placeholder="年/月/日" :value="val">
+					<input type="text" placeholder="年/月/日" v-model="val">
 				</picker>
 			</view>
 			<view class="gray">
 				4.车型<text class="red">*</text>
 			</view>
 			<view>
-				<input type="text">
+				<input type="text" v-model="type">
 			</view>
 		</view>
-		<view class="btn">立即预约</view>
+		<view class="btn" @click="confirm">立即预约</view>
 	</view>
 </template>
 
@@ -42,12 +42,54 @@
 	export default{
 		data(){
 			return {
-				val:''
+				val:'',
+				name:'',
+				tel:'',
+				type:'',
+				reg:/^1[3-9]\d{9}$/,
 			}
 		},
 		methods:{
+			//时间选择器
 			dateCahnge(event){
 				this.val = event.detail.value;
+			},
+			//立即预约按钮
+			confirm(){
+				if(this.val==='' || this.tel==='' || this.type==='' || this.name===''){
+					wx.showModal({
+					  title: '提示',
+					  showCancel:false,
+					  content: '请完成必填项再提交',
+					})
+				}else {
+					if(!this.reg.test(this.tel)){
+						wx.showModal({
+						  title: '提示',
+						  showCancel:false,
+						  content: '请输入正确的手机号',
+						});
+						return;
+					}
+					if(new Date().getTime() - new Date(this.val).getTime() > 0){
+						wx.showModal({
+						  title: '提示',
+						  showCancel:false,
+						  content: '预约时间必须为今天之后的日期',
+						});
+						return;
+					}
+					wx.showToast({
+					  title: '提交成功',
+					  icon: 'success',
+					  duration: 2000
+					});
+					setTimeout(function(){
+						wx.switchTab({
+						  url: '../index/index'
+						})
+					},2200)
+				}
 			}
 		}
 	}

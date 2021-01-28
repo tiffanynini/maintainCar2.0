@@ -1,30 +1,34 @@
 <template>
 	<view class="box">
 		<view class="banner">
-			<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=43c6cafcd9a3653c7c5079e3c439f2e742551157dae1b391451dc1137723ecc8" mode="widthFix" style="width: 100%;"></image>
+			<image :src="dataArr.image" mode="widthFix" style="width: 100%;"></image>
 		</view>
 		<view class="container">
 			<view class="title">
-				汽车贴膜（每10CM）
+				{{dataArr.name}}
 			</view>
 			<view class="price red">
-				￥9.9
+				￥{{dataArr.price}}
 			</view>
 			<view class="info">
-				<text>剩余库存: 995</text><text>累计销售: 5</text>
+				<text>剩余库存: {{inventory}}</text><text>累计销售: {{dataArr.number}}</text>
 			</view>
 		</view>
-		<view class="evaluate">
+		<view class="evaluate" @click="goEvaluate">
 			<view>商品评价</view>
-			<view>0条评价 ></view>
+			<view>{{num}}条评价 ></view>
 		</view>
 		<view class="product">
 			<view class="title">
 				商品详情
 			</view>
 			<view class="detailImage">
-				<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=43c6cafcd9a3653c7c5079e3c439f2e742551157dae1b391451dc1137723ecc8" mode="widthFix" style="width: 100%;"></image>
+				<image :src="dataArr.image" mode="widthFix" style="width: 100%;"></image>
 			</view>
+		</view>
+		<view class="footerBar">
+			<i class="iconfont icon-gouwuche"><text></text></i>
+			<view class="addCart" @click="add">加入购物车</view>
 		</view>
 	</view>
 </template>
@@ -33,20 +37,89 @@
 	export default{
 		data(){
 			return {
-				
+				id:0,
+				dataArr:[],
+				inventory:0,
+				num:0
 			}
 		},
 		created() {
-			wx.setNavigationBarTitle({
-				title:'标题'
+			
+		},
+		methods:{
+			goEvaluate(){
+				wx.navigateTo({
+					url:'../productEvaluation/productEvaluation?id='+this.id
+				})
+			},
+			add(){
+				wx.request({
+					url:'http://172.16.14.29:6067/cart/add?num=1&skuId='+this.id,
+					method:'post',
+					header: {
+						'token': '88318de7a5b44fc0aa43fadf22e1980a' //自定义请求头信息
+					},
+					success:(res)=>{
+						if(res.data.code === 0){
+							wx.showToast({
+							  title: '添加成功',
+							  icon: 'success',
+							  duration: 2000
+							})
+						}else{
+							wx.showToast({
+							  title: '添加失败',
+							  icon: 'none',
+							  duration: 2000
+							})
+						}
+					}
+				})
+			}
+		},
+		onLoad(option) {
+			this.id = option.id;
+			wx.request({
+				url:this.pageUrl.pageUrl+'/sku/findById?id='+option.id,
+				method:'post',
+				header: {
+					'token': '88318de7a5b44fc0aa43fadf22e1980a' //自定义请求头信息
+			    },
+				success:(res)=>{
+					this.dataArr = res.data;
+					console.log(res)
+				}
+			});
+			wx.request({
+				url:this.pageUrl.pageUrl+'/sku/findEvaluateById?goodsId='+option.id,
+				method:'post',
+				header: {
+					'token': '88318de7a5b44fc0aa43fadf22e1980a' //自定义请求头信息
+				},
+				success:(res)=>{
+					this.num = res.data.length;
+				}
+			});
+			wx.request({
+				url:this.pageUrl.pageUrl+'/sku/findGoodsById?goodsId='+option.id,
+				method:'post',
+				header: {
+					'token': '88318de7a5b44fc0aa43fadf22e1980a' //自定义请求头信息
+				},
+				success:(res)=>{
+					this.inventory = res.data.inventory;
+				}
 			})
 		}
 	}
 </script>
 
 <style lang="less">
+	@import url("@/static/font/iconfont.css");
 	.box{
+		margin-bottom: 80rpx;
 		background-color: #F4F4F3;
+		position: relative;
 		.banner{
 			background-color: #fff;
 		}
@@ -98,6 +171,40 @@
 		}
 		.detailImage{
 			margin-top: 20rpx;
+		}
+	}
+	.footerBar{
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+		height: 100rpx;
+		background-color: #FFF;
+		box-sizing: border-box;
+		display: flex;
+		justify-content: space-between;
+		.icon-gouwuche{
+			color: #000;
+			font-size: 60rpx;
+			line-height: 100rpx;
+			margin-left: 30rpx;
+			position: relative;
+			>text{
+				position: absolute;
+				top: 18rpx;
+				right: 0;
+				width: 30rpx;
+				height: 30rpx;
+				background-color: #ff0000;
+				border-radius: 50rpx;
+			}
+		}
+		.addCart{
+			width: 200rpx;
+			height: 100rpx;
+			line-height: 100rpx;
+			background-color: #F53218;
+			color: #fff;
+			text-align: center;
 		}
 	}
 </style>

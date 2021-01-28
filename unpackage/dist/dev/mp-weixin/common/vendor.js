@@ -1857,6 +1857,20 @@ function normalizeComponent (
 
 /***/ }),
 
+/***/ 11:
+/*!***************************!*\
+  !*** F:/Car2.0/common.js ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var pageUrl = 'http://172.16.14.29:6067';var _default =
+{
+  pageUrl: pageUrl };exports.default = _default;
+
+/***/ }),
+
 /***/ 2:
 /*!******************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js ***!
@@ -7946,7 +7960,7 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 97:
+/***/ 96:
 /*!***********************************************!*\
   !*** F:/Car2.0/components/uni-icons/icons.js ***!
   \***********************************************/

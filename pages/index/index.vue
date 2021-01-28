@@ -48,6 +48,7 @@
 			</view>
 		</view>	
 		<!-- 头条 -->
+		<!-- 头条 -->
 		<view class="newTitle">
 			<!-- 小圆点 -->
 			<span class="little-dot"></span>
@@ -57,28 +58,28 @@
 			           <view class="swiper-item uni-bg-red">
 						   <!-- 热议 -->
 						   <image src="../../static/images-index/hotNew1.png" mode=""></image>
-							<text class="new-swiper1">{{info1[index].con}}</text>
+							<text class="new-swiper1" @click="jumpVideo(index)">{{info1[index].con}}</text>
 					   </view>
 			      </swiper-item>
 			</swiper>
 		</view>
 		<!-- 新用户免费洗车 -->
 		<view class="newUser">
-			<image src="../../static/images-index/newUser.png" mode=""></image>
+			<image src="../../static/images-index/newUser.png" mode="" @click="newUserJump"></image>
 		</view>
 		<!-- 汽车贴膜 -->
 		<view class="autoFilm">
 			<view class="autoFilm1">
 				<text class="autoText">汽车贴膜</text>
-				<image src="../../static/images-index/autoFilm1.jpg" mode=""></image>
+				<image src="../../static/images-index/autoFilm1.jpg" mode="" @click="jump(9)"></image>
 			</view>
 			<view class="autoFilm1">
 				<text class="autoText">四轮定位</text>
-				<image src="../../static/images-index/autoFilm2.jpg" mode=""></image>
+				<image src="../../static/images-index/autoFilm2.jpg" mode="" @click="jump(10)"></image>
 			</view>
 			<view class="autoFilm1">
 				<text class="autoText">车辆保养</text>
-				<image src="../../static/images-index/autoFilm3.jpg" mode=""></image>
+				<image src="../../static/images-index/autoFilm3.jpg" mode="" @click="jump(11)"></image>
 			</view>
 		</view>
 		<!-- 动画 -->
@@ -242,6 +243,34 @@
 		// 3、上下轮播
 		change1(e){
 			console.log(e);
+		},
+		//新用户洗车跳转
+		newUserJump(){
+			wx.navigateTo({
+				url:'../freeWash/freeWash'
+			})
+		},
+		jump(i){
+			wx.navigateTo({
+				url:'../details/details?id='+i,
+			})
+		},
+		//头条跳转
+		jumpVideo(i){
+			wx.request({
+				url:'http://106.12.97.151/getVideoInfo',
+				method:'post',
+				data:{
+					id:i+1
+				},
+				success:(res)=>{
+					let obj = res.data.data[0];
+					console.log(obj)
+					wx.navigateTo({
+						url:'../findInfo/findInfo?title='+obj.title+'&&time='+obj.time+'&&read='+obj.watch+'&&url='+obj.url+'&&id='+i+1
+					})
+				}
+			})
 		},
 		// 4、动画
 		// rotateAndScale: function () {
