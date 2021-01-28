@@ -76,7 +76,7 @@
 							}); 
 							//请求接口
 							wx.request({
-								url:'http://172.17.1.203:9090/user/wx/login',
+								url:'http://8.135.26.228:9090/user/wx/login',
 								method:'post',
 								data:{
 									code:this.code
@@ -95,7 +95,7 @@
 												//存在并请求接口返回用户id
 												console.log(res.data);
 												wx.request({
-													url:'http://172.17.1.203:9090/user/queryuser?token='+res.data,
+													url:'http://8.135.26.228:9090/user/queryuser?token='+res.data,
 													method:'post',
 													success:(res)=>{
 														//设置用户id
@@ -194,7 +194,7 @@
 								//将code存入变量，避免接口请求失败时wx.login仍为登录状态出现的问题
 								this.code = res.code;
 				    			wx.request({
-				    				url:'http://172.17.1.203:9090/user/wx/login',
+				    				url:'http://8.135.26.228:9090/user/wx/login',
 				    				method:'post',
 				    				data:{
 				    					code:res.code
@@ -211,7 +211,7 @@
 				    							success(res){
 													console.log(res.data);
 													wx.request({
-														url:'http://172.17.1.203:9090/user/queryuser?token='+res.data,
+														url:'http://8.135.26.228:9090/user/queryuser?token='+res.data,
 														method:'post',
 														success:(res)=>{
 															wx.setStorage({
@@ -297,7 +297,7 @@
 				}
 				this.isShow = false;
 				wx.request({
-					url:'http://172.17.1.203:9090/user/login',
+					url:'http://8.135.26.228:9090/user/login',
 					data:{
 						code:this.input,
 						phone:this.phone
@@ -312,7 +312,7 @@
 							key:"token",
 							success(res){
 								wx.request({
-									url:'http://172.17.1.203:9090/user/queryuser?token='+res.data,
+									url:'http://8.135.26.228:9090/user/queryuser?token='+res.data,
 									method:'post',
 									success:(res)=>{
 										//设置用户id
@@ -393,7 +393,7 @@
 					  title: '请稍后',
 					})
 					wx.request({
-						url:'http://172.17.1.203:9090/sms/login',
+						url:'http://8.135.26.228:9090/sms/login',
 						data:{
 							phone:this.phone
 						},

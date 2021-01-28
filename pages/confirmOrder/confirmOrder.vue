@@ -32,7 +32,7 @@
 			</view>
 			<view class="set-bottom">
 				<text>商品价格</text>
-				<text>¥ {{v.price}}</text>
+				<text>¥ {{totalJi}}</text>
 			</view>
 			<view class="set-bottom">
 				<text>优惠</text>
@@ -40,7 +40,7 @@
 			</view>
 			<view class="set-bottom">
 				<text>小计</text>
-				<text id="xiaoJi">¥ {{v.xiaoJi}}</text>
+				<text id="xiaoJi">¥ {{totalJi}}</text>
 			</view>
 			<view class="set-bottom set-btm">
 				<text>邮费</text>
@@ -122,7 +122,7 @@
 						}
 					}
 				}
-				this.confirmData = checkData;
+				this.confirmData = checkData;	
 				
 				//循环取得商品价格
 				for(let i= 0;i<this.confirmData.length;i++){

@@ -180,6 +180,7 @@
 						if(j === index){
 							this.skuData[i].content[j].num++;
 							this.addOrMinus(this.skuData[i].content[j].num,id,1);//状态为1是加，0是减
+							
 						}
 					}
 				}
@@ -329,6 +330,7 @@
 			jieSuan(){
 				this.checkId = [];
 				let goodsId = [];
+				wx.setStorageSync('totalJi',this.totalJi);
 				for(let i=0;i<this.skuData.length;i++){
 					for(let j=0;j<this.skuData[i].content.length;j++){
 						if(this.skuData[i].content[j].checked){

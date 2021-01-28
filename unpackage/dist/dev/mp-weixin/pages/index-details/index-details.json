@@ -1,9 +1,0 @@
-{
-  "navigationBarTitleText": "商品详情页",
-  "navigationBarBackgroundColor": "#FD8F33",
-  "navigationBarTextStyle": "white",
-  "enablePullDownRefresh": false,
-  "usingComponents": {
-    "uni-goods-nav": "/components/uni-goods-nav/uni-goods-nav"
-  }
-}
