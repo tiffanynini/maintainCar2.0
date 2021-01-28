@@ -1,128 +1,203 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-			"path" : "pages/personInfo/personInfo",
-			"style" : {
-				"navigationBarTitleText": "个人中心"
-			}
-		},
-		{
-			"path" : "pages/msg/msg",
-			"style" :                                                                                    
-			{
-				"navigationBarTitleText": "消息",
-				"navigationBarBackgroundColor":"#FD8F33",
-				"navigationBarTextStyle":"white"
-			}
-			
-		},
-		{
-			"path" : "pages/set/set",
-			"style" : {
-				"navigationBarTitleText": "设置",
-				"navigationBarBackgroundColor":"#FD8F33",
-				"navigationBarTextStyle":"white"
-			}
-		},
-		{
-			"path" : "pages/basic-information/basic-information",
-			"style" : {
-				"navigationBarTitleText": "基本资料",
-				"navigationBarBackgroundColor":"#FD8F33",
-				"navigationBarTextStyle":"white"
-			}
-		},
-		
-		
-		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "首页"
-			}
-		}
-	    ,{
-            "path" : "pages/mechant/mechant",
-            "style" : {
-				"navigationBarTitleText": "商家"
-			}
-        }
-        ,{
-            "path" : "pages/findMore/findMore",
-            "style" : {
-				"navigationBarTitleText": "发现"
-			}
-        }
-        ,{
-            "path" : "pages/shopCar/shopCar",
-            "style" : {
-				"navigationBarTitleText": "购物车"
-			}
-        }
-        
-        ,{
-            "path" : "pages/orderStatus/orderStatus",
-            "style" :                                                                                    
-            {
+    "pages": [
+        //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+        {
+            "path": "pages/personInfo/personInfo",
+            "style": {
+                "navigationBarTitleText": "个人中心"
+            }
+        },
+        {
+            "path": "pages/msg/msg",
+            "style": {
+                "navigationBarTitleText": "消息",
+                "navigationBarBackgroundColor": "#FD8F33",
+                "navigationBarTextStyle": "white"
+            }
+
+        },
+        {
+            "path": "pages/set/set",
+            "style": {
+                "navigationBarTitleText": "设置",
+                "navigationBarBackgroundColor": "#FD8F33",
+                "navigationBarTextStyle": "white"
+            }
+        },
+        {
+            "path": "pages/basic-information/basic-information",
+            "style": {
+                "navigationBarTitleText": "基本资料",
+                "navigationBarBackgroundColor": "#FD8F33",
+                "navigationBarTextStyle": "white"
+            }
+        },
+        {
+            "path": "pages/index/index",
+            "style": {
+                "navigationBarTitleText": "首页"
+            }
+        }, {
+            "path": "pages/details/details",
+            "style": {
+                "navigationBarTitleText": "商品详情"
+            }
+        }, {
+            "path": "pages/productEvaluation/productEvaluation",
+            "style": {
+                "navigationBarTitleText": "产品评价"
+            }
+        }, {
+            "path": "pages/login/login",
+            "style": {
+                "navigationBarTitleText": "登录/注册"
+            }
+        }, {
+            "path": "pages/freeWash/freeWash",
+            "style": {
+                "navigationBarTitleText": "免费洗车"
+            }
+        }, {
+            "path": "pages/mechant/mechant",
+            "style": {
+                "navigationBarTitleText": "商家"
+            }
+        }, {
+            "path": "pages/findMore/findMore",
+            "style": {
+                "navigationBarTitleText": "发现"
+            }
+        }, {
+            "path": "pages/shopCar/shopCar",
+            "style": {
+                "navigationBarTitleText": "购物车",
+                "navigationBarBackgroundColor": "#FD8F33",
+                "navigationBarTextStyle": "white"
+            }
+        }, {
+            "path": "pages/orderStatus/orderStatus",
+            "style": {
                 "navigationBarTitleText": "商品",
-				"navigationBarBackgroundColor":"#FD8F33",
-				"navigationBarTextStyle":"white"
+                "navigationBarBackgroundColor": "#FD8F33",
+                "navigationBarTextStyle": "white"
             }
-            
-        }
-        ,{
-            "path" : "pages/location/location",
-            "style" :                                                                                    
-            {
+
+        }, {
+            "path": "pages/location/location",
+            "style": {
                 "navigationBarTitleText": "地址管理",
-				"navigationBarBackgroundColor":"#FD8F33",
-				"navigationBarTextStyle":"white"
+                "navigationBarBackgroundColor": "#FD8F33",
+                "navigationBarTextStyle": "white"
             }
-            
-        }
-        ,{
-            "path" : "pages/addLocation/addLocation",
-            "style" :                                                                                    
-            {
+        }, {
+            "path": "pages/addLocation/addLocation",
+            "style": {
                 "navigationBarTitleText": "添加收货地址",
-				"navigationBarBackgroundColor":"#FD8F33",
-				"navigationBarTextStyle":"white"
+                "navigationBarBackgroundColor": "#FD8F33",
+                "navigationBarTextStyle": "white"
             }
-            
+
+        }, {
+            "path": "pages/personInfo/personInfo",
+            "style": {
+                "navigationBarTitleText": "个人中心"
+            }
+        },
+        {
+            "path": "pages/findInfo/findInfo",
+            "style": {
+                "navigationBarTitleText": "文章详情"
+            }
+        },
+        {
+            "path": "pages/confirmOrder/confirmOrder",
+            "style": {
+                "navigationBarTitleText": "确认订单",
+                "navigationBarBackgroundColor": "#FD8F33",
+                "navigationBarTextStyle": "white"
+            }
+        },
+        {
+            "path": "pages/addressManage/addressManage",
+            "style": {
+                "navigationBarTitleText": "地址管理",
+                "navigationBarBackgroundColor": "#FD8F33",
+                "navigationBarTextStyle": "white"
+            }
+        },
+        {
+            "path": "pages/addAddress/addAddress",
+            "style": {
+                "navigationBarTitleText": "添加收货地址",
+                "navigationBarBackgroundColor": "#FD8F33",
+                "navigationBarTextStyle": "white"
+            }
+        },
+        {
+            "path": "pages/editAddress/editAddress",
+            "style": {
+                "navigationBarTitleText": "编辑收货地址",
+                "navigationBarBackgroundColor": "#FD8F33",
+                "navigationBarTextStyle": "white"
+            }
+        },
+        {
+            "path": "pages/orderDetail/orderDetail",
+            "style": {
+                "navigationBarTitleText": "订单详情",
+                "navigationBarBackgroundColor": "#FD8F33",
+                "navigationBarTextStyle": "white"
+            }
+        },
+        {
+            "path": "pages/paymentResults/paymentResults",
+            "style": {
+                "navigationBarTitleText": "支付结果",
+                "navigationBarBackgroundColor": "#FD8F33",
+                "navigationBarTextStyle": "white"
+            }
+        },
+        {
+            "path": "pages/lookOrder/lookOrder",
+            "style": {
+                "navigationBarTitleText": "查看订单",
+                "navigationBarBackgroundColor": "#FD8F33",
+                "navigationBarTextStyle": "white"
+            }
         }
     ],
-	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
-	},
-	"tabBar":{
-		"list":[
-			{
-				"pagePath":"pages/index/index",
-				"iconPath":"static/images/home.png",
-				"selectedIconPath":"static/images/home1.png"
-			},  
-			{
-				"pagePath":"pages/mechant/mechant",
-				"iconPath":"static/images/menu.png",
-				"selectedIconPath":"static/images/menu1.png"
-			},
-			{
-				"pagePath":"pages/findMore/findMore",
-				"iconPath":"static/images/find.png",
-				"selectedIconPath":"static/images/find1.png"
-			},
-			{
-				"pagePath":"pages/shopCar/shopCar",
-				"iconPath":"static/images/shopcar.png",
-				"selectedIconPath":"static/images/shopcar1.png"
-			},
-			{
-				"pagePath":"pages/personInfo/personInfo",
-				"iconPath":"static/images/person1.png",
-				"selectedIconPath":"static/images/person.png"
-			}
-		]
-	}
+    "globalStyle": {
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "uni-app",
+        "navigationBarBackgroundColor": "#F8F8F8",
+        "backgroundColor": "#F8F8F8"
+    },
+    "tabBar": {
+        "list": [{
+                "pagePath": "pages/index/index",
+                "iconPath": "static/images/home.png",
+                "selectedIconPath": "static/images/home1.png"
+            },
+            {
+                "pagePath": "pages/mechant/mechant",
+                "iconPath": "static/images/menu.png",
+                "selectedIconPath": "static/images/menu1.png"
+            },
+            {
+                "pagePath": "pages/findMore/findMore",
+                "iconPath": "static/images/find.png",
+                "selectedIconPath": "static/images/find1.png"
+            },
+            {
+                "pagePath": "pages/shopCar/shopCar",
+                "iconPath": "static/images/shopcar.png",
+                "selectedIconPath": "static/images/shopcar1.png"
+            },
+            {
+                "pagePath": "pages/personInfo/personInfo",
+                "iconPath": "static/images/person1.png",
+                "selectedIconPath": "static/images/person.png"
+            }
+        ]
+    }
 }

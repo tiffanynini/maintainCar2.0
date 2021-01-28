@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div id="div1">
 		<!-- 搜索框 -->
 		<uni-search-bar placeholder="搜索服务、门店等关键词" :radius="100" @confirm="search" clearButton="auto" cancelButton="none" :value="msg1"></uni-search-bar>
 		<!-- 轮播图 -->
@@ -48,6 +48,7 @@
 			</view>
 		</view>	
 		<!-- 头条 -->
+		<!-- 头条 -->
 		<view class="newTitle">
 			<!-- 小圆点 -->
 			<span class="little-dot"></span>
@@ -56,34 +57,33 @@
 			      <swiper-item  v-for="(item ,index) in info1" :key="index"  @click="change1(index)">
 			           <view class="swiper-item uni-bg-red">
 						   <!-- 热议 -->
-						   <image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u56.png?token=795b10cd0273a5bd3de3a649b3dd32f5c5c4e7b3afc51ea495903dbd1a1164f3" mode=""></image>
-							<text class="new-swiper1">{{info1[index].con}}</text>
+						   <image src="../../static/images-index/hotNew1.png" mode=""></image>
+							<text class="new-swiper1" @click="jumpVideo(index)">{{info1[index].con}}</text>
 					   </view>
 			      </swiper-item>
 			</swiper>
 		</view>
 		<!-- 新用户免费洗车 -->
 		<view class="newUser">
-			<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u62.png?token=289c7f0dade289880d5c06ead834f7029671ab13a426eebee04f9dcc9bbf87df" mode=""></image>
+			<image src="../../static/images-index/newUser.png" mode="" @click="newUserJump"></image>
 		</view>
 		<!-- 汽车贴膜 -->
 		<view class="autoFilm">
 			<view class="autoFilm1">
 				<text class="autoText">汽车贴膜</text>
-				<!-- <image src="../../static/images-index/autoFilm1.jpg" mode=""></image> -->
-				<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u69.jpg?token=49c210832bd2713e029e9428c545f06c4ffa5d167c79e23857536661779cbe88" mode=""></image>
+				<image src="../../static/images-index/autoFilm1.jpg" mode="" @click="jump(9)"></image>
 			</view>
 			<view class="autoFilm1">
 				<text class="autoText">四轮定位</text>
-				<!-- <image src="../../static/images-index/autoFilm1.jpg" mode=""></image> -->
-				<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u72.jpg?token=8964a2a6b4ce51035a0727cb9ff3a8be5f88021a4b74312f82020a77816e372f" mode=""></image>
+				<image src="../../static/images-index/autoFilm2.jpg" mode="" @click="jump(10)"></image>
 			</view>
 			<view class="autoFilm1">
 				<text class="autoText">车辆保养</text>
-				<!-- <image src="../../static/images-index/autoFilm1.jpg" mode=""></image> -->
-				<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u66.jpg?token=8c6f0add287235aed6052bfeaaea2a910897282a82475260061151dd70e0f30f" mode=""></image>
+				<image src="../../static/images-index/autoFilm3.jpg" mode="" @click="jump(11)"></image>
 			</view>
 		</view>
+		<!-- 动画 -->
+		<!-- <view :animation="animationData" style="background:red;height:100rpx;width:100rpx" @bindtap="rotateAndScaleThenTranslate"></view> -->
 		<!-- 视频推荐 -->
 		<view class="videoRecommend">
 			<!-- 视频推荐文字 -->
@@ -132,15 +132,22 @@
 				</view>
 			</view>
 		</view>
-	
+		
+		<!-- 上拉 触底-->
+		<view class="bottomText1" id="bottomText1">
+			<uLi-load-more loadingType="3" status="noMore" :content-text="contentText"></uLi-load-more>
+		</view>
 	</div>
 </template>
 
 <script>
-	
+	import uLiLoadMore from "@/components/uLi-load-more/uLi-load-more.vue"
 	export default {
 		data() {
 			return {
+				pageH:0,
+				downH:0,
+				clientH:0,
 				// 1、搜索框
 				msg1:'',
 				// 2、轮播图
@@ -154,9 +161,9 @@
 				duration: 500,
 				// 轮播图内的图片
 				info: [{
-					src: 'http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u21.jpg?token=b167736f74ca0844f32ea812cc20ec355461798e68bc6f382fbca051e41bb48f'
+					src: '../../static/images-index/car2.jpg'
 			    }, {
-					src: 'http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u25.jpg?token=a4b341c029acae295c311e5bcac7c5a737960dcb7f181223a2ea7f1b44a953d1'
+					src: '../../static/images-index/car1.jpg'
 			     }],
 				//3、小图标
 				//4、头条
@@ -169,48 +176,58 @@
 				 // 5、视频轮播
 				 info2:[
 					 {
-						 videoSrc:"http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u82_div.jpg?token=44c7d934f83f79f4bf92164d381632c278944bfcaa9aaf6337369e188320556d",
+						 videoSrc:"../../static/images-index/video1.jpg",
 						 videoText:"汽车维修保养七宗罪，看完再也不怕被坑"
 					 },
 					 {
-						videoSrc:"http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u84_div.jpg?token=cd30d825d016f4e58f8e31a61acd11e8d416fb761e6ccc964824068341033d7c",
+						videoSrc:"../../static/images-index/video2.jpg",
 						videoText:"汽车保养小心这4大陷阱，修车师傅都有小动作，可以多开..."
 					 },
 					 {
-						videoSrc:"http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u86_div.jpg?token=26789baad773d562358a3305590bc2087090121a7c44a3c18394beb5d9f8c01f",
+						videoSrc:"../../static/images-index/video3.jpg",
 						videoText:"汽车保养不只是更换汽油，还要做这些"
 					 }
 				 ],
 				 // 6、商家推荐 列表
 				 list1:[
 					 {
-						 src:"http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u96.jpg?token=4b0bc658e09ee5c4b8e03726f5628b7cc6359658ff069ef246b962ded4670f54",
+						 src:"../../static/images-index/auto1.jpg",
 						 title:"auto汽车美容",
 						 distance:"14km",
 						 address:"广东省深圳市南山区沙河西路3181号"
 					 },
 					 {
-					 	src:"http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u102.jpg?token=ee55357f0b66d91f859fa5cc0f96a17877561fea2bfebb93f4377305ac48ab85",
+					 	src:"../../static/images-index/auto2.jpg",
 					 	title:"taxi汽车美容",
 					 	distance:"66km",
 					 	address:"广东省深圳市福田区上步北路2005路"
 					 },
 					 {
-					 	src:"http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u108.jpg?token=d7ac6be1fb021b11925be8ba3a539ed65b3d56bf0787fa1b538983d32c226e3f",
+					 	src:"../../static/images-index/auto3.jpg",
 					 	title:"汽车养生",
 					 	distance:"14km",
 					 	address:"广东省深圳市罗湖区翠菊路11655路"
 					 },
 					 {
-					 	src:"http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u96.jpg?token=4b0bc658e09ee5c4b8e03726f5628b7cc6359658ff069ef246b962ded4670f54",
+					 	src:"../../static/images-index/auto4.jpg",
 					 	title:"百瑞特养车",
 					 	distance:"358km",
 					 	address:"广东省深圳市宝安区翻身路65405号"
 					 }
 					 
-				 ]
+				 ],
+				 // 7、下拉触底
+				 contentText: {
+				    contentdown:'上拉显示更多',
+				    contentrefresh: '正在加载...',
+				    contentnomore: '我也是有底线的'
+				},
+				// 8、动画
+				// animationData: {},
+
 			}
 		},
+		components: {uLiLoadMore},
 		methods: {
 		// 1、搜索框
 			search(e){
@@ -226,12 +243,115 @@
 		// 3、上下轮播
 		change1(e){
 			console.log(e);
-		}
 		},
-		onLoad() {
-
+		//新用户洗车跳转
+		newUserJump(){
+			wx.navigateTo({
+				url:'../freeWash/freeWash'
+			})
+		},
+		jump(i){
+			wx.navigateTo({
+				url:'../details/details?id='+i,
+			})
+		},
+		//头条跳转
+		jumpVideo(i){
+			wx.request({
+				url:'http://106.12.97.151/getVideoInfo',
+				method:'post',
+				data:{
+					id:i+1
+				},
+				success:(res)=>{
+					let obj = res.data.data[0];
+					console.log(obj)
+					wx.navigateTo({
+						url:'../findInfo/findInfo?title='+obj.title+'&&time='+obj.time+'&&read='+obj.watch+'&&url='+obj.url+'&&id='+i+1
+					})
+				}
+			})
+		},
+		// 4、动画
+		// rotateAndScale: function () {
+		//       // 旋转同时放大
+		//       this.animation.rotate(45).scale(2, 2).step()
+		//       this.animationData = this.animation.export()
+		//     },
+		//     rotateThenScale: function () {
+		//       // 先旋转后放大
+		//       this.animation.rotate(45).step()
+		//       this.animation.scale(2, 2).step()
+		//       this.animationData = this.animation.export()
+		//     },
+		//     rotateAndScaleThenTranslate: function () {
+		//       // 先旋转同时放大，然后平移
+		//       this.animation.rotate(45).scale(2, 2).step()
+		//       this.animation.translate(100, 100).step({ duration: 1000 })
+		//       this.animationData = this.animation.export()
+		//     }
+		},
+		onShow(){
+			 var animation = uni.createAnimation({
+			      duration: 1000,
+			        timingFunction: 'ease',
+			    })
+			
+			    this.animation = animation
+			
+			    animation.scale(2,2).rotate(45).step()
+			
+			    this.animationData = animation.export()
+			
+			    setTimeout(function() {
+			      animation.translate(30).step()
+			      this.animationData = animation.export()
+			    }.bind(this), 1000)
+		},
+		onLoad(options) {
+			setTimeout(function () {
+			     console.log('start pulldown');
+			}, 500);
+			uni.startPullDownRefresh();
+			
+			uni.getSystemInfo({
+				success:(res)=>{
+					this.clientH=res.windowHeight;
+				}
+			})
+		},
+		// 用户下拉刷新
+		onPullDownRefresh() {
+		        console.log('refresh');
+		        setTimeout(function () {
+		            uni.stopPullDownRefresh();
+		        }, 1000);
+		    },
+		// 用户上拉
+		onReachBottom(){
+			console.log('到底部了');
+		},
+		// 页面滚动事件
+		onPageScroll(ev){
+			// 获取底部实例+高度
+			let query = uni.createSelectorQuery().in(this);
+			query.select('#bottomText1').boundingClientRect(data => {
+				this.downH=data.height;
+			}).exec();
+			// 获取页面实例+高度
+			query.select('#div1').boundingClientRect(data1 => {
+				this.pageH=data1.height;
+			}).exec();
+			
+			// console.log(ev.scrollTop,this.pageH,this.downH,this.clientH)
+			// 如果滚动高度+屏幕高度>页面高度-底部高度
+			// 就让页面滚动到 页面高度-底部高度
+			if(ev.scrollTop+this.clientH>=this.pageH-this.downH){
+				uni.pageScrollTo({
+					scrollTop:this.pageH-this.downH-this.clientH
+				})
+			}
 		}
-		
 	}
 </script>
 
@@ -293,31 +413,31 @@
 					}
 			}
 			.detail2{
-				background: url('http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u36.png?token=dcbbd5d99bc8904ecace681be38021a23a3d49af7337b08bf9a1f986d926bc4b') no-repeat;
+				background: url('../../static/images-index/detai2.png') no-repeat;
 				background-size: contain;
 			}
 			.detail3{
-				background: url('http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u37.png?token=bf76aadc9ed32328e374a4d76f1f59848e0099cd3f6fc198fe183fd66f380900') no-repeat;
+				background: url('../../static/images-index/list3.png') no-repeat;
 				background-size: contain;
 			}
 			.detail4{
-				background: url('http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u38.png?token=c1ffe48dae2525e2e7536697670fda89cd0428843c63358447fb388d12e9d316') no-repeat;
+				background: url('../../static/images-index/list4.png') no-repeat;
 				background-size: contain;
 			}
 			.detail5{
-				background: url('http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u39.png?token=1de08bc67c2dce7e01a872b1f4bd24333ad896eecb857025a1c330b58347685a') no-repeat;
+				background: url('../../static/images-index/list5.png') no-repeat;
 				background-size: contain;
 			}
 			.detail6{
-				background: url('http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u40.png?token=f3baf6f2dcbac4e751153be0116ba3d07b4a96da62e93d3260f24fb2240f17e8') no-repeat;
+				background: url('../../static/images-index/list6.png') no-repeat;
 				background-size: contain;
 			}
 			.detail7{
-				background: url('http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u41.png?token=fc55325ba5cabfd49eabe18edeb27387be8bb437bbcbb423a0188646b65d5fb6') no-repeat;
+				background: url('../../static/images-index/list7.png') no-repeat;
 				background-size: contain;
 			}
 			.detail8{
-				background: url('http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u42.png?token=248a50c4977350867e249cbe96121bf32fbebe3a3bc8eaa0976fe42abe32991a') no-repeat;
+				background: url('../../static/images-index/list8.png') no-repeat;
 				background-size: contain;
 			}
 		}
@@ -328,7 +448,7 @@
 			border-right: 0;
 			display: flex;
 			height: 70rpx;
-			background: url(http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E9%A6%96%E9%A1%B5/u53.png?token=ea33d59598e3d524a58a68616bf4820e442dec19caf38ac9dd2b6d0e4738a13a) no-repeat;
+			background: url('../../static/images-index/newTitle1.png') no-repeat;
 			background-size: contain;
 			align-items: center;
 			background-color: #fff;
@@ -440,7 +560,7 @@
 			.videoPlay{
 				width: 100%;
 				height: 410rpx;
-				background-color: green;
+				// background-color: green;
 				.swiper1{
 					height: 410rpx;
 					width: 100%;
@@ -471,7 +591,7 @@
 		// 商家推荐
 		.mechantRecommend{
 			width: 100%;
-			height: 760rpx;
+			height: 806rpx;
 			background-color: #fff;
 			.mechantWord{
 				// width: 94.6%;
@@ -540,5 +660,11 @@
 				}
 			}
 		}
+		// 下拉触底
+		.bottomText1{
+			height: 100rpx;
+			// background-color:pink;
+			// margin-top: 100rpx;
+			}
 	}
 </style>

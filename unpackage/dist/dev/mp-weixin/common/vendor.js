@@ -8837,6 +8837,20 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
+/***/ 25:
+/*!**********************************************************!*\
+  !*** D:/project/maintainCar2.0/maintainCar2.0/common.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var pageUrl = 'http://172.16.14.29:6067';var _default =
+{
+  pageUrl: pageUrl };exports.default = _default;
+
+/***/ }),
+
 /***/ 3:
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!

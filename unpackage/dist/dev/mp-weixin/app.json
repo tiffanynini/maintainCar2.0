@@ -5,12 +5,25 @@
     "pages/set/set",
     "pages/basic-information/basic-information",
     "pages/index/index",
+    "pages/details/details",
+    "pages/productEvaluation/productEvaluation",
+    "pages/login/login",
+    "pages/freeWash/freeWash",
     "pages/mechant/mechant",
     "pages/findMore/findMore",
     "pages/shopCar/shopCar",
     "pages/orderStatus/orderStatus",
     "pages/location/location",
-    "pages/addLocation/addLocation"
+    "pages/addLocation/addLocation",
+    "pages/personInfo/personInfo",
+    "pages/findInfo/findInfo",
+    "pages/confirmOrder/confirmOrder",
+    "pages/addressManage/addressManage",
+    "pages/addAddress/addAddress",
+    "pages/editAddress/editAddress",
+    "pages/orderDetail/orderDetail",
+    "pages/paymentResults/paymentResults",
+    "pages/lookOrder/lookOrder"
   ],
   "subPackages": [],
   "window": {
@@ -53,6 +66,5 @@
       "desc": "scope.userLocation"
     }
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap91.json"
+  "usingComponents": {}
 }
