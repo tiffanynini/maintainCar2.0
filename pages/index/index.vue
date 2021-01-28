@@ -15,19 +15,19 @@
 		<!-- 小图标 -->
 		<view class="litteCon">
 			<view class="litteCon1">
-				<view class="littleConDetail">
+				<view class="littleConDetail"  @click="enterList(1)">
 					<image mode=""></image>
 					<p>内外洗车</p>
 				</view>
-				<view class="littleConDetail detail2">
+				<view class="littleConDetail detail2"  @click="enterList(2)">
 					<image mode=""></image>
 					<p>大小保养</p>
 				</view>
-				<view class="littleConDetail detail3">
+				<view class="littleConDetail detail3"  @click="enterList(3)">
 					<image mode=""></image>
 					<p>美容打蜡</p>
 				</view>
-				<view class="littleConDetail detail4">
+				<view class="littleConDetail detail4"  @click="enterList(4)">
 					<image mode=""></image>
 					<p>钣金修复</p>
 				</view>
@@ -39,11 +39,11 @@
 					<image mode=""></image>
 					<p>空调清洗</p>
 				</view>
-				<view class="littleConDetail detail7">
+				<view class="littleConDetail detail7"  @click="enterList(7)">
 					<image mode=""></image>
 					<p>车辆封釉</p>
 				</view>
-				<view class="littleConDetail detail8">
+				<view class="littleConDetail detail8"  @click="enterList(8)">
 					<image mode=""></image>
 					<p>镀晶贴膜</p>
 				</view>
@@ -225,6 +225,7 @@
 				},
 				// 8、动画
 				// animationData: {},
+				token: '88318de7a5b44fc0aa43fadf22e1980a'
 
 			}
 		},
@@ -242,6 +243,7 @@
 			change(e) {
 				// 点击轮播图，打印当前商品的id
 				console.log(e);
+				console.log(2222222222222);
 				wx.navigateTo({
 					url: '../index-beauty/index-beauty?id=' + e
 				});
@@ -250,7 +252,7 @@
 			// 3、上下轮播
 			change1(e) {
 				console.log(e);
-				
+
 			},
 			// 4、进入商品列表页
 			enterList(i) {
@@ -363,7 +365,19 @@
 				success: (res) => {
 					this.clientH = res.windowHeight;
 				}
-			})
+			});
+			// 轮播图
+			uni.request({
+				url: this.pageUrl.pageUrl + '/sku/findSlideshow',
+				method: 'post',
+				header: {
+					token: this.token
+				},
+				success: (res) => {
+					// console.log(res);
+					this.info = res.data;
+				}
+			});
 		},
 		// 用户下拉刷新
 		onPullDownRefresh() {

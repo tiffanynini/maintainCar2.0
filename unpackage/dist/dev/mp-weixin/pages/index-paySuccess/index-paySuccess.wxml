@@ -1,0 +1,1 @@
+<view class="paySuccess"><view class="pay1"><view class="iconfont icon-zhifuchenggong payIcon"></view><view class="paySuccess2">支付成功</view></view><view class="payBtn"><view data-event-opts="{{[['tap',[['backIndex',['$event']]]]]}}" class="backBtn btnRed" bindtap="__e">返回首页</view><view class="backBtn">查看订单</view></view></view>

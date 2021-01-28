@@ -98,7 +98,7 @@
 			this.sId = options.id;
 			// console.log(this.sId);
 			uni.request({
-				url: this.ip+'/sku/findEvaluateById?goodsId=' + this.sId,
+				url: this.pageUrl.pageUrl+'/sku/findEvaluateById?goodsId=' + this.sId,
 				method: 'post',
 				header:{
 					token:this.token

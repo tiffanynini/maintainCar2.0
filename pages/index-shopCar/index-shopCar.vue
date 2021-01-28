@@ -180,7 +180,7 @@
 			// 修改购物车的数量
 			changeCarNum(num,id){
 				uni.request({
-					url:this.ip+'/cart/update?num='+num+'&skuId='+id,
+					url:this.pageUrl.pageUrl+'/cart/update?num='+num+'&skuId='+id,
 					method:'post',
 					header:{
 						token:this.token
@@ -222,7 +222,7 @@
 								success:()=>{
 									// 调删除购物车的接口
 									uni.request({
-										url:this.ip+'/cart/removeCartItem?skuId='+comId,
+										url:this.pageUrl.pageUrl+'/cart/removeCartItem?skuId='+comId,
 										method:'post',
 										header:{
 											token:this.token
@@ -282,7 +282,7 @@
 		onLoad() {
 			// 查询购物车
 			uni.request({
-				url:this.ip+'/cart/queryUserCart',
+				url:this.pageUrl.pageUrl+'/cart/queryUserCart',
 				header:{
 					token:this.token
 				},

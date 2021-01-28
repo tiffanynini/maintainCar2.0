@@ -245,7 +245,7 @@
 				// wx.setNavigationBarTitle({ title:'222'})
 			// }
 			uni.request({
-				url: this.ip+'/sku/findGoodsByCategory?category=' + this.categoryId,
+				url: this.pageUrl.pageUrl+'/sku/findGoodsByCategory?category=' + this.categoryId,
 				method: 'post',
 				header:{
 					token:this.token
@@ -260,7 +260,7 @@
 			});
 			// 通过类别id，获得类别名称
 			uni.request({
-				url: this.ip+'/sku/findByCategoryId?id=' + this.categoryId,
+				url: this.pageUrl.pageUrl+'/sku/findByCategoryId?id=' + this.categoryId,
 				method: 'get',
 				header:{
 					token:this.token
