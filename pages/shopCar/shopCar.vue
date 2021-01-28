@@ -298,7 +298,7 @@
 				let that = this;
 				wx.showModal({
 					content: '确定删除吗？',
-					  success (res) {
+					  success:(res)=> {
 					    if (res.confirm) {
 					      wx.request({
 					      	url:this.pageUrl.pageUrl+'/cart/removeCartItem?skuId='+id,

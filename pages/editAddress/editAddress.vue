@@ -115,7 +115,7 @@
 			del(id){
 				wx.showModal({
 				  content: '确定要删除该地址吗？',
-				  success (res) {
+				  success:(res)=> {
 				    if (res.confirm) {
 					  //删除成功后提示并且可以跳回地址管理页面
 					  wx.request({

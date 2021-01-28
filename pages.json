@@ -31,11 +31,13 @@
 			}
 		}
 		,{
-            "path" : "pages/mechant/mechant",
-            "style" : {
-				"navigationBarTitleText": "商家"
+			"path": "pages/mechant/mechant",
+			"style": {
+				"navigationBarTitleText": "商家",
+				"navigationBarBackgroundColor": "#04C4E0",
+				"navigationBarTextStyle": "white"
 			}
-        }
+		}
         ,{
             "path" : "pages/findMore/findMore",
             "style" : {
@@ -116,6 +118,44 @@
 				"navigationBarTitleText": "查看订单",
 				"navigationBarBackgroundColor":"#FD8F33",
 				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path": "pages/productlist/productlist",
+			"style": {
+				"navigationBarTitleText": "商品列表",
+				"navigationBarBackgroundColor": "#04C4E0",
+				"navigationBarTextStyle": "white"
+			}
+		}, 
+		{
+			"path": "pages/shopindex/shopindex",
+			"style": {
+				"navigationBarTitleText": "店铺详情"
+			}
+		}, 
+		{
+			"path": "pages/productindex/productindex",
+			"style": {
+				"navigationBarTitleText": "商品详情",
+				"navigationBarBackgroundColor": "#FD8F33",
+				"navigationBarTextStyle": "white"
+			}
+		}, 
+		{
+			"path": "pages/reviewindex/reviewindex",
+			"style": {
+				"navigationBarTitleText": "产品评价",
+				"navigationBarBackgroundColor": "#FD8F33",
+				"navigationBarTextStyle": "white"
+			}
+		}, 
+		{
+			"path": "pages/service/service",
+			"style": {
+				"navigationBarTitleText": "联系客服",
+				"navigationBarBackgroundColor": "#FD8F33",
+				"navigationBarTextStyle": "white"
 			}
 		}
     ],
