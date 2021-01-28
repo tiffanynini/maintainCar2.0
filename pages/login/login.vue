@@ -57,7 +57,7 @@
 					  		wx.showToast({
 					  		  title: '已是登录状态',
 					  		  icon: 'success',
-					  		  duration: 2000
+					  		  duration: 2000 
 					  		})
 					  	},
 						//如果wx.login为登录状态，而token不存在，重新进行token存储
