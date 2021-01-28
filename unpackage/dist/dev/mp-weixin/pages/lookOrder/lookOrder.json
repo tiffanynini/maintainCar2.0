@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "查看订单",
   "navigationBarBackgroundColor": "#FD8F33",
-  "navigationBarTextStyle": "white"
+  "navigationBarTextStyle": "white",
+  "usingComponents": {}
 }

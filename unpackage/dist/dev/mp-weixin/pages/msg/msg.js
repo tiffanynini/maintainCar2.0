@@ -94,10 +94,10 @@ var components
 try {
   components = {
     uniList: function() {
-      return __webpack_require__.e(/*! import() | components/uni-list/uni-list */ "components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/components/uni-list/uni-list.vue */ 223))
+      return __webpack_require__.e(/*! import() | components/uni-list/uni-list */ "components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/components/uni-list/uni-list.vue */ 263))
     },
     uniListChat: function() {
-      return __webpack_require__.e(/*! import() | components/uni-list-chat/uni-list-chat */ "components/uni-list-chat/uni-list-chat").then(__webpack_require__.bind(null, /*! @/components/uni-list-chat/uni-list-chat.vue */ 230))
+      return __webpack_require__.e(/*! import() | components/uni-list-chat/uni-list-chat */ "components/uni-list-chat/uni-list-chat").then(__webpack_require__.bind(null, /*! @/components/uni-list-chat/uni-list-chat.vue */ 270))
     }
   }
 } catch (e) {
