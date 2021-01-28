@@ -1,38 +1,38 @@
 <template>
 	<view class="body">
-		<view class="order">
+		<view class="order" v-for="(v,i) in data" :key="i">
 			<view>
 				<text class="serialNumber">
 					<text>订单编号</text>
-					<text>2019102100000001</text>
+					<text>{{v.orderId}}</text>
 				</text>
 				<text class="state">{{state}}</text>
 			</view>
 			<navigator url="">
-				<image src="../../static/neil-modal/logo.png"  mode="widthFix"></image>
+				<image :src="v.image"  mode="heightFix"></image>
 				<view>
-					<text>汽车贴膜（每10CM）</text>
+					<text>{{v.name}}</text>
 					<text>汽车类型：轿车 位置：全车</text>
-					<text>1 x 29.9</text>
+					<text>{{v.num}} x {{v.price}}</text>
 				</view>
 			</navigator>
 			<view class="operation">
 				<view>
 					<text>共1件商品</text>
-					<text>¥ 29.9</text>
+					<text>¥ {{v.astualPay}}</text>
 				</view>
 				<view>
 					<text v-if="status==1" @click="switchShowPayment">立即付款</text>
-					<text v-if="status==4" @click="showEvaluate">去评价</text>
+					<text v-if="status==4" @click="showEvaluate()">去评价</text>
 				</view>
 			</view>
 			<!-- 评价框 -->
-			<view class="evaluate" v-if="evaluateState">
+			<view class="evaluate" v-if="evaluateState&&evaluateNum==v.orderId">
 				<view class="uni-textarea">
 					<textarea @blur="bindTextAreaBlur"  auto-blur  placeholder="请输入内容" />
 				</view>
 				<view class="uni-padding-wrap uni-common-mt">
-					<button type="primary" @click="submitComments">提交</button>
+					<button type="primary" @click="submitComments(v.orderId)">提交</button>
 				</view>
 			</view>
 		</view>
@@ -74,12 +74,19 @@
 				//显示蒙层状态
 				shadow:false,
 				//显示评论状态
-				evaluateState:false
+				evaluateState:false,
+				//用户id
+				userId:9,
+				//用户数据
+				data:[],
+				//订单评论
+				evaluate:'',
+				//选择哪条订单评论
+				orderId:0
 			};
 		},
 		methods:{
 			initialize(){
-				// console.log(this.status);
 				switch(this.status){
 					//状态码 1:未付款
 					case 1:
@@ -87,6 +94,7 @@
 					uni.setNavigationBarTitle({
 					    title: '待付款'
 					});
+					this.arrStatus();
 					break;
 					//状态码 2:已付款未发货
 					case 2:
@@ -94,6 +102,7 @@
 					uni.setNavigationBarTitle({
 					    title: '待发货'
 					});
+					this.arrStatus();
 					break;
 					//状态码 3:已发货
 					case 3:
@@ -101,6 +110,7 @@
 					uni.setNavigationBarTitle({
 					    title: '待收货'
 					});
+					this.arrStatus();
 					break;
 					//状态码 4:交易成功
 					case 4:
@@ -108,9 +118,33 @@
 					uni.setNavigationBarTitle({
 					    title: '待评价'
 					});
+					this.arrStatus();
 					break;
 					//状态码 5:交易关闭
 				}
+			},
+			//初始化数据
+			arrStatus(){
+				uni.request({
+					url:'http://172.16.14.29:6067/order/find?userId='+1,
+					header: {
+					    'token': '88318de7a5b44fc0aa43fadf22e1980a' //自定义请求头信息
+					},
+					success:(res)=>{
+						// console.log(res)
+						// if(res.data.data.length>0){
+							let arr=[];
+							for(let i=0;i<res.data.data.length||0;i++){
+							// for(let i=0;i<arr.length;i++){
+								if(res.data.data[i].status==this.status){
+									arr.push(res.data.data[i])
+								}
+							}
+							this.data=arr;
+							// console.log(this.data)
+						// }
+					}
+				})
 			},
 			// 开关支付模态框
 			switchShowPayment(){

@@ -13,7 +13,7 @@
 			</view>
 			<view>
 				<uni-list :border="true">
-					<uni-list-item title="昵称" rightText="梁先森123"></uni-list-item>
+					<uni-list-item title="昵称" :rightText="name"></uni-list-item>
 					<uni-list-item title="邮箱" link clickable=false :rightText="mail" @click="openMail"></uni-list-item>
 					<uni-list-item title="个性签名" link :rightText="signature" @click="openSignature"></uni-list-item>
 					<uni-list-item title="生日" link :rightText="birthday" @click="openBirthday"></uni-list-item>
@@ -88,30 +88,30 @@
 			return { 
 				//头像图片路径
 				photo:"../../static/neil-modal/logo.png",
+				//用户昵称
+				name:"未设置",
 				// 邮箱开关
 				mailStatus:false,
 				//用户邮箱
-				mail:"123456789@qq.com",
+				mail:"未设置",
 				//未点击保存的邮箱表单内容
 				uncertainMail:"",
-				
-				
 				// 个性签名开关
 				signatureStatus:false,
 				//用户个性签名
-				signature:"失败乃成功TM",
+				signature:"未设置",
 				//未点击保存的个性签名表单内容
 				uncertainSignature:"",
-				
-				
 				// 生日开关
 				birthdayStatus:false,
 				//用户生日
-				birthday:"1996-07-01",
+				birthday:"未设置",
 				//未点击保存的生日签名表单内容
 				uncertainBirthday:"",
 				// 时间选择结束范围
-				endDate:"2020-11-01"
+				endDate:"2020-11-01",
+				//token
+				token:''
 			};
 		},
 		methods: {
@@ -130,17 +130,14 @@
 						switch (res.id) {
 							// -1代表取消按钮
 							case -1:
-							  console.log(res);
 							  break;
 							  // 相机
 							case 0:
-							  console.log(res,0)
 							  // this.onOffFn();
 							  this.camera();
 							  break;
 							  // 相册
 							case 1:
-							  console.log(res,1);
 							  this.album();
 							  break;
 						}
@@ -150,29 +147,58 @@
 			// 相机
 			camera(){
 				uni.chooseImage({
-				    count: 1, //默认9
+				    count: 1, //默认9张
 				    sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-				    sourceType: ['camera'], //从相册选择
+				    sourceType: ['camera'], //从相机选择
 				    success:(res) =>{
-						console.log(res)
-						// let FormData=new FormData();
-						// FormData.append('file',tempFiles[0]);
-						this.photo=res.tempFilePaths[0];
-						this.feedback("修改成功");
+						// 上传头像
+						uni.uploadFile({
+						    url: 'http://172.16.14.29:9090/upload/cos', 
+							method:'get', 
+							filePath: res.tempFiles[0].path,
+							name: 'file',
+							header: {
+							    'token': '88318de7a5b44fc0aa43fadf22e1980a'
+							},
+							formData: {
+								'folder': 'photo'
+							},
+						    success: (res) => {
+								this.photo=res.data; //更改头像地址
+								this.setInformation(); //设置信息
+								this.getInformation(); //更新界面用户信息
+								this.feedback("修改成功"); //交互反馈
+						    }
+						});
 				    }
 				});
 			},
 			// 相册
 			album(){
 				uni.chooseImage({
-				    count: 1, //默认9
+				    count: 1, //默认9张
 				    sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
 				    sourceType: ['album'], //从相册选择
 				    success:(res) =>{
-						// let FormData=new FormData();
-						// FormData.append('file',tempFiles[0]);
-						this.photo=res.tempFilePaths[0];
-						this.feedback("修改成功");
+						// 上传头像
+						uni.uploadFile({
+						    url: 'http://172.16.14.29:9090/upload/cos', 
+							method:'get', 
+							filePath: res.tempFiles[0].path,
+							name: 'file',
+							header: {
+							    'token': '88318de7a5b44fc0aa43fadf22e1980a'
+							},
+							formData: {
+								'folder': 'photo'
+							},
+						    success: (res) => {
+								this.photo=res.data; //更改头像地址
+								this.setInformation(); //设置信息
+								this.getInformation(); //更新界面用户信息
+								this.feedback("修改成功"); //交互反馈3
+						    }
+						});
 				    }
 				});
 			},
@@ -197,10 +223,8 @@
 				this.mail=this.uncertainMail;
 				this.uncertainMail="";
 				this.mailStatus=false;
-				this.feedback("修改成功");
+				this.setInformation();
 			},
-			
-			
 			//打开修改个性签名
 			openSignature(){
 				this.signatureStatus=true;
@@ -215,10 +239,8 @@
 				this.signature=this.uncertainSignature;
 				this.uncertainSignature="";
 				this.signatureStatus=false;
-				this.feedback("修改成功");
+				this.setInformation();
 			},
-			
-			
 			//打开修改生日
 			openBirthday(){
 				this.uncertainBirthday=this.birthday;
@@ -238,7 +260,6 @@
 			},
 			// 时间选择器改变事件，参数为ev
 			dateChange(ev){
-			    console.log(ev);
 				this.uncertainBirthday=ev.detail.value.toString();
 			},
 			//初始化时间选择器最大值
@@ -246,10 +267,55 @@
 				let d=new Date();
 				d=d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
 				this.endDate=d;
+			},
+			// 请求服务器获取用户信息
+			getInformation(){
+				uni.request({
+				    url: 'http://172.16.14.29:6067/userInfo/userInfo', 
+					method:'get', 
+					header: {
+					    'token': '88318de7a5b44fc0aa43fadf22e1980a'
+					},
+				    success: (res) => {
+						console.log(res);
+						this.birthday=res.data.data.birthday.substring(0,10);
+						this.email=res.data.data.email;
+						if(res.data.data.image!=null){
+							this.photo=res.data.data.image;
+						}
+						this.signature=res.data.data.signature;
+				    }
+				});
+			},
+			// 修改用户信息并上传
+			setInformation(){
+				uni.request({
+				    url: 'http://172.16.14.29:6067/userInfo/update', 
+					method:'post', 
+					header: {
+					    'token': '88318de7a5b44fc0aa43fadf22e1980a'
+					},
+					data:{
+						'id':1,
+						'birthday':this.birthday,
+						'email':this.email,
+						'image':this.photo,
+						'signature':this.signature
+					},
+				    success: (res) => {
+						this.getInformation();
+						this.feedback("修改成功");
+				    }
+				});
 			}
 		},
+		onLoad(res) {
+		},
 		mounted(){
+			// 页面加载获取时间
 			this.setEndDate();
+			// 页面加载请求服务器获取用户信息
+			this.getInformation();
 		}
 	}
 </script>
@@ -290,7 +356,7 @@
 					flex: 1;
 					height: 70rpx;
 					width: 70rpx;
-					margin: 16rpx 10rpx 0 0;
+					margin: 8rpx 10rpx 0 0;
 				}
 				text{
 					color: #BBBECA;

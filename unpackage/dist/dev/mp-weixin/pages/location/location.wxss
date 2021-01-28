@@ -173,6 +173,7 @@ page.data-v-1dc6e226,
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
+  margin-top: 10rpx;
 }
 .list .data.data-v-1dc6e226 {
   -webkit-box-flex: 3;
@@ -193,17 +194,5 @@ page.data-v-1dc6e226,
   z-index: 2;
   margin: 0 30rpx;
   color: #5E5E5E;
-}
-.location.data-v-1dc6e226 {
-  position: relative;
-  top: 0;
-  left: 0;
-}
-.location image.data-v-1dc6e226 {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 60rpx;
-  height: 60rpx;
 }
 

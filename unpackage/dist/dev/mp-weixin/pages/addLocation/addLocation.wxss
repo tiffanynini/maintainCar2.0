@@ -13,7 +13,7 @@
   height: 80rpx;
   line-height: 80rpx;
   border-bottom: 1rpx solid #D7D7D7;
-  padding: 0 20rpx;
+  padding-left: 10rpx;
 }
 .body view .right.data-v-4b369518 {
   margin-left: 20rpx;

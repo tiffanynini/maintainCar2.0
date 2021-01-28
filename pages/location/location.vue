@@ -2,25 +2,25 @@
 	<view class="body">
 		<view>
 			<view class="uni-padding-wrap uni-common-mt add">
-				<button type="default" @click="skip">添加收货地址</button>
+				<button type="default" @click="skip1">添加收货地址</button>
 			</view>
 		</view>
 		<view class="location">
-			<image src="../../static/images-location/moren.png"></image>
-			<view class="list">
+			<!-- <image src="../../static/images-location/moren.png"></image> -->
+			<view class="list" v-for="(v,i) in informationArr" :key="i">
 				<text class="iconfont icon-dingwei font1"></text>
 				<view class="data">
 					<view>
-						<text>梁先生</text>
-						<text class="phone">12131313131</text>
+						<text>{{v.receiverName}}</text>
+						<text class="phone">{{v.receiverPhone}}</text>
 					</view>
 					<view>
-						广东省佛山市某某镇某某街道某某村某某巷15号
+						{{v.receiverCity}}{{v.receiverAddress}}
 					</view>
 				</view>
-				<navigator url="../addLocation/addLocation?status=0">
+				<view @click="skip2" :data-id="v.id" :data-userId="v.userId">
 					<text class="iconfont icon-shezhi font2"></text>
-				</navigator>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -30,16 +30,45 @@
 	export default {
 		data() {
 			return {
-				
+				// 整体数据
+				informationArr:[]
 			};
 		},
 		methods:{
 			//跳转添加地址界面
-			skip(){
+			skip1(){
 				uni.navigateTo({
 				    url: '../addLocation/addLocation?status=1'
 				});
+			},
+			//跳转添加地址界面
+			skip2(e){
+				uni.navigateTo({
+				    url:`../addLocation/addLocation?status=0&&id=${e.currentTarget.dataset.id}&&userId=${e.currentTarget.dataset.userid}`
+				});
+			},
+			//获取用户信息
+			getInformation(){
+				uni.request({
+				    url: 'http://172.16.14.29:6067/order/findAllAddress', 
+					method:'get',
+				    data: {
+				        'userId':1
+				    },
+				    header: {
+				        'token': '88318de7a5b44fc0aa43fadf22e1980a' //自定义请求头信息
+				    },
+				    success: (res) => {
+						this.informationArr=res.data.data;
+				    }
+				});
 			}
+		},
+		onLoad(res){
+			this.getInformation();
+		},
+		onShow(){
+			this.getInformation();
 		}
 	}
 </script>
@@ -56,6 +85,7 @@
 		display: flex;
 		background-color: #fff;
 		align-items: center;
+		margin-top: 10rpx;
 		.data{
 			flex: 3;
 			.phone{
@@ -75,16 +105,16 @@
 			color: #5E5E5E;
 		}
 	}
-	.location{
-		position: relative;
-		top: 0;
-		left: 0;
-		image{
-			position: absolute;
-			left: 0;
-			top: 0;
-			width: 60rpx;
-			height: 60rpx;
-		}
-	}
+	// .location{
+	// 	position: relative;
+	// 	top: 0;
+	// 	left: 0;
+	// 	image{
+	// 		position: absolute;
+	// 		left: 0;
+	// 		top: 0;
+	// 		width: 60rpx;
+	// 		height: 60rpx;
+	// 	}
+	// }
 </style>

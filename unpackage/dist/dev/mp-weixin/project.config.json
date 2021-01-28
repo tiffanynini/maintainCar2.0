@@ -11,23 +11,21 @@
   "appid": "wx9c21a5aa258fde58",
   "projectname": "maintainCar2.0",
   "condition": {
-    "plugin": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
       "list": []
     },
     "game": {
-      "list": []
-    },
-    "gamePlugin": {
+      "current": -1,
       "list": []
     },
     "miniprogram": {
-      "list": [
-        {
-          "name": "pages/addLocation/addLocation",
-          "pathName": "pages/addLocation/addLocation",
-          "scene": null
-        }
-      ]
+      "current": -1,
+      "list": []
     }
   }
 }

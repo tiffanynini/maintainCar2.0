@@ -28,7 +28,7 @@
 			//跳转客服消息
 			skip(){
 				wx.navigateTo({
-				    url: '../index-connect/index-connect'
+				    url:'../index-connect/index-connect'
 				});
 			}
 		}

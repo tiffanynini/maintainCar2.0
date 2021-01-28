@@ -40,7 +40,7 @@
 				<span class="iconfont icon-daipingjia"></span>
 				<text>待评价</text>
 		</navigator>
-		<navigator url="" class="option" hover-class="none">
+		<navigator url="/pages/shopCar/shopCar" open-type="switchTab" class="option" hover-class="none">
 				<span class="iconfont icon-gouwuche"></span>
 				<text>购物车</text>
 		</navigator>

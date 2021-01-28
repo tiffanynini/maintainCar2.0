@@ -96,16 +96,16 @@ var components
 try {
   components = {
     uniList: function() {
-      return __webpack_require__.e(/*! import() | components/uni-list/uni-list */ "components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/components/uni-list/uni-list.vue */ 106))
+      return __webpack_require__.e(/*! import() | components/uni-list/uni-list */ "components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/components/uni-list/uni-list.vue */ 108))
     },
     uniListItem: function() {
-      return __webpack_require__.e(/*! import() | components/uni-list-item/uni-list-item */ "components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/components/uni-list-item/uni-list-item.vue */ 120))
+      return __webpack_require__.e(/*! import() | components/uni-list-item/uni-list-item */ "components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/components/uni-list-item/uni-list-item.vue */ 122))
     },
     minActionSheet: function() {
-      return __webpack_require__.e(/*! import() | components/min-action-sheet/min-action-sheet */ "components/min-action-sheet/min-action-sheet").then(__webpack_require__.bind(null, /*! @/components/min-action-sheet/min-action-sheet.vue */ 127))
+      return __webpack_require__.e(/*! import() | components/min-action-sheet/min-action-sheet */ "components/min-action-sheet/min-action-sheet").then(__webpack_require__.bind(null, /*! @/components/min-action-sheet/min-action-sheet.vue */ 129))
     },
     neilModal: function() {
-      return __webpack_require__.e(/*! import() | components/neil-modal/neil-modal */ "components/neil-modal/neil-modal").then(__webpack_require__.bind(null, /*! @/components/neil-modal/neil-modal.vue */ 134))
+      return __webpack_require__.e(/*! import() | components/neil-modal/neil-modal */ "components/neil-modal/neil-modal").then(__webpack_require__.bind(null, /*! @/components/neil-modal/neil-modal.vue */ 136))
     }
   }
 } catch (e) {
@@ -162,7 +162,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniIcons = function uniIcons() {Promise.all(/*! require.ensure | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then((function () {return resolve(__webpack_require__(/*! @/components/uni-icons/uni-icons.vue */ 17));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var minActionSheet = function minActionSheet() {__webpack_require__.e(/*! require.ensure | components/min-action-sheet/min-action-sheet */ "components/min-action-sheet/min-action-sheet").then((function () {return resolve(__webpack_require__(/*! @/components/min-action-sheet/min-action-sheet */ 127));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var neilModal = function neilModal() {__webpack_require__.e(/*! require.ensure | components/neil-modal/neil-modal */ "components/neil-modal/neil-modal").then((function () {return resolve(__webpack_require__(/*! @/components/neil-modal/neil-modal */ 134));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var timeSelector = function timeSelector() {__webpack_require__.e(/*! require.ensure | components/wing-time-selector/wing-time-selector */ "components/wing-time-selector/wing-time-selector").then((function () {return resolve(__webpack_require__(/*! @/components/wing-time-selector/wing-time-selector */ 141));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniIcons = function uniIcons() {Promise.all(/*! require.ensure | components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-icons/uni-icons")]).then((function () {return resolve(__webpack_require__(/*! @/components/uni-icons/uni-icons.vue */ 17));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var minActionSheet = function minActionSheet() {__webpack_require__.e(/*! require.ensure | components/min-action-sheet/min-action-sheet */ "components/min-action-sheet/min-action-sheet").then((function () {return resolve(__webpack_require__(/*! @/components/min-action-sheet/min-action-sheet */ 129));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var neilModal = function neilModal() {__webpack_require__.e(/*! require.ensure | components/neil-modal/neil-modal */ "components/neil-modal/neil-modal").then((function () {return resolve(__webpack_require__(/*! @/components/neil-modal/neil-modal */ 136));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var timeSelector = function timeSelector() {__webpack_require__.e(/*! require.ensure | components/wing-time-selector/wing-time-selector */ "components/wing-time-selector/wing-time-selector").then((function () {return resolve(__webpack_require__(/*! @/components/wing-time-selector/wing-time-selector */ 143));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -252,30 +252,30 @@ __webpack_require__.r(__webpack_exports__);
     return {
       //头像图片路径
       photo: "../../static/neil-modal/logo.png",
+      //用户昵称
+      name: "未设置",
       // 邮箱开关
       mailStatus: false,
       //用户邮箱
-      mail: "123456789@qq.com",
+      mail: "未设置",
       //未点击保存的邮箱表单内容
       uncertainMail: "",
-
-
       // 个性签名开关
       signatureStatus: false,
       //用户个性签名
-      signature: "失败乃成功TM",
+      signature: "未设置",
       //未点击保存的个性签名表单内容
       uncertainSignature: "",
-
-
       // 生日开关
       birthdayStatus: false,
       //用户生日
-      birthday: "1996-07-01",
+      birthday: "未设置",
       //未点击保存的生日签名表单内容
       uncertainBirthday: "",
       // 时间选择结束范围
-      endDate: "2020-11-01" };
+      endDate: "2020-11-01",
+      //token
+      token: '' };
 
   },
   methods: {
@@ -294,17 +294,14 @@ __webpack_require__.r(__webpack_exports__);
           switch (res.id) {
             // -1代表取消按钮
             case -1:
-              console.log(res);
               break;
             // 相机
             case 0:
-              console.log(res, 0);
               // this.onOffFn();
               _this.camera();
               break;
             // 相册
             case 1:
-              console.log(res, 1);
               _this.album();
               break;}
 
@@ -314,29 +311,58 @@ __webpack_require__.r(__webpack_exports__);
     // 相机
     camera: function camera() {var _this2 = this;
       uni.chooseImage({
-        count: 1, //默认9
+        count: 1, //默认9张
         sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-        sourceType: ['camera'], //从相册选择
+        sourceType: ['camera'], //从相机选择
         success: function success(res) {
-          console.log(res);
-          // let FormData=new FormData();
-          // FormData.append('file',tempFiles[0]);
-          _this2.photo = res.tempFilePaths[0];
-          _this2.feedback("修改成功");
+          // 上传头像
+          uni.uploadFile({
+            url: 'http://172.16.14.29:9090/upload/cos',
+            method: 'get',
+            filePath: res.tempFiles[0].path,
+            name: 'file',
+            header: {
+              'token': '88318de7a5b44fc0aa43fadf22e1980a' },
+
+            formData: {
+              'folder': 'photo' },
+
+            success: function success(res) {
+              _this2.photo = res.data; //更改头像地址
+              _this2.setInformation(); //设置信息
+              _this2.getInformation(); //更新界面用户信息
+              _this2.feedback("修改成功"); //交互反馈
+            } });
+
         } });
 
     },
     // 相册
     album: function album() {var _this3 = this;
       uni.chooseImage({
-        count: 1, //默认9
+        count: 1, //默认9张
         sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
         sourceType: ['album'], //从相册选择
         success: function success(res) {
-          // let FormData=new FormData();
-          // FormData.append('file',tempFiles[0]);
-          _this3.photo = res.tempFilePaths[0];
-          _this3.feedback("修改成功");
+          // 上传头像
+          uni.uploadFile({
+            url: 'http://172.16.14.29:9090/upload/cos',
+            method: 'get',
+            filePath: res.tempFiles[0].path,
+            name: 'file',
+            header: {
+              'token': '88318de7a5b44fc0aa43fadf22e1980a' },
+
+            formData: {
+              'folder': 'photo' },
+
+            success: function success(res) {
+              _this3.photo = res.data; //更改头像地址
+              _this3.setInformation(); //设置信息
+              _this3.getInformation(); //更新界面用户信息
+              _this3.feedback("修改成功"); //交互反馈3
+            } });
+
         } });
 
     },
@@ -361,10 +387,8 @@ __webpack_require__.r(__webpack_exports__);
       this.mail = this.uncertainMail;
       this.uncertainMail = "";
       this.mailStatus = false;
-      this.feedback("修改成功");
+      this.setInformation();
     },
-
-
     //打开修改个性签名
     openSignature: function openSignature() {
       this.signatureStatus = true;
@@ -379,10 +403,8 @@ __webpack_require__.r(__webpack_exports__);
       this.signature = this.uncertainSignature;
       this.uncertainSignature = "";
       this.signatureStatus = false;
-      this.feedback("修改成功");
+      this.setInformation();
     },
-
-
     //打开修改生日
     openBirthday: function openBirthday() {
       this.uncertainBirthday = this.birthday;
@@ -402,7 +424,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     // 时间选择器改变事件，参数为ev
     dateChange: function dateChange(ev) {
-      console.log(ev);
       this.uncertainBirthday = ev.detail.value.toString();
     },
     //初始化时间选择器最大值
@@ -410,10 +431,55 @@ __webpack_require__.r(__webpack_exports__);
       var d = new Date();
       d = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
       this.endDate = d;
+    },
+    // 请求服务器获取用户信息
+    getInformation: function getInformation() {var _this4 = this;
+      uni.request({
+        url: 'http://172.16.14.29:6067/userInfo/userInfo',
+        method: 'get',
+        header: {
+          'token': '88318de7a5b44fc0aa43fadf22e1980a' },
+
+        success: function success(res) {
+          console.log(res);
+          _this4.birthday = res.data.data.birthday.substring(0, 10);
+          _this4.email = res.data.data.email;
+          if (res.data.data.image != null) {
+            _this4.photo = res.data.data.image;
+          }
+          _this4.signature = res.data.data.signature;
+        } });
+
+    },
+    // 修改用户信息并上传
+    setInformation: function setInformation() {var _this5 = this;
+      uni.request({
+        url: 'http://172.16.14.29:6067/userInfo/update',
+        method: 'post',
+        header: {
+          'token': '88318de7a5b44fc0aa43fadf22e1980a' },
+
+        data: {
+          'id': 1,
+          'birthday': this.birthday,
+          'email': this.email,
+          'image': this.photo,
+          'signature': this.signature },
+
+        success: function success(res) {
+          _this5.getInformation();
+          _this5.feedback("修改成功");
+        } });
+
     } },
 
+  onLoad: function onLoad(res) {
+  },
   mounted: function mounted() {
+    // 页面加载获取时间
     this.setEndDate();
+    // 页面加载请求服务器获取用户信息
+    this.getInformation();
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

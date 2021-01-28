@@ -161,17 +161,47 @@ __webpack_require__.r(__webpack_exports__);
 var _default =
 {
   data: function data() {
-    return {};
-
+    return {
+      // 整体数据
+      informationArr: [] };
 
   },
   methods: {
     //跳转添加地址界面
-    skip: function skip() {
+    skip1: function skip1() {
       uni.navigateTo({
         url: '../addLocation/addLocation?status=1' });
 
-    } } };exports.default = _default;
+    },
+    //跳转添加地址界面
+    skip2: function skip2(e) {
+      uni.navigateTo({
+        url: "../addLocation/addLocation?status=0&&id=".concat(e.currentTarget.dataset.id, "&&userId=").concat(e.currentTarget.dataset.userid) });
+
+    },
+    //获取用户信息
+    getInformation: function getInformation() {var _this = this;
+      uni.request({
+        url: 'http://172.16.14.29:6067/order/findAllAddress',
+        method: 'get',
+        data: {
+          'userId': 1 },
+
+        header: {
+          'token': '88318de7a5b44fc0aa43fadf22e1980a' //自定义请求头信息
+        },
+        success: function success(res) {
+          _this.informationArr = res.data.data;
+        } });
+
+    } },
+
+  onLoad: function onLoad(res) {
+    this.getInformation();
+  },
+  onShow: function onShow() {
+    this.getInformation();
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
