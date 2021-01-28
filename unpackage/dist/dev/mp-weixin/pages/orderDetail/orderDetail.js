@@ -234,8 +234,9 @@ var _default =
       buyerMessage: '', //备注
       orderId: '', //订单编号
       createTime: '', //下单时间
-      orderMsg: [] //渲染数据
-    };
+      orderMsg: [], //渲染数据
+      totalJi: '' };
+
   },
   mounted: function mounted() {
     //渲染地址
@@ -246,6 +247,7 @@ var _default =
     this.createTime = this.strToDate(tempTime);
     this.orderId = wx.getStorageSync('orderId');
     this.initData(); //取数据
+    this.totalJi = wx.getStorageSync('totalJi');
   },
   methods: {
     initData: function initData() {

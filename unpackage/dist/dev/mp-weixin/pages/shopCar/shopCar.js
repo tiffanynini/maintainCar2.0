@@ -233,6 +233,7 @@ var _default =
           if (j === index) {
             this.skuData[i].content[j].num++;
             this.addOrMinus(this.skuData[i].content[j].num, id, 1); //状态为1是加，0是减
+
           }
         }
       }
@@ -347,14 +348,14 @@ var _default =
       }
     },
     //删除
-    del: function del(id) {
+    del: function del(id) {var _this4 = this;
       var that = this;
       wx.showModal({
         content: '确定删除吗？',
         success: function success(res) {
           if (res.confirm) {
             wx.request({
-              url: this.pageUrl.pageUrl + '/cart/removeCartItem?skuId=' + id,
+              url: _this4.pageUrl.pageUrl + '/cart/removeCartItem?skuId=' + id,
               method: 'POST',
               header: {
                 token: wx.getStorageSync('token') },
@@ -382,6 +383,7 @@ var _default =
     jieSuan: function jieSuan() {
       this.checkId = [];
       var goodsId = [];
+      wx.setStorageSync('totalJi', this.totalJi);
       for (var i = 0; i < this.skuData.length; i++) {
         for (var j = 0; j < this.skuData[i].content.length; j++) {
           if (this.skuData[i].content[j].checked) {

@@ -188,12 +188,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
-//
-//
-//
-//
-//
-//
 var _default =
 {
   data: function data() {
@@ -211,14 +205,16 @@ var _default =
         receiverTown: '某某镇',
         receiverAddress: '某某街道某某村某某巷15号',
         def: '0', //0是未选中，1是选中,
-        userId: '2' } };
+        userId: '2' },
 
+      totalJi: '' };
 
   },
   mounted: function mounted() {
     this.initAddress();
     this.initData();
     this.orderId = wx.getStorageSync('orderId');
+    this.totalJi = wx.getStorageSync('totalJi');
   },
   methods: {
     initData: function initData() {

@@ -172,21 +172,27 @@ var _default =
       id: 0,
       dataArr: [],
       inventory: 0,
-      num: 0 };
+      num: 0,
+      isShow: false };
 
   },
   created: function created() {
 
   },
   methods: {
+    jumpShopCar: function jumpShopCar() {
+      wx.switchTab({
+        url: '../shopCar/shopCar' });
+
+    },
     goEvaluate: function goEvaluate() {
       wx.navigateTo({
         url: '../productEvaluation/productEvaluation?id=' + this.id });
 
     },
-    add: function add() {
+    add: function add() {var _this = this;
       wx.request({
-        url: 'http://172.16.14.29:6067/cart/add?num=1&skuId=' + this.id,
+        url: this.pageUrl.pageUrl + '/cart/add?num=1&skuId=' + this.id,
         method: 'post',
         header: {
           'token': '88318de7a5b44fc0aa43fadf22e1980a' //自定义请求头信息
@@ -198,6 +204,7 @@ var _default =
               icon: 'success',
               duration: 2000 });
 
+            _this.isShow = true;
           } else {
             wx.showToast({
               title: '添加失败',
@@ -209,37 +216,37 @@ var _default =
 
     } },
 
-  onLoad: function onLoad(option) {var _this = this;
+  onLoad: function onLoad(option) {var _this2 = this;
     this.id = option.id;
     wx.request({
-      url: 'http://172.16.14.29:6067/sku/findById?id=' + option.id,
+      url: this.pageUrl.pageUrl + '/sku/findById?id=' + option.id,
       method: 'post',
       header: {
         'token': '88318de7a5b44fc0aa43fadf22e1980a' //自定义请求头信息
       },
       success: function success(res) {
-        _this.dataArr = res.data;
+        _this2.dataArr = res.data;
         console.log(res);
       } });
 
     wx.request({
-      url: 'http://172.16.14.29:6067/sku/findEvaluateById?goodsId=' + option.id,
+      url: this.pageUrl.pageUrl + '/sku/findEvaluateById?goodsId=' + option.id,
       method: 'post',
       header: {
         'token': '88318de7a5b44fc0aa43fadf22e1980a' //自定义请求头信息
       },
       success: function success(res) {
-        _this.num = res.data.length;
+        _this2.num = res.data.length;
       } });
 
     wx.request({
-      url: 'http://172.16.14.29:6067/sku/findGoodsById?goodsId=' + option.id,
+      url: this.pageUrl.pageUrl + '/sku/findGoodsById?goodsId=' + option.id,
       method: 'post',
       header: {
         'token': '88318de7a5b44fc0aa43fadf22e1980a' //自定义请求头信息
       },
       success: function success(res) {
-        _this.inventory = res.data.inventory;
+        _this2.inventory = res.data.inventory;
       } });
 
   } };exports.default = _default;

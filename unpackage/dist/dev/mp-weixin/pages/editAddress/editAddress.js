@@ -244,14 +244,14 @@ var _default =
       }
     },
     //删除地址
-    del: function del(id) {
+    del: function del(id) {var _this2 = this;
       wx.showModal({
         content: '确定要删除该地址吗？',
         success: function success(res) {
           if (res.confirm) {
             //删除成功后提示并且可以跳回地址管理页面
             wx.request({
-              url: this.pageUrl.pageUrl + '/order/delete/{id}?id=' + id,
+              url: _this2.pageUrl.pageUrl + '/order/delete/{id}?id=' + id,
               method: 'GET',
               header: {
                 token: wx.getStorageSync('token') },

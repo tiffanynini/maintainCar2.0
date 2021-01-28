@@ -30,7 +30,7 @@
 				</view>
 				<view class="set-bottom">
 					<text>小计</text>
-					<text id="xiaoJi">¥ {{v.xiaoJi}}</text>
+					<text id="xiaoJi">¥ {{totalJi}}</text>
 				</view>
 				<view class="set-bottom set-btm">
 					<text>邮费</text>
@@ -103,6 +103,7 @@
 				orderId:'',//订单编号
 				createTime:'',//下单时间
 				orderMsg:[],//渲染数据
+				totalJi:''
 			}
 		},
 		mounted(){
@@ -114,6 +115,7 @@
 			this.createTime = this.strToDate(tempTime);
 			this.orderId = wx.getStorageSync('orderId');
 			this.initData();//取数据
+			this.totalJi = wx.getStorageSync('totalJi');
 		},
 		methods:{
 			initData(){

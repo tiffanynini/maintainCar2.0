@@ -169,7 +169,7 @@ var _default =
 
   onLoad: function onLoad(option) {var _this = this;
     wx.request({
-      url: 'http://172.16.14.29:6067/sku/findEvaluateById?goodsId=' + option.id,
+      url: this.pageUrl.pageUrl + '/sku/findEvaluateById?goodsId=' + option.id,
       method: 'post',
       header: {
         'token': '88318de7a5b44fc0aa43fadf22e1980a' //自定义请求头信息

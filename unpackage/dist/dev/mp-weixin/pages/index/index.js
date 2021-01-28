@@ -303,6 +303,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
 {
   data: function data() {
     return {
@@ -335,8 +338,7 @@ __webpack_require__.r(__webpack_exports__);
         con: '怎么检测汽车胎压？' }],
 
       // 5、视频轮播
-      info2: [
-      {
+      info2: [{
         videoSrc: "../../static/images-index/video1.jpg",
         videoText: "汽车维修保养七宗罪，看完再也不怕被坑" },
 
@@ -350,8 +352,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
       // 6、商家推荐 列表
-      list1: [
-      {
+      list1: [{
         src: "../../static/images-index/auto1.jpg",
         title: "auto汽车美容",
         distance: "14km",
@@ -388,7 +389,9 @@ __webpack_require__.r(__webpack_exports__);
     };
 
   },
-  components: { uLiLoadMore: uLiLoadMore },
+  components: {
+    uLiLoadMore: uLiLoadMore },
+
   methods: {
     // 1、搜索框
     search: function search(e) {
@@ -400,10 +403,22 @@ __webpack_require__.r(__webpack_exports__);
     change: function change(e) {
       // 点击轮播图，打印当前商品的id
       console.log(e);
+      wx.navigateTo({
+        url: '../index-beauty/index-beauty?id=' + e });
+
     },
+
     // 3、上下轮播
     change1: function change1(e) {
       console.log(e);
+
+    },
+    // 4、进入商品列表页
+    enterList: function enterList(i) {
+      console.log(i);
+      wx.navigateTo({
+        url: '../index-beauty/index-beauty?id=' + i });
+
     },
     //新用户洗车跳转
     newUserJump: function newUserJump() {
@@ -428,11 +443,35 @@ __webpack_require__.r(__webpack_exports__);
           var obj = res.data.data[0];
           console.log(obj);
           wx.navigateTo({
-            url: '../findInfo/findInfo?title=' + obj.title + '&&time=' + obj.time + '&&read=' + obj.watch + '&&url=' + obj.url + '&&id=' + i + 1 });
+            url: '../findInfo/findInfo?title=' + obj.title + '&&time=' + obj.time + '&&read=' + obj.watch + '&&url=' +
+            obj.url + '&&id=' + i + 1 });
 
         } });
 
-    }
+    },
+    tiaoVideo: function tiaoVideo(i) {
+      wx.request({
+        url: 'http://106.12.97.151/getVideoInfo',
+        method: 'post',
+        data: {
+          id: i },
+
+        success: function success(res) {
+          console.log(res);
+          var obj = res.data.data[0];
+          wx.navigateTo({
+            url: '../findInfo/findInfo?title=' + obj.title + '&&time=' + obj.time + '&&read=' + obj.watch + '&&url=' +
+            obj.url + '&&id=' + i + 1 });
+
+        } });
+
+    },
+    //商家推荐跳转
+    tiaoStore: function tiaoStore(id) {
+      wx.navigateTo({
+        url: "../shopindex/shopindex?id=" + id });
+
+    },
     // 4、动画
     // rotateAndScale: function () {
     //       // 旋转同时放大
@@ -451,7 +490,13 @@ __webpack_require__.r(__webpack_exports__);
     //       this.animation.translate(100, 100).step({ duration: 1000 })
     //       this.animationData = this.animation.export()
     //     }
-  },
+    // 跳转商品列表页面
+    productlist: function productlist(val) {
+      uni.navigateTo({
+        url: "../productlist/productlist?id=" + val });
+
+    } },
+
   onShow: function onShow() {
     var animation = uni.createAnimation({
       duration: 1000,
