@@ -3,11 +3,34 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "首页",
-				"enablePullDownRefresh":true
+				"navigationBarTitleText": "首页"
 			}
 		}
-	    ,{
+		,{
+			"path": "pages/details/details",
+			"style": {
+				"navigationBarTitleText": "商品详情"
+			}
+		}
+		,{
+			"path": "pages/productEvaluation/productEvaluation",
+			"style": {
+				"navigationBarTitleText": "产品评价"
+			}
+		}
+		,{
+		    "path" : "pages/login/login",
+		    "style" : {
+				"navigationBarTitleText": "登录/注册"
+			}
+		}
+		,{
+			"path": "pages/freeWash/freeWash",
+			"style": {
+				"navigationBarTitleText": "免费洗车"
+			}
+		}
+		,{
             "path" : "pages/mechant/mechant",
             "style" : {
 				"navigationBarTitleText": "商家"
@@ -30,19 +53,19 @@
             "style" : {
 				"navigationBarTitleText": "个人中心"
 			}
-        }
+        },
+		{
+		    "path" : "pages/findInfo/findInfo",
+		    "style" : {
+				"navigationBarTitleText": "文章详情"
+			}
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8",
-		// 开启下拉列表
-		"enablePullDownRefresh":true,
-		// 下拉背景色
-		"backgroundColor":"#ffffff",
-		//页面上拉
-		 "onReachBottomDistance":2
+		"backgroundColor": "#F8F8F8"
 	},
 	"tabBar":{
 		"list":[

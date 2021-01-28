@@ -1,19 +1,22 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/details/details",
+    "pages/productEvaluation/productEvaluation",
+    "pages/login/login",
+    "pages/freeWash/freeWash",
     "pages/mechant/mechant",
     "pages/findMore/findMore",
     "pages/shopCar/shopCar",
-    "pages/personInfo/personInfo"
+    "pages/personInfo/personInfo",
+    "pages/findInfo/findInfo"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#ffffff",
-    "enablePullDownRefresh": true,
-    "onReachBottomDistance": 2
+    "backgroundColor": "#F8F8F8"
   },
   "tabBar": {
     "list": [
@@ -45,5 +48,5 @@
     ]
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap94.json"
+  "sitemapLocation": "sitemap99.json"
 }
