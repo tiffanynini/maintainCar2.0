@@ -37,13 +37,12 @@
 			init(){
 				//初始化渲染页面
 				wx.request({
-					url:"http://172.17.1.203:6067/order/findAllAddress?userId="+wx.getStorageSync('userId'),
+					url:"http://172.16.14.29:6067/order/findAllAddress?userId="+wx.getStorageSync('userId'),
 					method:'get',
 					header:{
 						token: wx.getStorageSync('token')
 					},
 					success: (res) => {
-						console.log(res);
 						if(res.statusCode === 200 ){
 							if(res.data.data.length > 0){
 								this.addressMsg = res.data.data;

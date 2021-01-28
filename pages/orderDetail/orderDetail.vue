@@ -1,44 +1,45 @@
 <template>
 	<view>
 		<view class="container">
-			<view v-for="(v,i) in skuData" :key="i">
-				<view class="context">
-					<view class="header">
-						<text space="emsp">订单编号 {{skuData.orderId}}</text>
+			<view class="context">
+				<view class="header">
+					<text space="emsp">订单编号 {{orderId}}</text>
+				</view>
+				<view>
+					<text>未付款</text>
+				</view>
+			</view>
+			<view class="context1">
+				<view class="header">
+					<text space="emsp">下单时间 {{createTime}}</text>
+				</view>
+			</view>
+			<view class="section" v-for="(v,i) in orderMsg" :key="i">
+				<view>
+					<text>{{v.merchantName}}</text>
+				</view>
+				<view class="set-middle" v-for="(val,index) in v.content" :key="index">
+					<view class="set1-middle">
+						<image :src="val.image"></image>
 					</view>
-					<view>
-						<text>未付款</text>
+					<view class="set1-bottom">
+						<text>{{val.name}}</text>
+						<text class="set1-p2">汽车类型：轿车  位置：全车</text>
+						<text>单价：{{val.num}}×{{val.price}}</text>
 					</view>
 				</view>
-				<view class="section" v-for="(val,index) in v.content" :key="index">
-					<view class="set-content">
-						<text space="emsp">下单时间：{{val.createTime}}</text>
-					</view>
-					<!-- <view class="set-content">
-						<text>订单备注：{{val.beiZhu}}</text>
-					</view> -->
-					<view class="set-middle">
-						<view class="set1-middle">
-							<image :src="val.image"></image>
-						</view>
-						<view class="set1-bottom">
-							<text>{{val.name}}</text>
-							<text class="set1-p2">汽车类型：轿车  位置：全车</text>
-							<text>{{val.num}}×{{val.price}}</text>
-						</view>
-					</view>
-					<view class="set-bottom">
-						<text>小计</text>
-						<text>¥ {{v.xiaoJi}}</text>
-					</view>
-					<view class="set-bottom">
-						<text>邮费</text>
-						<text>¥ {{v.youFei}}</text>
-					</view>
-					<view class="set-bottom">
-						<text>应付金额</text>
-						<text>¥ {{v.totalMoney}}</text>
-					</view>
+				<view class="set-bottom">
+					<text>小计</text>
+					<text id="xiaoJi">¥ {{v.xiaoJi}}</text>
+				</view>
+				<view class="set-bottom set-btm">
+					<text>邮费</text>
+					<text>¥ {{v.youFei}}</text>
+				</view>
+			</view> 
+			<view class="context1">
+				<view class="header">
+					<text space="emsp">订单备注 {{buyerMessage}}</text>
 				</view>
 			</view>
 			<view class="section2">
@@ -83,7 +84,6 @@
 	export default{
 		data(){
 			return {
-				// focus:true,
 				state:1, //1是立即支付，0是取消订单,
 				payMethod:'在线支付',
 				//是否显示支付宝支付
@@ -97,27 +97,65 @@
 					receiverTown:'',
 					receiverAddress:'',
 					def:'0',//0是未选中，1是选中,
-					userId:'2',
+					userId:'1',
 				},
-				skuData:[],
+				buyerMessage:'',//备注
+				orderId:'',//订单编号
+				createTime:'',//下单时间
+				orderMsg:[],//渲染数据
 			}
 		},
 		mounted(){
 			//渲染地址
 			this.initAddress();
-			this.skuData = wx.getStorageSync('orderDetailData');
+			this.buyerMessage = wx.getStorageSync('buyerMessage');
+			let tempTime = wx.getStorageSync('createTime');
+			//将时间字符串切割成符合要求的数据
+			this.createTime = this.strToDate(tempTime);
+			this.orderId = wx.getStorageSync('orderId');
+			this.initData();//取数据
 		},
 		methods:{
+			initData(){
+				let checkData = wx.getStorageSync('checkId');
+				//将满足要求的数据写到skuData数组中
+				for(let i= 0;i<checkData.length;i++){
+					for(let j=i+1;j<checkData.length;j++){
+						if(checkData[i].merchantId === checkData[j].merchantId){
+							//合并content部分
+							checkData[i].content.push(checkData[j].content[0]);
+							//剔除对应的checkid
+							checkData.splice(j,1);
+							//一定要回退一下，不然不对
+							j--;
+						}
+					}
+				}
+				this.orderMsg = checkData;
+				
+				//循环取得商品价格
+				for(let i= 0;i<this.orderMsg.length;i++){
+					let res = 0;
+					for(let j=0;j<this.orderMsg[i].content.length;j++){
+						res += this.orderMsg[i].content[j].totalPrice;
+					}
+					this.orderMsg[i].xiaoJi = res;
+				}
+			},
+			//将时间格式进行转化
+			strToDate(str){
+				let arr = str.split(/[T.]/);
+				return arr[0] + ' ' + arr[1];
+			},
 			initAddress(){
 				//初始化渲染页面
 				wx.request({
-					url:'http://172.17.1.203:6067/order/{id}?id='+wx.getStorageSync('addressId'),
+					url:'http://172.16.14.29:6067/order/{id}?id='+wx.getStorageSync('addressId'),
 					method:'get',
 					header:{
 						token: wx.getStorageSync('token')
 					},
 					success:(res)=>{
-						console.log(res);
 						if(res.statusCode === 200){
 							if(typeof res.data.data==='object'){
 								this.address = res.data.data;
@@ -186,12 +224,30 @@
 				}
 			}
 		}
+		.context1{
+			background-color: #fff;
+			margin: 20rpx 0rpx;
+			display: flex;
+			justify-content: space-between;
+			font-size: 32rpx;
+			height: 66rpx;
+			align-items: center;
+			padding: 0rpx 20rpx;
+			.header{
+				>view{
+					>text{
+						font-size: 32rpx;
+					}
+				}
+			}
+		}
 	}
 	.section2{
 		background-color: #fff;
 		height: 110rpx;
 		display: flex;
 		justify-content: space-around;
+		margin-bottom: 20rpx;
 		>view:first-child{
 			flex: 1;
 			.header-icon1{
@@ -224,15 +280,34 @@
 			}
 		}
 	}
+	.section4{
+		background-color: #fff;
+		height: 160rpx;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		margin-bottom: 24rpx;
+		padding: 0rpx 10rpx;
+		.beiZhu{
+			font-size: 28rpx;
+			margin-right: 20rpx;
+		}
+		textarea{
+			border: 1px #eee solid;
+			width: 80%;
+			height: 100rpx;
+			border-radius: 16rpx;
+			font-size: 30rpx;
+		}
+	}
 	.section{
 		margin-top: 24rpx;
 		padding-left: 20rpx;
 		background-color: #fff;
 		margin-bottom: 24rpx;
-		.set-content{
+		>view:first-child{
+			height: 46rpx;
 			font-size: 32rpx;
-			height: 50rpx;
-			line-height: 50rpx;
 			padding-top: 8rpx;
 		}
 		.set-middle{
@@ -259,14 +334,20 @@
 				}
 			}
 		}
+		.set-btm{
+			padding-bottom: 26rpx;
+		}
 		.set-bottom{
 			display: flex;
 			font-size: 30rpx;
 			justify-content: space-between;
-			height: 60rpx;
-			line-height: 60rpx;
+			height: 52rpx;
+			line-height: 52rpx;
 			>text:last-child{
 				padding-right: 20rpx;
+				color: #7F7F7F;
+			}
+			#xiaoJi{
 				color: #D9001B;
 			}
 		}

@@ -198,6 +198,25 @@ page {
   font-size: 24rpx;
   color: #fff;
 }
+.container .context1 {
+  background-color: #fff;
+  margin: 20rpx 0rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  font-size: 32rpx;
+  height: 66rpx;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  padding: 0rpx 20rpx;
+}
+.container .context1 .header > view > text {
+  font-size: 32rpx;
+}
 .section2 {
   background-color: #fff;
   height: 110rpx;
@@ -206,6 +225,7 @@ page {
   display: flex;
   -webkit-justify-content: space-around;
           justify-content: space-around;
+  margin-bottom: 20rpx;
 }
 .section2 > view:first-child {
   -webkit-box-flex: 1;
@@ -240,16 +260,40 @@ page {
   line-height: 80rpx;
   font-size: 30rpx;
 }
+.section4 {
+  background-color: #fff;
+  height: 160rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-around;
+          justify-content: space-around;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  margin-bottom: 24rpx;
+  padding: 0rpx 10rpx;
+}
+.section4 .beiZhu {
+  font-size: 28rpx;
+  margin-right: 20rpx;
+}
+.section4 textarea {
+  border: 1px #eee solid;
+  width: 80%;
+  height: 100rpx;
+  border-radius: 16rpx;
+  font-size: 30rpx;
+}
 .section {
   margin-top: 24rpx;
   padding-left: 20rpx;
   background-color: #fff;
   margin-bottom: 24rpx;
 }
-.section .set-content {
+.section > view:first-child {
+  height: 46rpx;
   font-size: 32rpx;
-  height: 50rpx;
-  line-height: 50rpx;
   padding-top: 8rpx;
 }
 .section .set-middle {
@@ -283,6 +327,9 @@ page {
   color: #AAAAAA;
   font-size: 30rpx;
 }
+.section .set-btm {
+  padding-bottom: 26rpx;
+}
 .section .set-bottom {
   display: -webkit-box;
   display: -webkit-flex;
@@ -291,11 +338,14 @@ page {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
           justify-content: space-between;
-  height: 60rpx;
-  line-height: 60rpx;
+  height: 52rpx;
+  line-height: 52rpx;
 }
 .section .set-bottom > text:last-child {
   padding-right: 20rpx;
+  color: #7F7F7F;
+}
+.section .set-bottom #xiaoJi {
   color: #D9001B;
 }
 .section3 {

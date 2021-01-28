@@ -184,88 +184,7 @@ var _default =
       //选中的skuid
       checkId: [],
       //渲染的数据
-      skuData: []
-
-      // 	skuData : [
-      // 			{
-      // 				merchantId:1,
-      // 				merchantName:'xx汽车店',
-      // 				pCheckStatus:false,
-      // 				content:[
-      // 					{
-      // 						"name": "大小保养",
-      // 						"skuId": "1",
-      // 						"image": "http://p9.itc.cn/images01/20200818/3a5ce8f3069c440f856f74767a76d7ec.jpeg",
-      // 						"price": 235,
-      // 						"num": 1,
-      // 						"totalPrice": 235,
-      // 						"checked":false,
-      // 					},
-      // 					{
-      // 						"name": "大小保养",
-      // 						"skuId": "2",
-      // 						"image": "http://p9.itc.cn/images01/20200818/3a5ce8f3069c440f856f74767a76d7ec.jpeg",
-      // 						"price": 235,
-      // 						"num": 1,
-      // 						"totalPrice": 235,
-      // 						"checked":false,
-      // 					},
-      // 					{
-      // 						"name": "大小保养",
-      // 						"skuId": "5",
-      // 						"image": "http://p9.itc.cn/images01/20200818/3a5ce8f3069c440f856f74767a76d7ec.jpeg",
-      // 						"price": 235,
-      // 						"num": 1,
-      // 						"totalPrice": 235,
-      // 						"checked":false,
-      // 					},
-      // 					{
-      // 						"name": "大小保养",
-      // 						"skuId": "7",
-      // 						"image": "http://p9.itc.cn/images01/20200818/3a5ce8f3069c440f856f74767a76d7ec.jpeg",
-      // 						"price": 235,
-      // 						"num": 1,
-      // 						"totalPrice": 235,
-      // 						"checked":false,
-      // 					},
-      // 					{
-      // 						"name": "大小保养",
-      // 						"skuId": "6",
-      // 						"image": "http://p9.itc.cn/images01/20200818/3a5ce8f3069c440f856f74767a76d7ec.jpeg",
-      // 						"price": 235,
-      // 						"num": 1,
-      // 						"totalPrice": 235,
-      // 						"checked":false,
-      // 					}
-      // 				]
-      // 			},
-      // 			{
-      // 				merchantId:2,
-      // 				merchantName:'xx2汽车店',
-      // 				pCheckStatus:false,
-      // 				content:[
-      // 					{
-      // 						"name": "大小保养",
-      // 						"skuId": "3",
-      // 						"image": "http://p9.itc.cn/images01/20200818/3a5ce8f3069c440f856f74767a76d7ec.jpeg",
-      // 						"price": 235,
-      // 						"num": 1,
-      // 						"totalPrice": 235,
-      // 						"checked":false,
-      // 					},
-      // 					{
-      // 						"name": "大小保养",
-      // 						"skuId": "4",
-      // 						"image": "http://p9.itc.cn/images01/20200818/3a5ce8f3069c440f856f74767a76d7ec.jpeg",
-      // 						"price": 235,
-      // 						"num": 1,
-      // 						"totalPrice": 235,
-      // 						"checked":false,
-      // 					}
-      // 				],
-      // 			}
-      // 		],
-    };
+      skuData: [] };
 
   },
   mounted: function mounted() {var _this = this;
@@ -275,19 +194,17 @@ var _default =
         _this.init();
       } });
 
-    // this.initData();
   },
   methods: {
-    // initData(){
-    // 	wx.setStorageSync('skuData',this.skuData);
-    // },
     //初始化渲染页面
     init: function init() {var _this2 = this;
+      //清空数组
+      this.skuData = [];
       //本地存储用户id,以及token值
-      wx.setStorageSync('userId', '2');
-      wx.setStorageSync('token', 'efbe8ad0bacb4b68a28080639bade483');
+      wx.setStorageSync('userId', '1');
+      wx.setStorageSync('token', '88318de7a5b44fc0aa43fadf22e1980a');
       wx.request({
-        url: 'http://172.17.1.203:6067/cart/queryUserCart',
+        url: 'http://172.16.14.29:6067/cart/queryUserCart',
         header: {
           token: wx.getStorageSync('token') },
 
@@ -417,7 +334,7 @@ var _default =
     //增加或者减少数量调用的接口
     addOrMinus: function addOrMinus(count, id, status) {var _this3 = this;
       wx.request({
-        url: 'http://172.17.1.203:6067/cart/update?num=' + count + '&skuId=' + id,
+        url: 'http://172.16.14.29:6067/cart/update?num=' + count + '&skuId=' + id,
         method: 'post',
         header: {
           token: wx.getStorageSync('token') },
@@ -510,23 +427,27 @@ var _default =
     },
     //删除
     del: function del(id) {
+      var that = this;
       wx.showModal({
         content: '确定删除吗？',
-        success: function success(res) {var _this4 = this;
+        success: function success(res) {
           if (res.confirm) {
             wx.request({
-              url: 'http://172.17.1.203:6067/cart/removeCartItem?skuId=' + id,
+              url: 'http://172.16.14.29:6067/cart/removeCartItem?skuId=' + id,
               method: 'POST',
+              header: {
+                token: wx.getStorageSync('token') },
+
               success: function success(res) {
-                console.log(res);
                 if (res.statusCode === 200) {
                   //需要重新渲染页面
                   wx.showToast({
                     icon: "success",
                     title: "删除成功",
+                    duration: 1000,
                     success: function success() {
                       //重新渲染页面
-                      _this4.init();
+                      that.init();
                     } });
 
                 }

@@ -211,11 +211,11 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
+//
 var _default =
 {
   data: function data() {
     return {
-      // focus:true,
       state: 1, //1是立即支付，0是取消订单,
       payMethod: '在线支付',
       //是否显示支付宝支付
@@ -229,27 +229,65 @@ var _default =
         receiverTown: '',
         receiverAddress: '',
         def: '0', //0是未选中，1是选中,
-        userId: '2' },
+        userId: '1' },
 
-      skuData: [] };
-
+      buyerMessage: '', //备注
+      orderId: '', //订单编号
+      createTime: '', //下单时间
+      orderMsg: [] //渲染数据
+    };
   },
   mounted: function mounted() {
     //渲染地址
     this.initAddress();
-    this.skuData = wx.getStorageSync('orderDetailData');
+    this.buyerMessage = wx.getStorageSync('buyerMessage');
+    var tempTime = wx.getStorageSync('createTime');
+    //将时间字符串切割成符合要求的数据
+    this.createTime = this.strToDate(tempTime);
+    this.orderId = wx.getStorageSync('orderId');
+    this.initData(); //取数据
   },
   methods: {
+    initData: function initData() {
+      var checkData = wx.getStorageSync('checkId');
+      //将满足要求的数据写到skuData数组中
+      for (var i = 0; i < checkData.length; i++) {
+        for (var j = i + 1; j < checkData.length; j++) {
+          if (checkData[i].merchantId === checkData[j].merchantId) {
+            //合并content部分
+            checkData[i].content.push(checkData[j].content[0]);
+            //剔除对应的checkid
+            checkData.splice(j, 1);
+            //一定要回退一下，不然不对
+            j--;
+          }
+        }
+      }
+      this.orderMsg = checkData;
+
+      //循环取得商品价格
+      for (var _i = 0; _i < this.orderMsg.length; _i++) {
+        var res = 0;
+        for (var _j = 0; _j < this.orderMsg[_i].content.length; _j++) {
+          res += this.orderMsg[_i].content[_j].totalPrice;
+        }
+        this.orderMsg[_i].xiaoJi = res;
+      }
+    },
+    //将时间格式进行转化
+    strToDate: function strToDate(str) {
+      var arr = str.split(/[T.]/);
+      return arr[0] + ' ' + arr[1];
+    },
     initAddress: function initAddress() {var _this = this;
       //初始化渲染页面
       wx.request({
-        url: 'http://172.17.1.203:6067/order/{id}?id=' + wx.getStorageSync('addressId'),
+        url: 'http://172.16.14.29:6067/order/{id}?id=' + wx.getStorageSync('addressId'),
         method: 'get',
         header: {
           token: wx.getStorageSync('token') },
 
         success: function success(res) {
-          console.log(res);
           if (res.statusCode === 200) {
             if (typeof res.data.data === 'object') {
               _this.address = res.data.data;

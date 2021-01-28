@@ -32,7 +32,7 @@
 				<view class="totalMoney">
 					<view></view>
 					<view>实付款：
-						<text>￥{{val.totalPrice}}</text>
+						<text>￥{{v.price}}</text>
 					</view>
 				</view>
 			</view>
@@ -53,12 +53,12 @@
 			</view>
 		</view>
 		<view class="bu"></view>
-		<view class="fixedContent">
+		<!-- <view class="fixedContent">
 			<view></view>
 			<view>
 				<view class="delOrder">删除订单</view>
 			</view>
-		</view>
+		</view> -->
 	</view>
 </template>
 
@@ -107,26 +107,25 @@
 				this.orderMsg = checkData;
 				
 				//循环取得商品价格
-				for(let i= 0;i<this.confirmData.length;i++){
+				for(let i= 0;i<this.orderMsg.length;i++){
 					let res = 0;
-					for(let j=0;j<this.confirmData[i].content.length;j++){
-						res += this.confirmData[i].content[j].totalPrice;
+					for(let j=0;j<this.orderMsg[i].content.length;j++){
+						res += this.orderMsg[i].content[j].totalPrice;
 					}
 					this.orderMsg[i].price = res;
-					this.orderMsg[i].xiaoJi = res;
 				}
 			},
 			
 			initAddress(){
 				//初始化渲染页面
 				wx.request({
-					url:'http://172.17.1.203:6067/order/{id}?id='+wx.getStorageSync('addressId'),
+					url:'http://172.16.14.29:6067/order/{id}?id='+wx.getStorageSync('addressId'),
 					method:'get',
 					header:{
 						token: wx.getStorageSync('token')
 					},
 					success:(res)=>{
-						console.log(res);
+						// console.log(res);
 						if(res.statusCode === 200){
 							if(typeof res.data.data==='object'){
 								this.address = res.data.data;
@@ -252,13 +251,13 @@
 		display: flex;
 		padding-right: 20rpx;
 		>view:first-child{
-			flex:3;
+			flex:4;
 		}
 		>view:last-child{
 			flex: 2;
 			height: 56rpx;
 			font-size: 33rpx;
-			text-align: center;
+			// text-align: center;
 			margin-top: 20rpx;
 			>text{
 				color: red;
@@ -309,34 +308,34 @@
 	.bu{
 		height: 100rpx;
 	}
-	.fixedContent{
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		padding-left: 20rpx;
-		padding-right: 20rpx;
-		background-color: #fff;
-		display: -webkit-box;
-		display: -webkit-flex;
-		display: flex;
-		height: 70rpx;
-		width: 100%;
-		>view:first-child{
-			flex: 1;
-		}
-		>view:last-child{
-			flex: 1;
-			display: flex;
-			padding-right: 34rpx;
-			>view:first-child{
-				height: 60rpx;
-				border: 1px #AAAAAA solid;
-				border-radius: 40rpx;
-				font-size: 24rpx;
-				text-align: center;
-				line-height: 60rpx;
-				margin-right: 20rpx;
-			}
-		}
-	}
+	// .fixedContent{
+	// 	position: fixed;
+	// 	bottom: 0;
+	// 	left: 0;
+	// 	padding-left: 20rpx;
+	// 	padding-right: 20rpx;
+	// 	background-color: #fff;
+	// 	display: -webkit-box;
+	// 	display: -webkit-flex;
+	// 	display: flex;
+	// 	height: 70rpx;
+	// 	width: 100%;
+	// 	>view:first-child{
+	// 		flex: 1;
+	// 	}
+	// 	>view:last-child{
+	// 		flex: 1;
+	// 		display: flex;
+	// 		padding-right: 34rpx;
+	// 		>view:first-child{
+	// 			height: 60rpx;
+	// 			border: 1px #AAAAAA solid;
+	// 			border-radius: 40rpx;
+	// 			font-size: 24rpx;
+	// 			text-align: center;
+	// 			line-height: 60rpx;
+	// 			margin-right: 20rpx;
+	// 		}
+	// 	}
+	// }
 </style>

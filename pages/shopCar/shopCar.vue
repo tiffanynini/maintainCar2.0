@@ -18,7 +18,7 @@
 					<view class="set1-bottom">
 						<view>
 							<text>{{val.name}}</text>
-							<image src="../../static/images/del.png" @click="del(v.skuId)"></image>
+							<image src="../../static/images/del.png" @click="del(val.skuId)"></image>
 						</view>
 						<text class="set1-p2">汽车类型：轿车  位置：全车</text>
 						<view>
@@ -53,88 +53,7 @@
 				checkId:[],
 				//渲染的数据
 				skuData:[],
-				
-			// 	skuData : [
-			// 			{
-			// 				merchantId:1,
-			// 				merchantName:'xx汽车店',
-			// 				pCheckStatus:false,
-			// 				content:[
-			// 					{
-			// 						"name": "大小保养",
-			// 						"skuId": "1",
-			// 						"image": "http://p9.itc.cn/images01/20200818/3a5ce8f3069c440f856f74767a76d7ec.jpeg",
-			// 						"price": 235,
-			// 						"num": 1,
-			// 						"totalPrice": 235,
-			// 						"checked":false,
-			// 					},
-			// 					{
-			// 						"name": "大小保养",
-			// 						"skuId": "2",
-			// 						"image": "http://p9.itc.cn/images01/20200818/3a5ce8f3069c440f856f74767a76d7ec.jpeg",
-			// 						"price": 235,
-			// 						"num": 1,
-			// 						"totalPrice": 235,
-			// 						"checked":false,
-			// 					},
-			// 					{
-			// 						"name": "大小保养",
-			// 						"skuId": "5",
-			// 						"image": "http://p9.itc.cn/images01/20200818/3a5ce8f3069c440f856f74767a76d7ec.jpeg",
-			// 						"price": 235,
-			// 						"num": 1,
-			// 						"totalPrice": 235,
-			// 						"checked":false,
-			// 					},
-			// 					{
-			// 						"name": "大小保养",
-			// 						"skuId": "7",
-			// 						"image": "http://p9.itc.cn/images01/20200818/3a5ce8f3069c440f856f74767a76d7ec.jpeg",
-			// 						"price": 235,
-			// 						"num": 1,
-			// 						"totalPrice": 235,
-			// 						"checked":false,
-			// 					},
-			// 					{
-			// 						"name": "大小保养",
-			// 						"skuId": "6",
-			// 						"image": "http://p9.itc.cn/images01/20200818/3a5ce8f3069c440f856f74767a76d7ec.jpeg",
-			// 						"price": 235,
-			// 						"num": 1,
-			// 						"totalPrice": 235,
-			// 						"checked":false,
-			// 					}
-			// 				]
-			// 			},
-			// 			{
-			// 				merchantId:2,
-			// 				merchantName:'xx2汽车店',
-			// 				pCheckStatus:false,
-			// 				content:[
-			// 					{
-			// 						"name": "大小保养",
-			// 						"skuId": "3",
-			// 						"image": "http://p9.itc.cn/images01/20200818/3a5ce8f3069c440f856f74767a76d7ec.jpeg",
-			// 						"price": 235,
-			// 						"num": 1,
-			// 						"totalPrice": 235,
-			// 						"checked":false,
-			// 					},
-			// 					{
-			// 						"name": "大小保养",
-			// 						"skuId": "4",
-			// 						"image": "http://p9.itc.cn/images01/20200818/3a5ce8f3069c440f856f74767a76d7ec.jpeg",
-			// 						"price": 235,
-			// 						"num": 1,
-			// 						"totalPrice": 235,
-			// 						"checked":false,
-			// 					}
-			// 				],
-			// 			}
-			// 		],
 			}
-				
 		},
 		mounted(){
 			wx.showLoading({
@@ -143,19 +62,17 @@
 				  this.init();
 			  }
 			})
-			// this.initData();
 		},
 		methods:{
-			// initData(){
-			// 	wx.setStorageSync('skuData',this.skuData);
-			// },
 			//初始化渲染页面
 			init(){
+				//清空数组
+				this.skuData=[];
 				//本地存储用户id,以及token值
-				wx.setStorageSync('userId','2');
-				wx.setStorageSync('token','efbe8ad0bacb4b68a28080639bade483');
+				wx.setStorageSync('userId','1');
+				wx.setStorageSync('token','88318de7a5b44fc0aa43fadf22e1980a');
 				wx.request({
-					url:'http://172.17.1.203:6067/cart/queryUserCart',
+					url:'http://172.16.14.29:6067/cart/queryUserCart',
 					header:{
 						token: wx.getStorageSync('token')
 					},
@@ -285,7 +202,7 @@
 			//增加或者减少数量调用的接口
 			addOrMinus(count,id,status){
 				wx.request({
-					url:'http://172.17.1.203:6067/cart/update?num='+count+'&skuId='+id,
+					url:'http://172.16.14.29:6067/cart/update?num='+count+'&skuId='+id,
 					method:'post',
 					header:{
 						token:wx.getStorageSync('token')
@@ -378,23 +295,27 @@
 			},
 			//删除
 			del(id){
+				let that = this;
 				wx.showModal({
 					content: '确定删除吗？',
 					  success (res) {
 					    if (res.confirm) {
 					      wx.request({
-					      	url:'http://172.17.1.203:6067/cart/removeCartItem?skuId='+id,
+					      	url:'http://172.16.14.29:6067/cart/removeCartItem?skuId='+id,
 					      	method:'POST',
+							header:{
+								token:wx.getStorageSync('token')
+							},
 					      	success: (res) => {
-					      		console.log(res);
 								if(res.statusCode === 200 ){
 									//需要重新渲染页面
 									wx.showToast({
 										icon:"success",
 										title:"删除成功",
+										duration:1000,
 										success: () => {
 											//重新渲染页面
-											this.init();
+											that.init();
 										}
 									})
 								}

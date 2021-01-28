@@ -49,7 +49,7 @@
 					receiverTown:'',
 					receiverAddress:'',
 					def:'0',//0是未选中，1是选中,
-					userId:'2',
+					userId:'1',
 					id:this.addressId
 				},
 				//默认地址是否选中
@@ -59,11 +59,10 @@
 			}
 		},
 		onLoad(options) {
-			console.log(options.id)
 			this.addressId = options.id;
 			//初始化渲染页面
 			wx.request({
-				url:'http://172.17.1.203:6067/order/{id}?id='+options.id,
+				url:'http://172.16.14.29:6067/order/{id}?id='+options.id,
 				method:'get',
 				header:{
 					token: wx.getStorageSync('token')
@@ -120,13 +119,12 @@
 				    if (res.confirm) {
 					  //删除成功后提示并且可以跳回地址管理页面
 					  wx.request({
-						  url:'http://172.17.1.203:6067/order/delete/{id}?id='+id,
+						  url:'http://172.16.14.29:6067/order/delete/{id}?id='+id,
 						  method:'GET',
 						  header:{
 						  	token: wx.getStorageSync('token')
 						  },
 						  success: (res) => {
-						  	console.log(res);
 							if(res.statusCode === 200){
 								wx.showToast({
 								  title: '删除成功',
@@ -145,8 +143,6 @@
 							}
 						  }
 					  })
-				    } else if (res.cancel) {
-				      console.log('用户点击取消')
 				    }
 				  }
 				})
@@ -172,14 +168,14 @@
 						})
 					}else{
 						wx.request({
-							url:'http://172.17.1.203:6067/order/updateAddress',
+							url:'http://172.16.14.29:6067/order/updateAddress',
 							method:'post',
 							data:this.address,
 							header:{
 								token:wx.getStorageSync('token')
 							},
 							success:(res)=>{
-								console.log(res);
+								// console.log(res);
 								if(res.statusCode === 200 ){
 									if(res.data.message == '修改成功'){
 										wx.showToast({

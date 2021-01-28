@@ -252,26 +252,25 @@ var _default =
       this.orderMsg = checkData;
 
       //循环取得商品价格
-      for (var _i = 0; _i < this.confirmData.length; _i++) {
+      for (var _i = 0; _i < this.orderMsg.length; _i++) {
         var res = 0;
-        for (var _j = 0; _j < this.confirmData[_i].content.length; _j++) {
-          res += this.confirmData[_i].content[_j].totalPrice;
+        for (var _j = 0; _j < this.orderMsg[_i].content.length; _j++) {
+          res += this.orderMsg[_i].content[_j].totalPrice;
         }
         this.orderMsg[_i].price = res;
-        this.orderMsg[_i].xiaoJi = res;
       }
     },
 
     initAddress: function initAddress() {var _this = this;
       //初始化渲染页面
       wx.request({
-        url: 'http://172.17.1.203:6067/order/{id}?id=' + wx.getStorageSync('addressId'),
+        url: 'http://172.16.14.29:6067/order/{id}?id=' + wx.getStorageSync('addressId'),
         method: 'get',
         header: {
           token: wx.getStorageSync('token') },
 
         success: function success(res) {
-          console.log(res);
+          // console.log(res);
           if (res.statusCode === 200) {
             if (typeof res.data.data === 'object') {
               _this.address = res.data.data;

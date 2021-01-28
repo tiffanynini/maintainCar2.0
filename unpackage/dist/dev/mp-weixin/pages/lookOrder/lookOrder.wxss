@@ -127,9 +127,9 @@
   padding-right: 20rpx;
 }
 .totalMoney > view:first-child {
-  -webkit-box-flex: 3;
-  -webkit-flex: 3;
-          flex: 3;
+  -webkit-box-flex: 4;
+  -webkit-flex: 4;
+          flex: 4;
 }
 .totalMoney > view:last-child {
   -webkit-box-flex: 2;
@@ -137,7 +137,6 @@
           flex: 2;
   height: 56rpx;
   font-size: 33rpx;
-  text-align: center;
   margin-top: 20rpx;
 }
 .totalMoney > view:last-child > text {
@@ -202,41 +201,5 @@
 }
 .bu {
   height: 100rpx;
-}
-.fixedContent {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  padding-left: 20rpx;
-  padding-right: 20rpx;
-  background-color: #fff;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  height: 70rpx;
-  width: 100%;
-}
-.fixedContent > view:first-child {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-          flex: 1;
-}
-.fixedContent > view:last-child {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-          flex: 1;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  padding-right: 34rpx;
-}
-.fixedContent > view:last-child > view:first-child {
-  height: 60rpx;
-  border: 1px #AAAAAA solid;
-  border-radius: 40rpx;
-  font-size: 24rpx;
-  text-align: center;
-  line-height: 60rpx;
-  margin-right: 20rpx;
 }
 

@@ -45,7 +45,7 @@
 					receiverTown:'海珠区',
 					receiverAddress:'',
 					def:'0',//0是未选中，1是选中,
-					userId:'2'
+					userId:'1'
 				},
 				region: ['广东省', '广州市', '海珠区'],
 				//默认地址是否选中
@@ -98,16 +98,14 @@
 							duration:1000
 						})
 					}else{
-						console.log(this.address);
 						wx.request({
-							url:'http://172.17.1.203:6067/order/addAddress',
+							url:'http://172.16.14.29:6067/order/addAddress',
 							method:'post',
 							header:{
 								token: wx.getStorageSync('token')
 							},
 							data:this.address,
 							success: (res) => {
-								// console.log(res);
 								if(res.statusCode === 200){
 									wx.showToast({
 										title:"添加成功!",

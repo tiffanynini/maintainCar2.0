@@ -93,15 +93,13 @@
 			}
 		},
 		mounted(){
-			// wx.showLoading({
-			// 	title:"加载中",
-			// 	success:()=>{
-			// 		this.initAddress();
-			// 	}
-			// })
+			wx.showLoading({
+				title:"加载中",
+				success:()=>{
+					this.initAddress();
+				}
+			})
 			this.initData();
-			
-			this.initAddress();
 		},
 		onShow() {
 			//重新渲染地址
@@ -139,14 +137,14 @@
 			//初始化地址
 			initAddress(){
 				wx.request({
-					url:'http://172.17.1.203:6067/order/address?userId='+wx.getStorageSync('userId'),
+					url:'http://172.16.14.29:6067/order/address?userId='+wx.getStorageSync('userId'),
 					method:'get',
 					header:{
 						token:wx.getStorageSync('token')
 					},
 					success:(res)=>{
 						if(res.statusCode === 200 ){
-							// wx.hideLoading();
+							wx.hideLoading();
 							//如果有结果	
 							if(res.data.data != null){
 								this.address = res.data.data;
@@ -167,7 +165,7 @@
 				//当前收货地址的id
 				wx.setStorageSync('addressId',e.currentTarget.dataset.id);
 				wx.request({
-					url:'http://172.17.1.203:6067/order/create',
+					url:'http://172.16.14.29:6067/order/create',
 					method:'post',
 					header:{
 						token:wx.getStorageSync('token')
@@ -180,90 +178,28 @@
 						"shippingId": e.currentTarget.dataset.id
 					},
 					success: (res) => {
-						console.log(res);
+						// console.log(res);
 						if(res.statusCode === 200){
 							//将这一波数据整理好，存储在本地
-							if(res.data.data.length >0){
+							if(res.data.data.length > 0){
 								let tempSkuData = res.data.data;
-								let tempOrderData = [];
 								//存储订单编号
 								wx.setStorageSync('orderId',tempSkuData[0].orderId);
-								//最初的数据样式
-								tempOrderData.push({
-									merchantId:tempSkuData[0].merchantId,
-									merchantName:tempSkuData[0].merchantName,
-									buyerMessage:tempSkuData[0].buyerMessage,
-									orderId:tempSkuData[0].orderId,
-									"xiaoJi":0,
-									"youFei":0,
-									"totalMoney":0,
-									content:[
-										{
-											"createTime":tempSkuData[0].createTime,
-											"name": tempSkuData[0].name,
-											"skuId": tempSkuData[0].skuId,
-											"image": tempSkuData[0].image,
-											"price": tempSkuData[0].price,
-											"num": tempSkuData[0].num,
-											"totalPrice": tempSkuData[0].totalPrice,
-										}
-									]
-								});
-								outer:
-								for(let i=0;i<tempSkuData.length;i++){
-									for(let j=i+1;j<tempSkuData.length;j++){
-										if(tempSkuData[i].merchantId === tempSkuData[j].merchantId){
-											//如果merchantId相等则将后者的数据合并到前者数据中
-											tempOrderData[i].content.push(
-												{
-													"createTime":tempSkuData[j].createTime,
-													"name": tempSkuData[j].name,
-													"skuId": tempSkuData[j].skuId,
-													"image": tempSkuData[j].image,
-													"price": tempSkuData[j].price,
-													"num": tempSkuData[j].num,
-													"totalPrice": tempSkuData[j].totalPrice,
-												},
-											) 
-										}else{
-											//如果merchantId不相等则将后者的数据合并到初始化数据中
-											tempOrderData.push({
-												merchantId:tempSkuData[j].merchantId,
-												merchantName:tempSkuData[j].merchantName,
-												buyerMessage:tempSkuData[j].buyerMessage,
-												orderId:tempSkuData[j].orderId,
-												"xiaoJi":0,
-												"youFei":0,
-												"totalMoney":0,
-												content:[
-													{
-														"createTime":tempSkuData[j].createTime,
-														"name": tempSkuData[j].name,
-														"skuId": tempSkuData[j].skuId,
-														"image": tempSkuData[j].image,
-														"price": tempSkuData[j].price,
-														"num": tempSkuData[j].num,
-														"totalPrice": tempSkuData[j].totalPrice,
-													},
-												]
-											}) 
-										}
-									}
-									break outer;//只循环一次
-								}
-								console.log(tempOrderData);
-								wx.setStorageSync('orderDetailData',tempOrderData);
+								//存储备注
+								wx.setStorageSync('buyerMessage',tempSkuData[0].buyerMessage);
+								//存储下单时间
+								wx.setStorageSync('createTime',tempSkuData[0].createTime);
+								//跳转页面
+								wx.navigateTo({
+									url:'../orderDetail/orderDetail'
+								})
 							}
 						}
-						wx.navigateTo({
-							url:'../orderDetail/orderDetail'
-						})
 					},
 					fail: (err) => {
 						console.log(err);
 					}
 				})
-				
 			},
 			payMethods1(){
 				this.status = 1;
