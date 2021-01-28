@@ -127,7 +127,7 @@
 		onLoad() {
 			// 收货地址
 			uni.request({
-				url:this.ip+'/order/address?userId=1',
+				url:this.pageUrl.pageUrl+'/order/address?userId=1',
 				method:'get',
 				header:{
 					token:this.token
