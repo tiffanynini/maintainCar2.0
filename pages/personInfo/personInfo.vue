@@ -71,10 +71,10 @@
 	methods:{
 		getInformation(){
 			uni.request({
-				url: 'http://172.16.14.29:6067/userInfo/userInfo', 
+				url: this.pageUrl.pageUrl+'/userInfo/userInfo', 
 				method:'get', 
 				header: {
-					'token': '88318de7a5b44fc0aa43fadf22e1980a'
+					'token': wx.getStorageSync('token')
 				},
 				success: (res) => {
 					// console.log(res);
@@ -88,9 +88,11 @@
   
 	},
 	 onLoad(res) {
+		this.id=wx.getStorageSync('id');
 		this.getInformation();
 	 },
 	 onShow(){
+		this.id=wx.getStorageSync('id');
 	 	this.getInformation();
 	 }
  }

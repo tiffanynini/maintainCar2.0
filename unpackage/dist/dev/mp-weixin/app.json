@@ -1,13 +1,12 @@
 {
   "pages": [
-    "pages/personInfo/personInfo",
+    "pages/login/login",
+    "pages/index/index",
     "pages/msg/msg",
     "pages/set/set",
     "pages/basic-information/basic-information",
-    "pages/index/index",
     "pages/details/details",
     "pages/productEvaluation/productEvaluation",
-    "pages/login/login",
     "pages/freeWash/freeWash",
     "pages/mechant/mechant",
     "pages/findMore/findMore",
@@ -66,5 +65,6 @@
       "desc": "scope.userLocation"
     }
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap88.json"
 }

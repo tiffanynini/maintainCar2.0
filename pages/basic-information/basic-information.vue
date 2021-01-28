@@ -111,7 +111,9 @@
 				// 时间选择结束范围
 				endDate:"2020-11-01",
 				//token
-				token:''
+				token:'',
+				//用户id
+				id:1
 			};
 		},
 		methods: {
@@ -153,12 +155,12 @@
 				    success:(res) =>{
 						// 上传头像
 						uni.uploadFile({
-						    url: 'http://172.16.14.29:9090/upload/cos', 
+						    url: 'http://8.135.26.228:9090/upload/cos', 
 							method:'get', 
 							filePath: res.tempFiles[0].path,
 							name: 'file',
 							header: {
-							    'token': '88318de7a5b44fc0aa43fadf22e1980a'
+							    'token': wx.getStorageSync('token')
 							},
 							formData: {
 								'folder': 'photo'
@@ -182,17 +184,18 @@
 				    success:(res) =>{
 						// 上传头像
 						uni.uploadFile({
-						    url: 'http://172.16.14.29:9090/upload/cos', 
+						    url: 'http://8.135.26.228:9090/upload/cos', 
 							method:'get', 
 							filePath: res.tempFiles[0].path,
 							name: 'file',
 							header: {
-							    'token': '88318de7a5b44fc0aa43fadf22e1980a'
+							    'token': wx.getStorageSync('token')
 							},
 							formData: {
 								'folder': 'photo'
 							},
 						    success: (res) => {
+								console.log(res)
 								this.photo=res.data; //更改头像地址
 								this.setInformation(); //设置信息
 								this.getInformation(); //更新界面用户信息
@@ -271,13 +274,13 @@
 			// 请求服务器获取用户信息
 			getInformation(){
 				uni.request({
-				    url: 'http://172.16.14.29:6067/userInfo/userInfo', 
+				    url: this.pageUrl.pageUrl+'/userInfo/userInfo', 
 					method:'get', 
 					header: {
-					    'token': '88318de7a5b44fc0aa43fadf22e1980a'
+					    'token': wx.getStorageSync('token')
 					},
 				    success: (res) => {
-						console.log(res);
+						// console.log(res);
 						this.birthday=res.data.data.birthday.substring(0,10);
 						this.mail=res.data.data.email;
 						if(res.data.data.image!=null){
@@ -290,13 +293,13 @@
 			// 修改用户信息并上传
 			setInformation(){
 				uni.request({
-				    url: 'http://172.16.14.29:6067/userInfo/update', 
+				    url: this.pageUrl.pageUrl+'/userInfo/update', 
 					method:'post', 
 					header: {
-					    'token': '88318de7a5b44fc0aa43fadf22e1980a'
+					    'token': wx.getStorageSync('token')
 					},
 					data:{
-						'id':1,
+						'id':this.id,
 						'birthday':this.birthday,
 						'email':this.mail,
 						'image':this.photo,
@@ -310,6 +313,7 @@
 			}
 		},
 		onLoad(res) {
+			this.id=wx.getStorageSync('id');
 		},
 		mounted(){
 			// 页面加载获取时间

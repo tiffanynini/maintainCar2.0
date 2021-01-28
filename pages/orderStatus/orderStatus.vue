@@ -76,7 +76,7 @@
 				//显示评论状态
 				evaluateState:false,
 				//用户id
-				userId:9,
+				userId:1,
 				//用户数据
 				data:[],
 				//订单评论
@@ -126,16 +126,15 @@
 			//初始化数据
 			arrStatus(){
 				uni.request({
-					url:'http://172.16.14.29:6067/order/find?userId='+1,
+					url:this.pageUrl.pageUrl+'/order/find?userId='+wx.getStorageSync('id'),
 					header: {
-					    'token': '88318de7a5b44fc0aa43fadf22e1980a' //自定义请求头信息
+					    'token': wx.getStorageSync('token') //自定义请求头信息
 					},
 					success:(res)=>{
 						// console.log(res)
 						// if(res.data.data.length>0){
 							let arr=[];
 							for(let i=0;i<res.data.data.length||0;i++){
-							// for(let i=0;i<arr.length;i++){
 								if(res.data.data[i].status==this.status){
 									arr.push(res.data.data[i])
 								}
@@ -188,6 +187,7 @@
 			}
 		},
 		onLoad(res){
+			this.id=wx.getStorageSync('id');
 			//状态码 1:未付款,2:已付款未发货,3:已发货,4:交易成功,5:交易关闭,6:已评价
 			this.status=Number(res.status);
 			this.initialize();

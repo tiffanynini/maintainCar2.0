@@ -96,13 +96,13 @@
 				//获取用户地址信息
 				getInformation(){
 					uni.request({
-					    url: 'http://172.16.14.29:6067/order/findAllAddress',
+					    url: this.pageUrl.pageUrl+'/order/findAllAddress',
 						method:'get',
 					    data: {
-					        'userId':1
+					        'userId':wx.getStorageSync('id')
 					    },
 					    header: {
-					        'token': '88318de7a5b44fc0aa43fadf22e1980a' //自定义请求头信息
+					        'token': wx.getStorageSync('token') //自定义请求头信息
 					    },
 					    success: (res) => {
 							// console.log(res,"信息");
@@ -124,10 +124,10 @@
 				save(){
 					if(this.receiverAddress!=''&&this.address!=''&&this.receiverName!=''&&this.phone!=''){
 						uni.request({
-							url:'http://172.16.14.29:6067/order/addAddress',
+							url:this.pageUrl.pageUrl+'/order/addAddress',
 							method:'post',
 							header: {
-							    'token': '88318de7a5b44fc0aa43fadf22e1980a' //自定义请求头信息
+							    'token': wx.getStorageSync('token') //自定义请求头信息
 							},
 							data:{
 								"def": 0,
@@ -135,7 +135,7 @@
 								  "receiverCity": this.address,
 								  "receiverName": this.receiverName,
 								  "receiverPhone": this.phone,
-								  "userId": 1
+								  "userId": wx.getStorageSync('id')
 							},
 							success: (res) => {
 								// console.log(res,"保存");
@@ -164,10 +164,10 @@
 				//删除
 				delete1(){
 					uni.request({
-						url:'http://172.16.14.29:6067/order/delete/{id}?id='+this.id,
+						url:this.pageUrl.pageUrl+'/order/delete/{id}?id='+this.id,
 						method:'get',
 						header: {
-							'token': '88318de7a5b44fc0aa43fadf22e1980a' //自定义请求头信息
+							'token': wx.getStorageSync('token') //自定义请求头信息
 						},
 						success: (res) => {
 							// console.log(res,"删除");
@@ -181,7 +181,6 @@
 										url:`../location/location`
 									});
 								},1000)
-								
 							}
 						}
 					})
@@ -190,10 +189,10 @@
 				modification(){
 					if(this.receiverAddress!=''&&this.address!=''&&this.receiverName!=''&&this.phone!=''){
 						uni.request({
-							url:'http://172.16.14.29:6067/order/updateAddress',
+							url:this.pageUrl.pageUrl+'/order/updateAddress',
 							method:'post',
 							header: {
-								'token': '88318de7a5b44fc0aa43fadf22e1980a' //自定义请求头信息
+								'token': wx.getStorageSync('token') //自定义请求头信息
 							},
 							data:{
 								"def": 0,
@@ -202,7 +201,7 @@
 								"receiverCity": this.address,
 								"receiverName": this.receiverName,
 								"receiverPhone": this.phone,
-								"userId": 1
+								"userId": wx.getStorageSync('id')
 							},
 							success: (res) => {
 								// console.log(res,"修改");

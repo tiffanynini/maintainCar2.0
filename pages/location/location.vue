@@ -50,13 +50,13 @@
 			//获取用户信息
 			getInformation(){
 				uni.request({
-				    url: 'http://172.16.14.29:6067/order/findAllAddress', 
+				    url: this.pageUrl.pageUrl+'/order/findAllAddress', 
 					method:'get',
 				    data: {
-				        'userId':1
+				        'userId':wx.getStorageSync('id')
 				    },
 				    header: {
-				        'token': '88318de7a5b44fc0aa43fadf22e1980a' //自定义请求头信息
+				        'token': wx.getStorageSync('token') //自定义请求头信息
 				    },
 				    success: (res) => {
 						this.informationArr=res.data.data;
@@ -65,9 +65,11 @@
 			}
 		},
 		onLoad(res){
+			this.id=wx.getStorageSync('id');
 			this.getInformation();
 		},
 		onShow(){
+			this.id=wx.getStorageSync('id');
 			this.getInformation();
 		}
 	}
