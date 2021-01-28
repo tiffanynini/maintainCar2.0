@@ -202,7 +202,7 @@ var _default =
 
   },
   methods: {
-    push: function push() {
+    push: function push() {var _this = this;
       if (this.val === '') {
         wx.showModal({
           title: '提示',
@@ -213,13 +213,37 @@ var _default =
         wx.checkSession({
           success: function success() {
             uni.request({
-              url: 'http://172.16.14.29:6067/userInfo/userInfo',
-              method: 'get',
+              url: _this.pageUrl.pageUrl + '/userInfo/userInfo',
               header: {
-                'token': 'efbe8ad0bacb4b68a28080639bade483' },
+                'token': '88318de7a5b44fc0aa43fadf22e1980a' },
 
               success: function success(res) {
                 console.log(res);
+                wx.request({
+                  url: 'http://106.12.97.151/addComment',
+                  method: 'post',
+                  data: {
+                    name: res.data.data.signature,
+                    img: res.data.data.img,
+                    content: _this.val,
+                    id: _this.id,
+                    num: 0 },
+
+                  success: function success(res) {
+                    wx.showToast({
+                      title: '发布成功',
+                      icon: 'success',
+                      duration: 2000 });
+
+                  },
+                  fail: function fail() {
+                    wx.showToast({
+                      title: '发布失败',
+                      icon: 'none',
+                      duration: 2000 });
+
+                  } });
+
               } });
 
           },
@@ -254,7 +278,7 @@ var _default =
     this.id = option.id;
     this.title = option.title;
   },
-  onShow: function onShow() {var _this = this;
+  onShow: function onShow() {var _this2 = this;
     wx.request({
       url: 'http://106.12.97.151/getComment',
       method: 'post',
@@ -262,8 +286,8 @@ var _default =
         id: this.id },
 
       success: function success(res) {
-        _this.arr = res.data.data;
-        console.log(_this.arr);
+        _this2.arr = res.data.data;
+        console.log(_this2.id);
       } });
 
   } };exports.default = _default;
