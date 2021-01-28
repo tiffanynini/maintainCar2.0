@@ -120,28 +120,6 @@
   font-size: 32rpx;
   margin-top: 14rpx;
 }
-.addCar {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  padding-right: 20rpx;
-}
-.addCar > view:first-child {
-  -webkit-box-flex: 6;
-  -webkit-flex: 6;
-          flex: 6;
-}
-.addCar > view:last-child {
-  -webkit-box-flex: 2;
-  -webkit-flex: 2;
-          flex: 2;
-  height: 56rpx;
-  border: 1px #AAAAAA solid;
-  border-radius: 40rpx;
-  font-size: 28rpx;
-  text-align: center;
-  line-height: 56rpx;
-}
 .totalMoney {
   display: -webkit-box;
   display: -webkit-flex;
@@ -259,20 +237,6 @@
   font-size: 24rpx;
   text-align: center;
   line-height: 60rpx;
-  -webkit-box-flex: 2;
-  -webkit-flex: 2;
-          flex: 2;
   margin-right: 20rpx;
-}
-.fixedContent > view:last-child > view:last-child {
-  -webkit-box-flex: 2;
-  -webkit-flex: 2;
-          flex: 2;
-  height: 60rpx;
-  border: 1px #AAAAAA solid;
-  border-radius: 40rpx;
-  font-size: 24rpx;
-  text-align: center;
-  line-height: 60rpx;
 }
 

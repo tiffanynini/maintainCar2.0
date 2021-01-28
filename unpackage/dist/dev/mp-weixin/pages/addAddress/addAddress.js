@@ -172,44 +172,100 @@ var _default =
       address: {
         receiverName: '',
         receiverPhone: '',
-        receiverProvince: '',
-        receiverCity: '',
-        receiverTown: '',
+        receiverProvince: '广东省',
+        receiverCity: '广州市',
+        receiverTown: '海珠区',
         receiverAddress: '',
-        status: '' //0是未选中，1是选中,
-      },
-      region: ['广东省', '广州市', '海珠区']
-      // //用来存放选择的省
-      // provice:'',
-      // //用来存放选择的市
-      // city:'',
-      // //用来存放选择的区
-      // town:'',
-    };
+        def: '0', //0是未选中，1是选中,
+        userId: '2' },
+
+      region: ['广东省', '广州市', '海珠区'],
+      //默认地址是否选中
+      checkTip: false };
+
   },
   methods: {
     bindRegionChange: function bindRegionChange(e) {
-      console.log(this.region);
-      address.receiverProvince = this.region[0];
-      address.receiverCity = this.region[1];
-      address.receiverTown = this.region[2];
-      address.region = e.detail.value;
+      this.region = e.detail.value;
+      this.address.receiverProvince = this.region[0];
+      this.address.receiverCity = this.region[1];
+      this.address.receiverTown = this.region[2];
     },
+    //改变radio状态
     changeRadio: function changeRadio() {
-      this.selStatus = !this.selStatus;
+      this.checkTip = !this.checkTip;
+      if (this.checkTip) {
+        this.address.def = '1';
+      } else {
+        this.address.def = '0';
+      }
     },
-    baoCun: function baoCun() {
-      wx.request({
-        url: 'http://172.17.1.221:6060/order/addAddress',
-        method: 'post',
-        data: address,
-        success: function success(res) {
-          console.log(res);
-        },
-        fail: function fail(err) {
-          console.log(err);
-        } });
+    //正则验证手机号码
+    checkPhone: function checkPhone() {
+      var reg = /^1[3-9]\d{9}$/;
+      if (!reg.test(this.address.receiverPhone)) {
+        wx.showToast({
+          title: "手机号格式错误!",
+          icon: "none",
+          duration: 1000 });
 
+      }
+    },
+    baoCun: function baoCun() {var _this = this;
+      //数据的合法性判断
+      if (!this.address.receiverName || !this.address.receiverPhone || !this.address.receiverAddress) {
+        wx.showToast({
+          title: '以上信息不能为空！',
+          icon: 'none',
+          duration: 1000 });
+
+        return;
+      } else {
+        //正则验证
+        var reg = /^1[3-9]\d{9}$/;
+        if (!reg.test(this.address.receiverPhone)) {
+          wx.showToast({
+            title: "手机号格式错误!",
+            icon: "none",
+            duration: 1000 });
+
+        } else {
+          console.log(this.address);
+          wx.request({
+            url: 'http://172.17.1.203:6067/order/addAddress',
+            method: 'post',
+            header: {
+              token: wx.getStorageSync('token') },
+
+            data: this.address,
+            success: function success(res) {
+              // console.log(res);
+              if (res.statusCode === 200) {
+                wx.showToast({
+                  title: "添加成功!",
+                  icon: "success",
+                  duration: 1000,
+                  success: function success() {
+                    setTimeout(function () {
+                      //跳转回地址管理页面
+                      wx.navigateBack({
+                        delta: 1 });
+
+                    }, 1000);
+                  } });
+
+              }
+              //清除输入
+              _this.address.receiverName = '';
+              _this.address.receiverPhone = '';
+              _this.address.receiverAddress = '';
+            },
+            fail: function fail(err) {
+              console.log(err);
+            } });
+
+        }
+      }
     } } };exports.default = _default;
 
 /***/ }),

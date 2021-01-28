@@ -211,43 +211,63 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var _default =
 {
   data: function data() {
     return {
       // focus:true,
-      state: 1 //1是立即支付，0是取消订单
-    };
+      state: 1, //1是立即支付，0是取消订单,
+      payMethod: '在线支付',
+      //是否显示支付宝支付
+      showPayMethod: true,
+      //渲染地址
+      address: {
+        receiverName: '',
+        receiverPhone: '',
+        receiverProvince: '',
+        receiverCity: '',
+        receiverTown: '',
+        receiverAddress: '',
+        def: '0', //0是未选中，1是选中,
+        userId: '2' },
+
+      skuData: [] };
+
+  },
+  mounted: function mounted() {
+    //渲染地址
+    this.initAddress();
+    this.skuData = wx.getStorageSync('orderDetailData');
   },
   methods: {
+    initAddress: function initAddress() {var _this = this;
+      //初始化渲染页面
+      wx.request({
+        url: 'http://172.17.1.203:6067/order/{id}?id=' + wx.getStorageSync('addressId'),
+        method: 'get',
+        header: {
+          token: wx.getStorageSync('token') },
+
+        success: function success(res) {
+          console.log(res);
+          if (res.statusCode === 200) {
+            if (typeof res.data.data === 'object') {
+              _this.address = res.data.data;
+            }
+          }
+          if (wx.getStorageSync('payMethod') === 1) {
+            _this.payMethod = '在线支付',
+            _this.showPayMethod = true;
+          } else {
+            _this.payMethod = '货到付款',
+            _this.showPayMethod = false;
+          }
+        },
+        fail: function fail(err) {
+          console.log(err);
+        } });
+
+    },
     pay: function pay() {
       this.state = 1;
     },

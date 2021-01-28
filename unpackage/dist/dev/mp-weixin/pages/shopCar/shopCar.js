@@ -173,227 +173,413 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
-//
-//
 var _default =
 {
-  components: {},
-
   data: function data() {
     return {
-      pCheckStatus: false, //父级的checkbox
       //定义是否可以点击减号
       isPointer: "auto",
       //总金额
       totalJi: 0,
+      //选中的skuid
+      checkId: [],
       //渲染的数据
-      skuData: [
-      {
-        skuId: 1,
-        name: '汽车贴膜（每10CM）',
-        image: 'http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=c3b4ff848a61a132357823e9cdfb1a74d38de325077b43e61feb69e9d413f2a9',
-        price: 29.90,
-        num: 1,
-        totalPrice: 29.90,
-        checked: false },
+      skuData: []
 
-      {
-        skuId: 2,
-        name: '汽车贴膜（每10CM）',
-        image: 'http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=c3b4ff848a61a132357823e9cdfb1a74d38de325077b43e61feb69e9d413f2a9',
-        price: 29.90,
-        num: 1,
-        totalPrice: 29.90,
-        checked: false },
-
-      {
-        skuId: 3,
-        name: '汽车贴膜（每10CM）',
-        image: 'http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=c3b4ff848a61a132357823e9cdfb1a74d38de325077b43e61feb69e9d413f2a9',
-        price: 29.90,
-        num: 1,
-        totalPrice: 29.90,
-        checked: false }],
-
-
-      //用来控制checkbox选中的个数
-      jiShu: 0,
-      //临时的总金额
-      tempTotal: 0.00 };
+      // 	skuData : [
+      // 			{
+      // 				merchantId:1,
+      // 				merchantName:'xx汽车店',
+      // 				pCheckStatus:false,
+      // 				content:[
+      // 					{
+      // 						"name": "大小保养",
+      // 						"skuId": "1",
+      // 						"image": "http://p9.itc.cn/images01/20200818/3a5ce8f3069c440f856f74767a76d7ec.jpeg",
+      // 						"price": 235,
+      // 						"num": 1,
+      // 						"totalPrice": 235,
+      // 						"checked":false,
+      // 					},
+      // 					{
+      // 						"name": "大小保养",
+      // 						"skuId": "2",
+      // 						"image": "http://p9.itc.cn/images01/20200818/3a5ce8f3069c440f856f74767a76d7ec.jpeg",
+      // 						"price": 235,
+      // 						"num": 1,
+      // 						"totalPrice": 235,
+      // 						"checked":false,
+      // 					},
+      // 					{
+      // 						"name": "大小保养",
+      // 						"skuId": "5",
+      // 						"image": "http://p9.itc.cn/images01/20200818/3a5ce8f3069c440f856f74767a76d7ec.jpeg",
+      // 						"price": 235,
+      // 						"num": 1,
+      // 						"totalPrice": 235,
+      // 						"checked":false,
+      // 					},
+      // 					{
+      // 						"name": "大小保养",
+      // 						"skuId": "7",
+      // 						"image": "http://p9.itc.cn/images01/20200818/3a5ce8f3069c440f856f74767a76d7ec.jpeg",
+      // 						"price": 235,
+      // 						"num": 1,
+      // 						"totalPrice": 235,
+      // 						"checked":false,
+      // 					},
+      // 					{
+      // 						"name": "大小保养",
+      // 						"skuId": "6",
+      // 						"image": "http://p9.itc.cn/images01/20200818/3a5ce8f3069c440f856f74767a76d7ec.jpeg",
+      // 						"price": 235,
+      // 						"num": 1,
+      // 						"totalPrice": 235,
+      // 						"checked":false,
+      // 					}
+      // 				]
+      // 			},
+      // 			{
+      // 				merchantId:2,
+      // 				merchantName:'xx2汽车店',
+      // 				pCheckStatus:false,
+      // 				content:[
+      // 					{
+      // 						"name": "大小保养",
+      // 						"skuId": "3",
+      // 						"image": "http://p9.itc.cn/images01/20200818/3a5ce8f3069c440f856f74767a76d7ec.jpeg",
+      // 						"price": 235,
+      // 						"num": 1,
+      // 						"totalPrice": 235,
+      // 						"checked":false,
+      // 					},
+      // 					{
+      // 						"name": "大小保养",
+      // 						"skuId": "4",
+      // 						"image": "http://p9.itc.cn/images01/20200818/3a5ce8f3069c440f856f74767a76d7ec.jpeg",
+      // 						"price": 235,
+      // 						"num": 1,
+      // 						"totalPrice": 235,
+      // 						"checked":false,
+      // 					}
+      // 				],
+      // 			}
+      // 		],
+    };
 
   },
-  mounted: function mounted() {
-    // wx.showLoading({
-    //   title: '加载中',
-    //   success:()=>{
-    // 	  this.init();
-    //   }
-    // })
+  mounted: function mounted() {var _this = this;
+    wx.showLoading({
+      title: '加载中',
+      success: function success() {
+        _this.init();
+      } });
+
+    // this.initData();
   },
   methods: {
+    // initData(){
+    // 	wx.setStorageSync('skuData',this.skuData);
+    // },
     //初始化渲染页面
-    init: function init() {
-      // wx.request({
-      // 	url:'http://172.17.1.221:6060/cart/queryUserCart',
-      // 	method:'get',
-      // 	success:(res)=>{
-      // 		console.log(res);
-      // 		//需要给每一项添加一个checked属性,默认为false
-      // wx.hideLoading();
-      // 	},
-      // 	fail:(err)=>{
-      // 		console.log(err);
-      // 	}
-      // })
+    init: function init() {var _this2 = this;
+      //本地存储用户id,以及token值
+      wx.setStorageSync('userId', '2');
+      wx.setStorageSync('token', 'efbe8ad0bacb4b68a28080639bade483');
+      wx.request({
+        url: 'http://172.17.1.203:6067/cart/queryUserCart',
+        header: {
+          token: wx.getStorageSync('token') },
 
+        method: 'get',
+        success: function success(res) {
+          if (res.statusCode === 200) {
+            if (typeof res.data.data === 'object') {
+              wx.hideLoading();
+              //需要给每一项添加一个checked属性,默认为false
+              for (var i in res.data.data) {
+                res.data.data[i].checked = false;
+                res.data.data[i].pCheckStatus = false;
+                res.data.data[i].jiShu = 0;
+              }
+              //将json对象转化为数组
+              var tempSkuData = _this2.jsToArray(res.data.data);
+              //循环遍历数组，转化为符合要求的样式
+
+              //最初的数据样式
+              _this2.skuData.push({
+                merchantId: tempSkuData[0].merchantId,
+                merchantName: tempSkuData[0].merchantName,
+                pCheckStatus: false,
+                jiShu: 0,
+                content: [
+                {
+                  "name": tempSkuData[0].name,
+                  "skuId": tempSkuData[0].skuId,
+                  "image": tempSkuData[0].image,
+                  "price": tempSkuData[0].price,
+                  "num": tempSkuData[0].num,
+                  "totalPrice": tempSkuData[0].totalPrice,
+                  "checked": tempSkuData[0].checked }] });
+
+
+
+              outer:
+              for (var _i = 0; _i < tempSkuData.length; _i++) {
+                for (var j = _i + 1; j < tempSkuData.length; j++) {
+                  if (tempSkuData[_i].merchantId === tempSkuData[j].merchantId) {
+                    //如果merchantId相等则将后者的数据合并到前者数据中
+                    _this2.skuData[_i].content.push(
+                    {
+                      "name": tempSkuData[j].name,
+                      "skuId": tempSkuData[j].skuId,
+                      "image": tempSkuData[j].image,
+                      "price": tempSkuData[j].price,
+                      "num": tempSkuData[j].num,
+                      "totalPrice": tempSkuData[j].totalPrice,
+                      "checked": tempSkuData[j].checked });
+
+
+                  } else {
+                    //如果merchantId不相等则将后者的数据合并到初始化数据中
+                    _this2.skuData.push({
+                      merchantId: tempSkuData[j].merchantId,
+                      merchantName: tempSkuData[j].merchantName,
+                      pCheckStatus: false,
+                      jiShu: 0,
+                      content: [
+                      {
+                        "name": tempSkuData[j].name,
+                        "skuId": tempSkuData[j].skuId,
+                        "image": tempSkuData[j].image,
+                        "price": tempSkuData[j].price,
+                        "num": tempSkuData[j].num,
+                        "totalPrice": tempSkuData[j].totalPrice,
+                        "checked": tempSkuData[j].checked }] });
+
+
+
+                  }
+                }
+                break outer; //只循环一次
+              }
+              wx.setStorageSync('skuData', _this2.skuData);
+            }
+          }
+        },
+        fail: function fail(err) {
+          console.log(err);
+        } });
+
+    },
+    // //json对象转化为数组的方法
+    jsToArray: function jsToArray(json) {
+      var arr = [];
+      var map = {};
+      //循环遍历json,初始化一个数组下标
+      var count = -1;
+      for (var i in json) {//i其实就是key
+        map[i] = ++count;
+      }
+      for (var _i2 in map) {
+        arr[map[_i2]] = json[_i2];
+      }
+      return arr;
     },
     //增加
     addReduce: function addReduce(index, id) {
       //传递index过来判断对应的数组里面的数量进行修改
       this.isPointer = "auto";
       for (var i = 0; i < this.skuData.length; i++) {
-        if (i === index) {
-          this.skuData[i].num++;
+        for (var j = 0; j < this.skuData[i].content.length; j++) {
+          if (j === index) {
+            this.skuData[i].content[j].num++;
+            this.addOrMinus(this.skuData[i].content[j].num, id, 1); //状态为1是加，0是减
+          }
         }
       }
-      this.addOrMinus(this.count, id);
     },
     //减少
     minusReduce: function minusReduce(index, id) {
       for (var i = 0; i < this.skuData.length; i++) {
-        if (i === index) {
-          if (this.skuData[i].num > 1) {
-            this.skuData[i].num--;
-          } else {
-            this.isPointer = "none";
+        for (var j = 0; j < this.skuData[i].content.length; j++) {
+          if (j === index) {
+            if (this.skuData[i].content[j].num > 1) {
+              this.skuData[i].content[j].num--;
+              this.addOrMinus(this.skuData[i].content[j].num, id, 0);
+            } else {
+              this.isPointer = "none";
+            }
           }
         }
       }
-      this.addOrMinus(this.count, id);
-      // if(this.count > 1){
-      // 	for(let i=0;i<this.skuData.length;i++){
-      // 		if(i === index){
-      // 			this.skuData[i].num--;
-      // 		}
-      // 	}
-      // 	this.addOrMinus(this.count,id)
-      // }else{
-      // 	this.isPointer = "none";
-      // }
     },
     //增加或者减少数量调用的接口
-    addOrMinus: function addOrMinus(count, id) {
-      // wx.request({
-      // 	url:'http://172.17.1.221:6060/cart/update',
-      // 	method:'post',
-      // 	data:{
-      // 		num:count,
-      // 		skuId:id
-      // 	},
-      // 	success:(res)=>{
-      // 		console.log(res);
-      // 	},
-      // 	fail:(err)=>{
-      // 		console.log(err);
-      // 	}
-      // })
-    },
-    totalMoney: function totalMoney() {
+    addOrMinus: function addOrMinus(count, id, status) {var _this3 = this;
+      wx.request({
+        url: 'http://172.17.1.203:6067/cart/update?num=' + count + '&skuId=' + id,
+        method: 'post',
+        header: {
+          token: wx.getStorageSync('token') },
+
+        success: function success(res) {
+          // console.log(res);
+          if (res.statusCode === 200) {
+            for (var i = 0; i < _this3.skuData.length; i++) {
+              for (var j = 0; j < _this3.skuData[i].content.length; j++) {
+                if (_this3.skuData[i].content[j].skuId === id) {
+                  //判断是否选中，不选中下边的值不能发送变化
+                  if (_this3.skuData[i].content[j].checked) {
+                    if (status) {
+                      _this3.totalJi += _this3.skuData[i].content[j].price;
+                    } else {
+                      _this3.totalJi -= _this3.skuData[i].content[j].price;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        fail: function fail(err) {
+          console.log(err);
+        } });
 
     },
+
     //父级的checkbox选中的时候,所有的子级都需要选中
-    checkChange: function checkChange() {
-      //如果父级checkbox最初为true
-      if (this.pCheckStatus) {
-        for (var i = 0; i < this.skuData.length; i++) {
-          this.skuData[i].checked = false;
-          this.pCheckStatus = false;
-        }
-      } else {
-        //如果父级checkbox最初为false
-        for (var _i = 0; _i < this.skuData.length; _i++) {
-          this.skuData[_i].checked = true;
-          this.pCheckStatus = true;
+    checkChange: function checkChange(merId) {
+      for (var i = 0; i < this.skuData.length; i++) {
+        if (this.skuData[i].merchantId === merId) {
+          //对应的子级的jishu清0
+          this.skuData[i].jiShu = 0;
+
+          //最开始为true,则对应商家和全部的子级为false
+          if (this.skuData[i].pCheckStatus) {
+            this.skuData[i].pCheckStatus = false;
+            for (var j = 0; j < this.skuData[i].content.length; j++) {
+              this.skuData[i].content[j].checked = false;
+              this.totalJi -= this.skuData[i].content[j].price * this.skuData[i].content[j].num;
+            }
+          } else {
+            //最开始为false,则对应商家和全部的子级为true
+            this.skuData[i].pCheckStatus = true;
+            for (var _j = 0; _j < this.skuData[i].content.length; _j++) {
+              this.skuData[i].content[_j].checked = true;
+              //总金额要变
+              this.totalJi += this.skuData[i].content[_j].price * this.skuData[i].content[_j].num;
+            }
+          }
         }
       }
-      this.jiShu = 0; //注意会影响值，所以必须清0
     },
     //子级的某一个checkbox选中的时候
-    cCheckChange: function cCheckChange(index) {
-      //让点击的子级选中，并且计数
+    cCheckChange: function cCheckChange(merId, inx, cSkuId) {
+      //循环对应的商家
       for (var i = 0; i < this.skuData.length; i++) {
-        if (index === i) {
-          this.skuData[i].checked = !this.skuData[i].checked;
-          //如果子级选中的话，总金额将会改变,强行设置小数点后只保留两位
-          if (this.skuData[i].checked) {
-            this.tempTotal += this.skuData[i].totalPrice;
-            this.totalJi = parseFloat(this.tempTotal).toFixed(2);
-            this.jiShu++;
-          } else {
-            // console.log(this.totalJi);
-            // console.log(this.skuData[i].totalPrice);
-            this.tempTotal -= this.skuData[i].totalPrice;
-            this.totalJi = parseFloat(this.tempTotal).toFixed(2);
+        //找到对应的商家
+        if (this.skuData[i].merchantId === merId) {
+          //循环对应商家里面的子级
+          for (var j = 0; j < this.skuData[i].content.length; j++) {
+            //对应的子级亮
+            if (j === inx) {
+              this.skuData[i].content[j].checked = !this.skuData[i].content[j].checked;
+              if (this.skuData[i].content[j].checked) {
+                //计数
+                this.skuData[i].jiShu++;
+                this.totalJi += this.skuData[i].content[j].price * this.skuData[i].content[j].num;
+              } else {
+                this.skuData[i].jiShu = Math.abs(--this.skuData[i].jiShu);
+                this.totalJi -= this.skuData[i].content[j].price * this.skuData[i].content[j].num;
+              }
+            }
+            //判断子级亮的个数
+            if (this.skuData[i].jiShu == this.skuData[i].content.length) {
+              //父级亮，全部子级也亮
+              this.skuData[i].pCheckStatus = true;
+              for (var k = 0; k < this.skuData[i].content.length; k++) {
+                this.skuData[i].content[k].checked = true;
+              }
+            } else {
+              //父级不亮
+              this.skuData[i].pCheckStatus = false;
+            }
           }
-          break;
         }
-      }
-      // console.log(this.totalJi);
-      //当数量为数组的长度时
-      var shu = 0;
-      if (this.jiShu === this.skuData.length) {
-        //如果子级全部选中
-        for (var _i2 = 0; _i2 < this.skuData.length; _i2++) {
-          if (this.skuData[_i2].checked) {
-            shu++;
-          }
-        }
-        //父级选中
-        if (shu == this.skuData.length) {
-          this.pCheckStatus = true;
-          this.jiShu = 0;
-        } else {
-          this.pCheckStatus = false;
-        }
-      } else {
-        this.pCheckStatus = false;
       }
     },
+    //删除
     del: function del(id) {
-      // wx.showModal({
-      // 	content: '确定删除吗？',
-      // 	  success (res) {
-      // 	    if (res.confirm) {
-      // 	      wx.request({
-      // 	      	url:'http://172.17.1.221:6060/cart/removeCartItem',
-      // 	      	method:'POST',
-      // 	      	data:{
-      // 	      		skuId:id,
-      // 	      	},
-      // 	      	success: (res) => {
-      // 	      		console.log(res);
-      // 	      		//需要重新渲染页面
-      // wx.showLoading({
-      //   title: '加载中',
-      //   success:()=>{
-      // 	  this.init();
-      //   }
-      // })
-      // 	      	}
-      // 	      })
-      // 	    } 
-      // 	}
-      // })
-    } },
+      wx.showModal({
+        content: '确定删除吗？',
+        success: function success(res) {var _this4 = this;
+          if (res.confirm) {
+            wx.request({
+              url: 'http://172.17.1.203:6067/cart/removeCartItem?skuId=' + id,
+              method: 'POST',
+              success: function success(res) {
+                console.log(res);
+                if (res.statusCode === 200) {
+                  //需要重新渲染页面
+                  wx.showToast({
+                    icon: "success",
+                    title: "删除成功",
+                    success: function success() {
+                      //重新渲染页面
+                      _this4.init();
+                    } });
 
-  watch: {
-    totalJi: {
-      handler: function handler() {
+                }
+              } });
 
-      } },
+          }
+        } });
 
-    deep: true,
-    immediate: true } };exports.default = _default;
+    },
+    //去结算
+    jieSuan: function jieSuan() {
+      this.checkId = [];
+      var goodsId = [];
+      for (var i = 0; i < this.skuData.length; i++) {
+        for (var j = 0; j < this.skuData[i].content.length; j++) {
+          if (this.skuData[i].content[j].checked) {
+            //将选中的商品id添加到本地存储
+            goodsId.push(this.skuData[i].content[j].skuId);
+            wx.setStorageSync('goodsIds', goodsId);
+            this.checkId.push({
+              "merchantId": this.skuData[i].merchantId,
+              "merchantName": this.skuData[i].merchantName,
+              "price": 0,
+              "youHui": 0,
+              "youFei": 0,
+              "xiaoJi": 0,
+              "content": [
+              {
+                "name": this.skuData[i].content[j].name,
+                "skuId": this.skuData[i].content[j].skuId,
+                "image": this.skuData[i].content[j].image,
+                "price": this.skuData[i].content[j].price,
+                "num": this.skuData[i].content[j].num,
+                "totalPrice": this.skuData[i].content[j].totalPrice }] });
+
+
+
+            wx.navigateTo({
+              url: '../confirmOrder/confirmOrder' });
+
+          }
+        }
+      }
+      if (!this.checkId.length > 0) {
+        //循环完了如果没有选择数据则不能跳页面
+        wx.showToast({
+          title: '请选择商品后才可结算!',
+          icon: 'none' });
+
+      }
+      wx.setStorageSync('checkId', this.checkId);
+      wx.setStorageSync('zongJiE', this.totalJi);
+    } } };exports.default = _default;
 
 /***/ }),
 

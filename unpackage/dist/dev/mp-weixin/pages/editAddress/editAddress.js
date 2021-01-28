@@ -172,38 +172,170 @@ var _default =
 {
   data: function data() {
     return {
-      consignee: '',
-      phone: '',
-      area: '',
       region: ['广东省', '广州市', '海珠区'],
-      selStatus: 0 //0是未选中，1是选中
-    };
+      address: {
+        receiverName: '',
+        receiverPhone: '',
+        receiverProvince: '',
+        receiverCity: '',
+        receiverTown: '',
+        receiverAddress: '',
+        def: '0', //0是未选中，1是选中,
+        userId: '2',
+        id: this.addressId },
+
+      //默认地址是否选中
+      checkTip: false,
+      //用来存储地址id
+      addressId: '' };
+
+  },
+  onLoad: function onLoad(options) {var _this = this;
+    console.log(options.id);
+    this.addressId = options.id;
+    //初始化渲染页面
+    wx.request({
+      url: 'http://172.17.1.203:6067/order/{id}?id=' + options.id,
+      method: 'get',
+      header: {
+        token: wx.getStorageSync('token') },
+
+      success: function success(res) {
+        if (res.statusCode === 200) {
+          if (typeof res.data.data === 'object') {
+            _this.address = res.data.data;
+            _this.region = [res.data.data.receiverProvince, res.data.data.receiverCity, res.data.data.receiverTown];
+            if (res.data.data.def) {
+              _this.checkTip = true;
+            } else {
+              _this.checkTip = false;
+            }
+          }
+        }
+      },
+      fail: function fail(err) {
+        console.log(err);
+      } });
+
   },
   methods: {
     bindRegionChange: function bindRegionChange(e) {
       this.region = e.detail.value;
+      this.address.receiverProvince = this.region[0];
+      this.address.receiverCity = this.region[1];
+      this.address.receiverTown = this.region[2];
     },
     changeRadio: function changeRadio() {
-      this.selStatus = !this.selStatus;
+      this.checkTip = !this.checkTip;
+      if (this.checkTip) {
+        this.address.def = '1';
+      } else {
+        this.address.def = '0';
+      }
     },
-    del: function del() {
+    //正则验证手机号码
+    checkPhone: function checkPhone() {
+      var reg = /^1[3-9]\d{9}$/;
+      if (!reg.test(this.address.receiverPhone)) {
+        wx.showToast({
+          title: "手机号格式错误!",
+          icon: "none",
+          duration: 1000 });
+
+      }
+    },
+    //删除地址
+    del: function del(id) {
       wx.showModal({
         content: '确定要删除该地址吗？',
         success: function success(res) {
           if (res.confirm) {
-            console.log('用户点击确定');
             //删除成功后提示并且可以跳回地址管理页面
+            wx.request({
+              url: 'http://172.17.1.203:6067/order/delete/{id}?id=' + id,
+              method: 'GET',
+              header: {
+                token: wx.getStorageSync('token') },
 
-            wx.showToast({
-              title: '删除成功',
-              icon: 'success',
-              duration: 1000 });
+              success: function success(res) {
+                console.log(res);
+                if (res.statusCode === 200) {
+                  wx.showToast({
+                    title: '删除成功',
+                    icon: 'success',
+                    duration: 1000,
+                    success: function success() {
+                      //跳转到地址管理页面
+                      setTimeout(function () {
+                        //跳转回地址管理页面
+                        wx.navigateBack({
+                          delta: 1 });
+
+                      }, 1000);
+                    } });
+
+                }
+              } });
 
           } else if (res.cancel) {
             console.log('用户点击取消');
           }
         } });
 
+    },
+    //修改数据
+    baoCun: function baoCun() {
+      //判空
+      if (!this.address.receiverName || !this.address.receiverPhone || !this.address.receiverAddress) {
+        wx.showToast({
+          title: '以上信息不能为空！',
+          icon: 'none',
+          duration: 1000 });
+
+        return;
+      } else {
+        //正则验证
+        var reg = /^1[3-9]\d{9}$/;
+        if (!reg.test(this.address.receiverPhone)) {
+          wx.showToast({
+            title: "手机号格式错误!",
+            icon: "none",
+            duration: 1000 });
+
+        } else {
+          wx.request({
+            url: 'http://172.17.1.203:6067/order/updateAddress',
+            method: 'post',
+            data: this.address,
+            header: {
+              token: wx.getStorageSync('token') },
+
+            success: function success(res) {
+              console.log(res);
+              if (res.statusCode === 200) {
+                if (res.data.message == '修改成功') {
+                  wx.showToast({
+                    title: "修改成功!",
+                    icon: "success",
+                    duration: 1000,
+                    success: function success() {
+                      setTimeout(function () {
+                        //跳转回地址管理页面
+                        wx.navigateBack({
+                          delta: 1 });
+
+                      }, 1000);
+                    } });
+
+                }
+              }
+            },
+            fail: function fail(err) {
+              console.log(err);
+            } });
+
+        }
+      }
     } } };exports.default = _default;
 
 /***/ }),

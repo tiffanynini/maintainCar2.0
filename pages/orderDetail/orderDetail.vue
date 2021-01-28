@@ -1,109 +1,81 @@
 <template>
 	<view>
 		<view class="container">
-		<view class="context">
-			<view class="header">
-				<text space="emsp">订单编号 2019102100000001</text>
-			</view>
-			<view>
-				<text>未付款</text>
-			</view>
-		</view>
-		<view class="section">
-			<view class="set-content">
-				<text space="emsp">下单时间：20191021 14:44</text>
-			</view>
-			<view class="set-content">
-				<text>订单备注：</text>
-			</view>
-			<view class="set-middle">
-				<view class="set1-middle">
-					<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=c3b4ff848a61a132357823e9cdfb1a74d38de325077b43e61feb69e9d413f2a9"></image>
+			<view v-for="(v,i) in skuData" :key="i">
+				<view class="context">
+					<view class="header">
+						<text space="emsp">订单编号 {{skuData.orderId}}</text>
+					</view>
+					<view>
+						<text>未付款</text>
+					</view>
 				</view>
-				<view class="set1-bottom">
-					<text>汽车贴膜（每10CM）</text>
-					<text class="set1-p2">汽车类型：轿车  位置：全车</text>
-					<text>1×29.9</text>
-				</view>
-			</view>
-			<view class="set-bottom">
-				<text>小计</text>
-				<text>¥ 29.9</text>
-			</view>
-			<view class="set-bottom">
-				<text>邮费</text>
-				<text>¥ 0</text>
-			</view>
-			<view class="set-bottom">
-				<text>应付金额</text>
-				<text>¥ 29.9</text>
-			</view>
-		</view>
-		<view class="section">
-			<view class="set-content">
-				<text space="emsp">下单时间：20191021 14:44</text>
-			</view>
-			<view class="set-content">
-				<text>订单备注：</text>
-			</view>
-			<view class="set-middle">
-				<view class="set1-middle">
-					<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=c3b4ff848a61a132357823e9cdfb1a74d38de325077b43e61feb69e9d413f2a9"></image>
-				</view>
-				<view class="set1-bottom">
-					<text>汽车贴膜（每10CM）</text>
-					<text class="set1-p2">汽车类型：轿车  位置：全车</text>
-					<text>1×29.9</text>
+				<view class="section" v-for="(val,index) in v.content" :key="index">
+					<view class="set-content">
+						<text space="emsp">下单时间：{{val.createTime}}</text>
+					</view>
+					<!-- <view class="set-content">
+						<text>订单备注：{{val.beiZhu}}</text>
+					</view> -->
+					<view class="set-middle">
+						<view class="set1-middle">
+							<image :src="val.image"></image>
+						</view>
+						<view class="set1-bottom">
+							<text>{{val.name}}</text>
+							<text class="set1-p2">汽车类型：轿车  位置：全车</text>
+							<text>{{val.num}}×{{val.price}}</text>
+						</view>
+					</view>
+					<view class="set-bottom">
+						<text>小计</text>
+						<text>¥ {{v.xiaoJi}}</text>
+					</view>
+					<view class="set-bottom">
+						<text>邮费</text>
+						<text>¥ {{v.youFei}}</text>
+					</view>
+					<view class="set-bottom">
+						<text>应付金额</text>
+						<text>¥ {{v.totalMoney}}</text>
+					</view>
 				</view>
 			</view>
-			<view class="set-bottom">
-				<text>小计</text>
-				<text>¥ 29.9</text>
+			<view class="section2">
+				<view>
+					<text class="iconfont icon-dingwei1 header-icon1"></text>
+				</view>
+				<view class="head-middle">
+					<text space="emsp">{{address.receiverName}} {{address.receiverPhone}}</text>
+					<text space="emsp">{{address.receiverProvince}}{{address.receiverCity}}{{address.receiverTown}}{{address.receiverAddress}}</text>
+				</view>
 			</view>
-			<view class="set-bottom">
-				<text>邮费</text>
-				<text>¥ 0</text>
+			<view class="section3">
+				<view>
+					<text>支付方式</text>
+					<text>{{payMethod}}</text>
+				</view>
+				<view v-show="showPayMethod">
+					<label class="radio">
+						<radio value="r1" checked="true" class="set3-radio" />
+						<text class="iconfont icon-zhifubao zfb-icon"></text>
+						<text class="zfb-content">支付宝客户端</text>
+					</label>
+				</view>
 			</view>
-			<view class="set-bottom">
-				<text>应付金额</text>
-				<text>¥ 29.9</text>
-			</view>
-		</view>
-		<view class="section2">
-			<view>
-				<text class="iconfont icon-dingwei1 header-icon1"></text>
-			</view>
-			<view class="head-middle">
-				<text space="emsp">梁先森 17600000000</text>
-				<text space="emsp">广东省佛山市某某镇某某街道某某村某某巷15号</text>
-			</view>
-		</view>
-		<view class="section3">
-			<view>
-				<text>支付方式</text>
-				<text>在线支付</text>
-			</view>
-			<view>
-				<label class="radio">
-					<radio value="r1" checked="true" class="set3-radio" />
-					<text class="iconfont icon-zhifubao zfb-icon"></text>
-					<text class="zfb-content">支付宝客户端</text>
-				</label>
-			</view>
-		</view>
-		<view class="bu"></view>
-		<view class="footer">
-			<view></view>
-			<view>
-				<navigator url="../paymentResults/paymentResults?index=0" open-type="navigate">
-					<view class="footer-btn" :class="state?'':'active'" @click="clearPay">取消订单</view>
-				</navigator>
-				<navigator url="../paymentResults/paymentResults?index=1" open-type="navigate">
-					<view class="footer-btn" :class="state?'active':''" @click="pay">立即支付</view>
-				</navigator>
+			<view class="bu"></view>
+			<view class="footer">
+				<view></view>
+				<view>
+					<navigator url="../paymentResults/paymentResults?index=0" open-type="navigate">
+						<view class="footer-btn" :class="state?'':'active'" @click="clearPay">取消订单</view>
+					</navigator>
+					<navigator url="../paymentResults/paymentResults?index=1" open-type="navigate">
+						<view class="footer-btn" :class="state?'active':''" @click="pay">立即支付</view>
+					</navigator>
+				</view>
 			</view>
 		</view>
-	</view>
 	</view>
 </template>
 
@@ -112,10 +84,58 @@
 		data(){
 			return {
 				// focus:true,
-				state:1 //1是立即支付，0是取消订单
+				state:1, //1是立即支付，0是取消订单,
+				payMethod:'在线支付',
+				//是否显示支付宝支付
+				showPayMethod:true,
+				//渲染地址
+				address:{
+					receiverName:'',
+					receiverPhone:'',
+					receiverProvince:'',
+					receiverCity:'',
+					receiverTown:'',
+					receiverAddress:'',
+					def:'0',//0是未选中，1是选中,
+					userId:'2',
+				},
+				skuData:[],
 			}
 		},
+		mounted(){
+			//渲染地址
+			this.initAddress();
+			this.skuData = wx.getStorageSync('orderDetailData');
+		},
 		methods:{
+			initAddress(){
+				//初始化渲染页面
+				wx.request({
+					url:'http://172.17.1.203:6067/order/{id}?id='+wx.getStorageSync('addressId'),
+					method:'get',
+					header:{
+						token: wx.getStorageSync('token')
+					},
+					success:(res)=>{
+						console.log(res);
+						if(res.statusCode === 200){
+							if(typeof res.data.data==='object'){
+								this.address = res.data.data;
+							}
+						}
+						if(wx.getStorageSync('payMethod') === 1){
+							this.payMethod = '在线支付',
+							this.showPayMethod = true;
+						}else{
+							this.payMethod = '货到付款',
+							this.showPayMethod = false;
+						}
+					},
+					fail:(err)=>{
+						console.log(err);
+					}
+				})
+			},
 			pay(){
 				this.state = 1;
 			},

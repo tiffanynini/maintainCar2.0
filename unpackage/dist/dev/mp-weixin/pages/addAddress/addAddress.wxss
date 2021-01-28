@@ -23,6 +23,11 @@ page {
   height: 70rpx;
   width: 98%;
 }
+.container .context .inputContent input {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+}
 .container .context .inputContent label {
   margin-right: 20rpx;
   display: block;
@@ -64,7 +69,7 @@ page {
   text-align: center;
   width: 94%;
 }
-.footer .footer-content navigator {
+.footer .footer-content > view {
   font-size: 36rpx;
   display: block;
   line-height: 80rpx;

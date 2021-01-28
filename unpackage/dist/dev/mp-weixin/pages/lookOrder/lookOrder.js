@@ -207,48 +207,83 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var _default =
 {
   data: function data() {
     return {
-      jYMsg: '' };
+      jYMsg: '',
+      orderMsg: [],
+      //订单编号
+      orderId: '',
+      //渲染地址
+      address: {
+        receiverName: '梁先森',
+        receiverPhone: '17600000000',
+        receiverProvince: '广东省',
+        receiverCity: '佛山市',
+        receiverTown: '某某镇',
+        receiverAddress: '某某街道某某村某某巷15号',
+        def: '0', //0是未选中，1是选中,
+        userId: '2' } };
+
 
   },
+  mounted: function mounted() {
+    this.initAddress();
+    this.initData();
+    this.orderId = wx.getStorageSync('orderId');
+  },
+  methods: {
+    initData: function initData() {
+      var checkData = wx.getStorageSync('checkId');
+      //将满足要求的数据写到skuData数组中
+      for (var i = 0; i < checkData.length; i++) {
+        for (var j = i + 1; j < checkData.length; j++) {
+          if (checkData[i].merchantId === checkData[j].merchantId) {
+            //合并content部分
+            checkData[i].content.push(checkData[j].content[0]);
+            //剔除对应的checkid
+            checkData.splice(j, 1);
+            //一定要回退一下，不然不对
+            j--;
+          }
+        }
+      }
+      this.orderMsg = checkData;
+
+      //循环取得商品价格
+      for (var _i = 0; _i < this.confirmData.length; _i++) {
+        var res = 0;
+        for (var _j = 0; _j < this.confirmData[_i].content.length; _j++) {
+          res += this.confirmData[_i].content[_j].totalPrice;
+        }
+        this.orderMsg[_i].price = res;
+        this.orderMsg[_i].xiaoJi = res;
+      }
+    },
+
+    initAddress: function initAddress() {var _this = this;
+      //初始化渲染页面
+      wx.request({
+        url: 'http://172.17.1.203:6067/order/{id}?id=' + wx.getStorageSync('addressId'),
+        method: 'get',
+        header: {
+          token: wx.getStorageSync('token') },
+
+        success: function success(res) {
+          console.log(res);
+          if (res.statusCode === 200) {
+            if (typeof res.data.data === 'object') {
+              _this.address = res.data.data;
+            }
+          }
+        },
+        fail: function fail(err) {
+          console.log(err);
+        } });
+
+    } },
+
   onLoad: function onLoad(options) {
     if (options.msg == '支付成功') {
       this.jYMsg = '交易已完成';

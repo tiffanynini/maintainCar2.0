@@ -152,39 +152,53 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
     return {
-      addressMsg: [
-      {
-        receiverName: '梁先森',
-        receiverPhone: '17600000000',
-        receiverProvince: '广东省',
-        receiverCity: '佛山市',
-        receiverTown: '某某镇',
-        receiverAddress: '某某街道某某村某某巷15号',
-        status: 1 },
-
-      {
-        receiverName: '梁先森',
-        receiverPhone: '17600000000',
-        receiverProvince: '广东省',
-        receiverCity: '佛山市',
-        receiverTown: '某某镇',
-        receiverAddress: '某某街道某某村某某巷15号',
-        status: 0 }] };
-
-
+      addressMsg: [],
+      showDefault: false };
 
   },
   methods: {
-    init: function init() {
+    init: function init() {var _this = this;
       //初始化渲染页面
+      wx.request({
+        url: "http://172.17.1.203:6067/order/findAllAddress?userId=" + wx.getStorageSync('userId'),
+        method: 'get',
+        header: {
+          token: wx.getStorageSync('token') },
+
+        success: function success(res) {
+          console.log(res);
+          if (res.statusCode === 200) {
+            if (res.data.data.length > 0) {
+              _this.addressMsg = res.data.data;
+              //取第一条的数据def，判断是否为1
+              if (res.data.data[0].def === 1) {
+                _this.showDefault = true;
+              }
+            }
+          }
+        },
+        fail: function fail(err) {
+          console.log(err);
+        } });
+
     } },
 
   mounted: function mounted() {
     this.init();
+  },
+  //监听页面显示
+  onShow: function onShow() {
+    this.init();
+    this.showDefault = false;
   } };exports.default = _default;
 
 /***/ }),

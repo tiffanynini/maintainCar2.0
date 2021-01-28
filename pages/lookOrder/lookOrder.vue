@@ -10,63 +10,29 @@
 					<text>再逛逛，下一件一定是有缘分的宝贝</text>
 				</view>
 			</view>
-			<view class="section">
+			<view class="section" v-for="(v,i) in orderMsg" :key="i">
 				<view class="section1">
-					<text>自营店</text>
+					<text>{{v.merchantName}}</text>
 				</view>
-				<view class="section2">
+				<view class="section2" v-for="(val,index) in v.content" :key="index">
 					<view class="set1-middle">
-						<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=c3b4ff848a61a132357823e9cdfb1a74d38de325077b43e61feb69e9d413f2a9"></image>
+						<image :src="val.image"></image>
 					</view>
 					<view class="set1-bottom">
 						<view>
-							<text>汽车贴膜（每10CM）</text>
-							<text>￥29.9</text>
+							<text>{{val.name}}</text>
+							<text>￥{{val.price}}</text>
 						</view>
 						<view>
 							<text class="set1-p2">汽车类型：轿车  位置：全车</text>
-							<text class="set1-p2">×3</text>
+							<text class="set1-p2">×{{val.num}}</text>
 						</view>
 					</view>
-				</view>
-				<view class="addCar">
-					<view></view>
-					<view>加入购物车</view>
 				</view>
 				<view class="totalMoney">
 					<view></view>
 					<view>实付款：
-						<text>￥151.05</text>
-					</view>
-				</view>
-			</view>
-			<view class="section">
-				<view class="section1">
-					<text>自营店</text>
-				</view>
-				<view class="section2">
-					<view class="set1-middle">
-						<image src="http://cloud.axureshop.com/gsc/9VEHLV/09/35/c2/0935c276df9445ff87848efc94e49e75/images/%E6%B1%BD%E8%BD%A6%E8%B4%B4%E8%86%9C/u1041.jpg?token=c3b4ff848a61a132357823e9cdfb1a74d38de325077b43e61feb69e9d413f2a9"></image>
-					</view>
-					<view class="set1-bottom">
-						<view>
-							<text>汽车贴膜（每10CM）</text>
-							<text>￥29.9</text>
-						</view>
-						<view>
-							<text class="set1-p2">汽车类型：轿车  位置：全车</text>
-							<text class="set1-p2">×3</text>
-						</view>
-					</view>
-				</view>
-				<view class="addCar">
-					<view></view>
-					<view>加入购物车</view>
-				</view>
-				<view class="totalMoney">
-					<view></view>
-					<view>实付款：
-						<text>￥151.05</text>
+						<text>￥{{val.totalPrice}}</text>
 					</view>
 				</view>
 			</view>
@@ -77,11 +43,11 @@
 					</view>
 					<view class="shAddress">
 						<text>收货信息：</text>
-						<text>梁先森，17600000000，广东省佛山市某某镇某某街道某某村某某巷15号</text>
+						<text>{{address.receiverName}}，{{address.receiverPhone}}，{{address.receiverProvince}}{{address.receiverCity}}{{address.receiverTown}}{{address.receiverAddress}}</text>
 					</view>
 					<view class="orderNumber">
 						<text>订单编号：</text>
-						<text>2019102100000001</text>
+						<text>{{orderId}}</text>
 					</view>
 				</view>
 			</view>
@@ -91,7 +57,6 @@
 			<view></view>
 			<view>
 				<view class="delOrder">删除订单</view>
-				<view>加入购物车</view>
 			</view>
 		</view>
 	</view>
@@ -102,6 +67,76 @@
 		data(){
 			return {
 				jYMsg:'',
+				orderMsg:[],
+				//订单编号
+				orderId:'',
+				//渲染地址
+				address:{
+					receiverName:'梁先森',
+					receiverPhone:'17600000000',
+					receiverProvince:'广东省',
+					receiverCity:'佛山市',
+					receiverTown:'某某镇',
+					receiverAddress:'某某街道某某村某某巷15号',
+					def:'0',//0是未选中，1是选中,
+					userId:'2'
+				},
+			}
+		},
+		mounted(){
+			this.initAddress();
+			this.initData();
+			this.orderId = wx.getStorageSync('orderId');
+		},
+		methods:{
+			initData(){
+				let checkData = wx.getStorageSync('checkId');
+				//将满足要求的数据写到skuData数组中
+				for(let i= 0;i<checkData.length;i++){
+					for(let j=i+1;j<checkData.length;j++){
+						if(checkData[i].merchantId === checkData[j].merchantId){
+							//合并content部分
+							checkData[i].content.push(checkData[j].content[0]);
+							//剔除对应的checkid
+							checkData.splice(j,1);
+							//一定要回退一下，不然不对
+							j--;
+						}
+					}
+				}
+				this.orderMsg = checkData;
+				
+				//循环取得商品价格
+				for(let i= 0;i<this.confirmData.length;i++){
+					let res = 0;
+					for(let j=0;j<this.confirmData[i].content.length;j++){
+						res += this.confirmData[i].content[j].totalPrice;
+					}
+					this.orderMsg[i].price = res;
+					this.orderMsg[i].xiaoJi = res;
+				}
+			},
+			
+			initAddress(){
+				//初始化渲染页面
+				wx.request({
+					url:'http://172.17.1.203:6067/order/{id}?id='+wx.getStorageSync('addressId'),
+					method:'get',
+					header:{
+						token: wx.getStorageSync('token')
+					},
+					success:(res)=>{
+						console.log(res);
+						if(res.statusCode === 200){
+							if(typeof res.data.data==='object'){
+								this.address = res.data.data;
+							}
+						}
+					},
+					fail:(err)=>{
+						console.log(err);
+					}
+				})
 			}
 		},
 		onLoad(options){
@@ -213,22 +248,6 @@
 			}
 		}
 	}
-	.addCar{
-		display: flex;
-		padding-right: 20rpx;
-		>view:first-child{
-			flex:6;
-		}
-		>view:last-child{
-			flex: 2;
-			height: 56rpx;
-			border: 1px #AAAAAA solid;
-			border-radius: 40rpx;
-			font-size: 28rpx;
-			text-align: center;
-			line-height: 56rpx;
-		}
-	}
 	.totalMoney{
 		display: flex;
 		padding-right: 20rpx;
@@ -316,17 +335,7 @@
 				font-size: 24rpx;
 				text-align: center;
 				line-height: 60rpx;
-				flex: 2;
 				margin-right: 20rpx;
-			}
-			>view:last-child{
-				flex: 2;
-				height: 60rpx;
-				border: 1px #AAAAAA solid;
-				border-radius: 40rpx;
-				font-size: 24rpx;
-				text-align: center;
-				line-height: 60rpx;
 			}
 		}
 	}

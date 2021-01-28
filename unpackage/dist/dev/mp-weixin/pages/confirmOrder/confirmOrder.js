@@ -199,66 +199,209 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var _default =
 {
   data: function data() {
     return {
-      status: 1 //在线支付为1，货到付款为0
-    };
+      status: 1, //在线支付为1，货到付款为2
+      //渲染的数据
+      confirmData: [],
+      defaultAddress: false,
+      //渲染地址
+      address: {
+        receiverName: '',
+        receiverPhone: '',
+        receiverProvince: '',
+        receiverCity: '',
+        receiverTown: '',
+        receiverAddress: '',
+        def: '0', //0是未选中，1是选中,
+        userId: '1',
+        id: '' },
+
+      //总金额
+      totalJi: 0,
+      beiZhu: '' };
+
   },
   mounted: function mounted() {
     // wx.showLoading({
     // 	title:"加载中",
     // 	success:()=>{
-    // 		this.init();
+    // 		this.initAddress();
     // 	}
     // })
+    this.initData();
+
+    this.initAddress();
+  },
+  onShow: function onShow() {
+    //重新渲染地址
+    this.initAddress();
   },
   methods: {
-    init: function init() {
+    initData: function initData() {
+      var checkData = wx.getStorageSync('checkId');
+      this.totalJi = wx.getStorageSync('zongJiE');
+      //将满足要求的数据写到skuData数组中
+      for (var i = 0; i < checkData.length; i++) {
+        for (var j = i + 1; j < checkData.length; j++) {
+          if (checkData[i].merchantId === checkData[j].merchantId) {
+            //合并content部分
+            checkData[i].content.push(checkData[j].content[0]);
+            //剔除对应的checkid
+            checkData.splice(j, 1);
+            //一定要回退一下，不然不对
+            j--;
+          }
+        }
+      }
+      this.confirmData = checkData;
+
+      //循环取得商品价格
+      for (var _i = 0; _i < this.confirmData.length; _i++) {
+        var res = 0;
+        for (var _j = 0; _j < this.confirmData[_i].content.length; _j++) {
+          res += this.confirmData[_i].content[_j].totalPrice;
+        }
+        this.confirmData[_i].price = res;
+        this.confirmData[_i].xiaoJi = res;
+      }
+    },
+    //初始化地址
+    initAddress: function initAddress() {var _this = this;
+      wx.request({
+        url: 'http://172.17.1.203:6067/order/address?userId=' + wx.getStorageSync('userId'),
+        method: 'get',
+        header: {
+          token: wx.getStorageSync('token') },
+
+        success: function success(res) {
+          if (res.statusCode === 200) {
+            // wx.hideLoading();
+            //如果有结果	
+            if (res.data.data != null) {
+              _this.address = res.data.data;
+            } else {
+              //当前无默认数据
+              _this.defaultAddress = true;
+            }
+          }
+        },
+        fail: function fail(err) {
+          console.log(err);
+        } });
+
+    },
+    confirmOrder: function confirmOrder(e) {
+      //存储收获方式
+      wx.setStorageSync('payMethod', this.status);
+      //当前收货地址的id
+      wx.setStorageSync('addressId', e.currentTarget.dataset.id);
+      wx.request({
+        url: 'http://172.17.1.203:6067/order/create',
+        method: 'post',
+        header: {
+          token: wx.getStorageSync('token') },
+
+        data: {
+          "buyerMessage": this.beiZhu,
+          "goodsIds": wx.getStorageSync('goodsIds'),
+          "paymentType": this.status,
+          //收货地址id
+          "shippingId": e.currentTarget.dataset.id },
+
+        success: function success(res) {
+          console.log(res);
+          if (res.statusCode === 200) {
+            //将这一波数据整理好，存储在本地
+            if (res.data.data.length > 0) {
+              var tempSkuData = res.data.data;
+              var tempOrderData = [];
+              //存储订单编号
+              wx.setStorageSync('orderId', tempSkuData[0].orderId);
+              //最初的数据样式
+              tempOrderData.push({
+                merchantId: tempSkuData[0].merchantId,
+                merchantName: tempSkuData[0].merchantName,
+                buyerMessage: tempSkuData[0].buyerMessage,
+                orderId: tempSkuData[0].orderId,
+                "xiaoJi": 0,
+                "youFei": 0,
+                "totalMoney": 0,
+                content: [
+                {
+                  "createTime": tempSkuData[0].createTime,
+                  "name": tempSkuData[0].name,
+                  "skuId": tempSkuData[0].skuId,
+                  "image": tempSkuData[0].image,
+                  "price": tempSkuData[0].price,
+                  "num": tempSkuData[0].num,
+                  "totalPrice": tempSkuData[0].totalPrice }] });
+
+
+
+              outer:
+              for (var i = 0; i < tempSkuData.length; i++) {
+                for (var j = i + 1; j < tempSkuData.length; j++) {
+                  if (tempSkuData[i].merchantId === tempSkuData[j].merchantId) {
+                    //如果merchantId相等则将后者的数据合并到前者数据中
+                    tempOrderData[i].content.push(
+                    {
+                      "createTime": tempSkuData[j].createTime,
+                      "name": tempSkuData[j].name,
+                      "skuId": tempSkuData[j].skuId,
+                      "image": tempSkuData[j].image,
+                      "price": tempSkuData[j].price,
+                      "num": tempSkuData[j].num,
+                      "totalPrice": tempSkuData[j].totalPrice });
+
+
+                  } else {
+                    //如果merchantId不相等则将后者的数据合并到初始化数据中
+                    tempOrderData.push({
+                      merchantId: tempSkuData[j].merchantId,
+                      merchantName: tempSkuData[j].merchantName,
+                      buyerMessage: tempSkuData[j].buyerMessage,
+                      orderId: tempSkuData[j].orderId,
+                      "xiaoJi": 0,
+                      "youFei": 0,
+                      "totalMoney": 0,
+                      content: [
+                      {
+                        "createTime": tempSkuData[j].createTime,
+                        "name": tempSkuData[j].name,
+                        "skuId": tempSkuData[j].skuId,
+                        "image": tempSkuData[j].image,
+                        "price": tempSkuData[j].price,
+                        "num": tempSkuData[j].num,
+                        "totalPrice": tempSkuData[j].totalPrice }] });
+
+
+
+                  }
+                }
+                break outer; //只循环一次
+              }
+              console.log(tempOrderData);
+              wx.setStorageSync('orderDetailData', tempOrderData);
+            }
+          }
+          wx.navigateTo({
+            url: '../orderDetail/orderDetail' });
+
+        },
+        fail: function fail(err) {
+          console.log(err);
+        } });
+
 
     },
     payMethods1: function payMethods1() {
       this.status = 1;
     },
     payMethods2: function payMethods2() {
-      this.status = 0;
+      this.status = 2;
     } } };exports.default = _default;
 
 /***/ }),
