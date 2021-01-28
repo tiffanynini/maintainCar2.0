@@ -32,7 +32,7 @@
 				<view class="totalMoney">
 					<view></view>
 					<view>实付款：
-						<text>￥{{v.price}}</text>
+						<text>￥{{totalJi}}</text>
 					</view>
 				</view>
 			</view>
@@ -53,12 +53,6 @@
 			</view>
 		</view>
 		<view class="bu"></view>
-		<!-- <view class="fixedContent">
-			<view></view>
-			<view>
-				<view class="delOrder">删除订单</view>
-			</view>
-		</view> -->
 	</view>
 </template>
 
@@ -81,12 +75,14 @@
 					def:'0',//0是未选中，1是选中,
 					userId:'2'
 				},
+				totalJi:''
 			}
 		},
 		mounted(){
 			this.initAddress();
 			this.initData();
 			this.orderId = wx.getStorageSync('orderId');
+			this.totalJi = wx.getStorageSync('totalJi');
 		},
 		methods:{
 			initData(){

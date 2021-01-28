@@ -1,16 +1,18 @@
 <template>
 	<div id="div1">
 		<!-- 搜索框 -->
-		<uni-search-bar placeholder="搜索服务、门店等关键词" :radius="100" @confirm="search" clearButton="auto" cancelButton="none" :value="msg1"></uni-search-bar>
+		<uni-search-bar placeholder="搜索服务、门店等关键词" :radius="100" @confirm="search" clearButton="auto" cancelButton="none"
+		 :value="msg1"></uni-search-bar>
 		<!-- 轮播图 -->
-		<swiper class="swiper" :indicator-dots="indicatorDots"  circular="true"  :autoplay="autoplay" :interval="interval" :duration="duration">
-		      <swiper-item  v-for="(item ,index) in info" :key="index"  @click="change(index)">
-		           <view class="swiper-item uni-bg-red">
-					 <image :src="item.src" mode=""></image>
-				   </view>
-		      </swiper-item>
+		<swiper class="swiper" :indicator-dots="indicatorDots" circular="true" :autoplay="autoplay" :interval="interval"
+		 :duration="duration">
+			<swiper-item v-for="(item ,index) in info" :key="index" @click="change(index+1)">
+				<view class="swiper-item uni-bg-red">
+					<image :src="item.image" mode=""></image>
+				</view>
+			</swiper-item>
 		</swiper>
-		 <!-- 小图标 -->             
+		<!-- 小图标 -->
 		<view class="litteCon">
 			<view class="litteCon1">
 				<view class="littleConDetail">
@@ -29,11 +31,11 @@
 					<image mode=""></image>
 					<p>钣金修复</p>
 				</view>
-				<view class="littleConDetail detail5">
+				<view class="littleConDetail detail5" @click="productlist(5)">
 					<image mode="">修换电瓶</image>
 					<p></p>
 				</view>
-				<view class="littleConDetail detail6">
+				<view class="littleConDetail detail6" @click="productlist(6)">
 					<image mode=""></image>
 					<p>空调清洗</p>
 				</view>
@@ -46,21 +48,22 @@
 					<p>镀晶贴膜</p>
 				</view>
 			</view>
-		</view>	
+		</view>
 		<!-- 头条 -->
 		<!-- 头条 -->
 		<view class="newTitle">
 			<!-- 小圆点 -->
 			<span class="little-dot"></span>
 			<!-- 上下轮播 -->
-			<swiper class="swiper new-swiper"  circular="true"  vertical="true" :autoplay="autoplay" :interval="interval" :duration="duration">
-			      <swiper-item  v-for="(item ,index) in info1" :key="index"  @click="change1(index)">
-			           <view class="swiper-item uni-bg-red">
-						   <!-- 热议 -->
-						   <image src="../../static/images-index/hotNew1.png" mode=""></image>
-							<text class="new-swiper1" @click="jumpVideo(index)">{{info1[index].con}}</text>
-					   </view>
-			      </swiper-item>
+			<swiper class="swiper new-swiper" circular="true" vertical="true" :autoplay="autoplay" :interval="interval"
+			 :duration="duration">
+				<swiper-item v-for="(item ,index) in info1" :key="index" @click="change1(index)">
+					<view class="swiper-item uni-bg-red">
+						<!-- 热议 -->
+						<image src="../../static/images-index/hotNew1.png" mode=""></image>
+						<text class="new-swiper1" @click="jumpVideo(index)">{{info1[index].con}}</text>
+					</view>
+				</swiper-item>
 			</swiper>
 		</view>
 		<!-- 新用户免费洗车 -->
@@ -95,19 +98,19 @@
 				<!-- 三个小圆点 -->
 				<uni-icons type="more-filled" size="30" class="morefilled"></uni-icons>
 			</view>
-			 <!-- 小视频 -->
-			 <view class="videoPlay">
+			<!-- 小视频 -->
+			<view class="videoPlay">
 				<!-- 视频轮播图 -->
 				<swiper class="swiper1" :autoplay="autoplay" circular="true" :interval="3000" :duration="duration">
-				      <swiper-item  v-for="(item ,index) in info2" :key="index"  @click="change(index)">
-				           <view class="swiper-item uni-bg-red">
-							  <image :src="item.videoSrc" mode=""></image>
-							  <text class="videoText1">{{item.videoText}}</text>
-						   </view>
-				      </swiper-item>
+					<swiper-item v-for="(item ,index) in info2" :key="index" @click="change(index)">
+						<view class="swiper-item uni-bg-red">
+							<image :src="item.videoSrc" mode="" @click="tiaoVideo(index===1?4:index+1)"></image>
+							<text class="videoText1">{{item.videoText}}</text>
+						</view>
+					</swiper-item>
 				</swiper>
-			</view>	
-		</view>	
+			</view>
+		</view>
 		<!-- 商家推荐 -->
 		<view class="mechantRecommend">
 			<!-- 商家推荐文字 -->
@@ -116,7 +119,7 @@
 				<text class="mechantText">商家推荐</text>
 			</view>
 			<!-- 小列表 -->
-			<view class="autoBeautiful" :key="index" v-for="(item,index) in list1">
+			<view class="autoBeautiful" :key="index" v-for="(item,index) in list1" @click="tiaoStore(index+1)">
 				<image class="autoImg" :src="item.src" mode=""></image>
 				<view class="autoRight">
 					<!-- 标题 -->
@@ -132,7 +135,7 @@
 				</view>
 			</view>
 		</view>
-		
+
 		<!-- 上拉 触底-->
 		<view class="bottomText1" id="bottomText1">
 			<uLi-load-more loadingType="3" status="noMore" :content-text="contentText"></uLi-load-more>
@@ -145,210 +148,252 @@
 	export default {
 		data() {
 			return {
-				pageH:0,
-				downH:0,
-				clientH:0,
+				pageH: 0,
+				downH: 0,
+				clientH: 0,
 				// 1、搜索框
-				msg1:'',
+				msg1: '',
 				// 2、轮播图
-					 // 面板指示点
+				// 面板指示点
 				indicatorDots: true,
-					 // 自动切换
+				// 自动切换
 				autoplay: true,
-					 // 自动切换的时间间隔
+				// 自动切换的时间间隔
 				interval: 2200,
-					 // 滑动动画时长
+				// 滑动动画时长
 				duration: 500,
 				// 轮播图内的图片
 				info: [{
 					src: '../../static/images-index/car2.jpg'
-			    }, {
+				}, {
 					src: '../../static/images-index/car1.jpg'
-			     }],
+				}],
 				//3、小图标
 				//4、头条
-				 // 上下轮播
-				 info1: [{
-				 	con: '汽车维修保养七宗罪，看完再也不怕被坑！'
-				 }, {
-				 	con: '怎么检测汽车胎压？'
-				  }],
-				 // 5、视频轮播
-				 info2:[
-					 {
-						 videoSrc:"../../static/images-index/video1.jpg",
-						 videoText:"汽车维修保养七宗罪，看完再也不怕被坑"
-					 },
-					 {
-						videoSrc:"../../static/images-index/video2.jpg",
-						videoText:"汽车保养小心这4大陷阱，修车师傅都有小动作，可以多开..."
-					 },
-					 {
-						videoSrc:"../../static/images-index/video3.jpg",
-						videoText:"汽车保养不只是更换汽油，还要做这些"
-					 }
-				 ],
-				 // 6、商家推荐 列表
-				 list1:[
-					 {
-						 src:"../../static/images-index/auto1.jpg",
-						 title:"auto汽车美容",
-						 distance:"14km",
-						 address:"广东省深圳市南山区沙河西路3181号"
-					 },
-					 {
-					 	src:"../../static/images-index/auto2.jpg",
-					 	title:"taxi汽车美容",
-					 	distance:"66km",
-					 	address:"广东省深圳市福田区上步北路2005路"
-					 },
-					 {
-					 	src:"../../static/images-index/auto3.jpg",
-					 	title:"汽车养生",
-					 	distance:"14km",
-					 	address:"广东省深圳市罗湖区翠菊路11655路"
-					 },
-					 {
-					 	src:"../../static/images-index/auto4.jpg",
-					 	title:"百瑞特养车",
-					 	distance:"358km",
-					 	address:"广东省深圳市宝安区翻身路65405号"
-					 }
-					 
-				 ],
-				 // 7、下拉触底
-				 contentText: {
-				    contentdown:'上拉显示更多',
-				    contentrefresh: '正在加载...',
-				    contentnomore: '我也是有底线的'
+				// 上下轮播
+				info1: [{
+					con: '汽车维修保养七宗罪，看完再也不怕被坑！'
+				}, {
+					con: '怎么检测汽车胎压？'
+				}],
+				// 5、视频轮播
+				info2: [{
+						videoSrc: "../../static/images-index/video1.jpg",
+						videoText: "汽车维修保养七宗罪，看完再也不怕被坑"
+					},
+					{
+						videoSrc: "../../static/images-index/video2.jpg",
+						videoText: "汽车保养小心这4大陷阱，修车师傅都有小动作，可以多开..."
+					},
+					{
+						videoSrc: "../../static/images-index/video3.jpg",
+						videoText: "汽车保养不只是更换汽油，还要做这些"
+					}
+				],
+				// 6、商家推荐 列表
+				list1: [{
+						src: "../../static/images-index/auto1.jpg",
+						title: "auto汽车美容",
+						distance: "14km",
+						address: "广东省深圳市南山区沙河西路3181号"
+					},
+					{
+						src: "../../static/images-index/auto2.jpg",
+						title: "taxi汽车美容",
+						distance: "66km",
+						address: "广东省深圳市福田区上步北路2005路"
+					},
+					{
+						src: "../../static/images-index/auto3.jpg",
+						title: "汽车养生",
+						distance: "14km",
+						address: "广东省深圳市罗湖区翠菊路11655路"
+					},
+					{
+						src: "../../static/images-index/auto4.jpg",
+						title: "百瑞特养车",
+						distance: "358km",
+						address: "广东省深圳市宝安区翻身路65405号"
+					}
+
+				],
+				// 7、下拉触底
+				contentText: {
+					contentdown: '上拉显示更多',
+					contentrefresh: '正在加载...',
+					contentnomore: '我也是有底线的'
 				},
 				// 8、动画
 				// animationData: {},
 
 			}
 		},
-		components: {uLiLoadMore},
+		components: {
+			uLiLoadMore
+		},
 		methods: {
-		// 1、搜索框
-			search(e){
+			// 1、搜索框
+			search(e) {
 				console.log(e);
-				this.msg1=e.value;
+				this.msg1 = e.value;
 				console.log(this.msg1);
 			},
-		//2、轮播图
-		change(e){
-		// 点击轮播图，打印当前商品的id
-			console.log(e);
+			//2、轮播图
+			change(e) {
+				// 点击轮播图，打印当前商品的id
+				console.log(e);
+				wx.navigateTo({
+					url: '../index-beauty/index-beauty?id=' + e
+				});
+			},
+
+			// 3、上下轮播
+			change1(e) {
+				console.log(e);
+				
+			},
+			// 4、进入商品列表页
+			enterList(i) {
+				console.log(i);
+				wx.navigateTo({
+					url: '../index-beauty/index-beauty?id=' + i
+				});
+			},
+			//新用户洗车跳转
+			newUserJump() {
+				wx.navigateTo({
+					url: '../freeWash/freeWash'
+				})
+			},
+			jump(i) {
+				wx.navigateTo({
+					url: '../details/details?id=' + i,
+				})
+			},
+			//头条跳转
+			jumpVideo(i) {
+				wx.request({
+					url: 'http://106.12.97.151/getVideoInfo',
+					method: 'post',
+					data: {
+						id: i + 1
+					},
+					success: (res) => {
+						let obj = res.data.data[0];
+						console.log(obj)
+						wx.navigateTo({
+							url: '../findInfo/findInfo?title=' + obj.title + '&&time=' + obj.time + '&&read=' + obj.watch + '&&url=' +
+								obj.url + '&&id=' + i + 1
+						})
+					}
+				})
+			},
+			tiaoVideo(i) {
+				wx.request({
+					url: 'http://106.12.97.151/getVideoInfo',
+					method: 'post',
+					data: {
+						id: i
+					},
+					success: (res) => {
+						console.log(res)
+						let obj = res.data.data[0]
+						wx.navigateTo({
+							url: '../findInfo/findInfo?title=' + obj.title + '&&time=' + obj.time + '&&read=' + obj.watch + '&&url=' +
+								obj.url + '&&id=' + i + 1
+						})
+					}
+				})
+			},
+			//商家推荐跳转
+			tiaoStore(id) {
+				wx.navigateTo({
+					url: "../shopindex/shopindex?id=" + id
+				})
+			},
+			// 4、动画
+			// rotateAndScale: function () {
+			//       // 旋转同时放大
+			//       this.animation.rotate(45).scale(2, 2).step()
+			//       this.animationData = this.animation.export()
+			//     },
+			//     rotateThenScale: function () {
+			//       // 先旋转后放大
+			//       this.animation.rotate(45).step()
+			//       this.animation.scale(2, 2).step()
+			//       this.animationData = this.animation.export()
+			//     },
+			//     rotateAndScaleThenTranslate: function () {
+			//       // 先旋转同时放大，然后平移
+			//       this.animation.rotate(45).scale(2, 2).step()
+			//       this.animation.translate(100, 100).step({ duration: 1000 })
+			//       this.animationData = this.animation.export()
+			//     }
+			// 跳转商品列表页面
+			productlist(val) {
+				uni.navigateTo({
+					url: "../productlist/productlist?id=" + val
+				})
+			},
 		},
-		// 3、上下轮播
-		change1(e){
-			console.log(e);
-		},
-		//新用户洗车跳转
-		newUserJump(){
-			wx.navigateTo({
-				url:'../freeWash/freeWash'
+		onShow() {
+			var animation = uni.createAnimation({
+				duration: 1000,
+				timingFunction: 'ease',
 			})
-		},
-		jump(i){
-			wx.navigateTo({
-				url:'../details/details?id='+i,
-			})
-		},
-		//头条跳转
-		jumpVideo(i){
-			wx.request({
-				url:'http://106.12.97.151/getVideoInfo',
-				method:'post',
-				data:{
-					id:i+1
-				},
-				success:(res)=>{
-					let obj = res.data.data[0];
-					console.log(obj)
-					wx.navigateTo({
-						url:'../findInfo/findInfo?title='+obj.title+'&&time='+obj.time+'&&read='+obj.watch+'&&url='+obj.url+'&&id='+i+1
-					})
-				}
-			})
-		},
-		// 4、动画
-		// rotateAndScale: function () {
-		//       // 旋转同时放大
-		//       this.animation.rotate(45).scale(2, 2).step()
-		//       this.animationData = this.animation.export()
-		//     },
-		//     rotateThenScale: function () {
-		//       // 先旋转后放大
-		//       this.animation.rotate(45).step()
-		//       this.animation.scale(2, 2).step()
-		//       this.animationData = this.animation.export()
-		//     },
-		//     rotateAndScaleThenTranslate: function () {
-		//       // 先旋转同时放大，然后平移
-		//       this.animation.rotate(45).scale(2, 2).step()
-		//       this.animation.translate(100, 100).step({ duration: 1000 })
-		//       this.animationData = this.animation.export()
-		//     }
-		},
-		onShow(){
-			 var animation = uni.createAnimation({
-			      duration: 1000,
-			        timingFunction: 'ease',
-			    })
-			
-			    this.animation = animation
-			
-			    animation.scale(2,2).rotate(45).step()
-			
-			    this.animationData = animation.export()
-			
-			    setTimeout(function() {
-			      animation.translate(30).step()
-			      this.animationData = animation.export()
-			    }.bind(this), 1000)
+
+			this.animation = animation
+
+			animation.scale(2, 2).rotate(45).step()
+
+			this.animationData = animation.export()
+
+			setTimeout(function() {
+				animation.translate(30).step()
+				this.animationData = animation.export()
+			}.bind(this), 1000)
 		},
 		onLoad(options) {
-			setTimeout(function () {
-			     console.log('start pulldown');
+			setTimeout(function() {
+				console.log('start pulldown');
 			}, 500);
 			uni.startPullDownRefresh();
-			
+
 			uni.getSystemInfo({
-				success:(res)=>{
-					this.clientH=res.windowHeight;
+				success: (res) => {
+					this.clientH = res.windowHeight;
 				}
 			})
 		},
 		// 用户下拉刷新
 		onPullDownRefresh() {
-		        console.log('refresh');
-		        setTimeout(function () {
-		            uni.stopPullDownRefresh();
-		        }, 1000);
-		    },
+			console.log('refresh');
+			setTimeout(function() {
+				uni.stopPullDownRefresh();
+			}, 1000);
+		},
 		// 用户上拉
-		onReachBottom(){
+		onReachBottom() {
 			console.log('到底部了');
 		},
 		// 页面滚动事件
-		onPageScroll(ev){
+		onPageScroll(ev) {
 			// 获取底部实例+高度
 			let query = uni.createSelectorQuery().in(this);
 			query.select('#bottomText1').boundingClientRect(data => {
-				this.downH=data.height;
+				this.downH = data.height;
 			}).exec();
 			// 获取页面实例+高度
 			query.select('#div1').boundingClientRect(data1 => {
-				this.pageH=data1.height;
+				this.pageH = data1.height;
 			}).exec();
-			
+
 			// console.log(ev.scrollTop,this.pageH,this.downH,this.clientH)
 			// 如果滚动高度+屏幕高度>页面高度-底部高度
 			// 就让页面滚动到 页面高度-底部高度
-			if(ev.scrollTop+this.clientH>=this.pageH-this.downH){
+			if (ev.scrollTop + this.clientH >= this.pageH - this.downH) {
 				uni.pageScrollTo({
-					scrollTop:this.pageH-this.downH-this.clientH
+					scrollTop: this.pageH - this.downH - this.clientH
 				})
 			}
 		}
@@ -357,33 +402,40 @@
 
 <style lang="less">
 	@import url("../../static/font/iconfont.css");
-	*{
+
+	* {
 		margin: 0;
 		padding: 0;
 	}
-	div{
+
+	div {
 		width: 100%;
 		background-color: #F3F4F6;
-		uni-search-bar{
+
+		uni-search-bar {
 			width: 100rpx;
 			height: 100rpx;
 		}
+
 		// 轮播图
-		.swiper{
+		.swiper {
 			width: 100%;
 			height: 460rpx;
-			image{
+
+			image {
 				width: 100%;
 				height: 460rpx;
 			}
 		}
+
 		// 小图标
-		.litteCon{
+		.litteCon {
 			width: 100%;
 			height: 420rpx;
 			border-radius: 30rpx 30rpx 0 0;
 			position: relative;
-			.litteCon1{
+
+			.litteCon1 {
 				width: 100%;
 				height: 440rpx;
 				border-radius: 30rpx 30rpx 0 0;
@@ -396,7 +448,8 @@
 				align-content: center;
 				background-color: #fff;
 			}
-			.littleConDetail{
+
+			.littleConDetail {
 				width: 25%;
 				height: 200rpx;
 				background: url('../../static/images-index/littleCar.png') no-repeat;
@@ -406,45 +459,54 @@
 				justify-content: center;
 				align-content: center;
 				font-size: 30rpx;
-				image{
+
+				image {
 					width: 60%;
 					height: 100rpx;
 					// background-color: skyblue;
-					}
+				}
 			}
-			.detail2{
+
+			.detail2 {
 				background: url('../../static/images-index/detai2.png') no-repeat;
 				background-size: contain;
 			}
-			.detail3{
+
+			.detail3 {
 				background: url('../../static/images-index/list3.png') no-repeat;
 				background-size: contain;
 			}
-			.detail4{
+
+			.detail4 {
 				background: url('../../static/images-index/list4.png') no-repeat;
 				background-size: contain;
 			}
-			.detail5{
+
+			.detail5 {
 				background: url('../../static/images-index/list5.png') no-repeat;
 				background-size: contain;
 			}
-			.detail6{
+
+			.detail6 {
 				background: url('../../static/images-index/list6.png') no-repeat;
 				background-size: contain;
 			}
-			.detail7{
+
+			.detail7 {
 				background: url('../../static/images-index/list7.png') no-repeat;
 				background-size: contain;
 			}
-			.detail8{
+
+			.detail8 {
 				background: url('../../static/images-index/list8.png') no-repeat;
 				background-size: contain;
 			}
 		}
+
 		// 头条
-		.newTitle{
+		.newTitle {
 			border: 1px solid #eee;
-			border-left:0;
+			border-left: 0;
 			border-right: 0;
 			display: flex;
 			height: 70rpx;
@@ -452,79 +514,91 @@
 			background-size: contain;
 			align-items: center;
 			background-color: #fff;
+
 			// 小圆点
-			.little-dot{
+			.little-dot {
 				width: 20rpx;
 				height: 14rpx;
 				border-radius: 50%;
 				background-color: red;
 				margin-left: 140rpx;
 			}
+
 			// 竖直方向轮播图
-			.new-swiper{
+			.new-swiper {
 				height: 50rpx;
 				line-height: 50rpx;
 				font-size: 24rpx;
 				display: flex;
 				align-items: center;
+
 				// 热议
-				image{
+				image {
 					width: 50rpx;
 					height: 30rpx;
 					margin-left: 20rpx;
 					margin-right: 20rpx;
 					vertical-align: middle;
 				}
+
 				//新闻标题
-				.new-swiper1{
+				.new-swiper1 {
 					height: 30px;
 					line-height: 30rpx;
 				}
 			}
 		}
+
 		//新用户免费洗车
-		.newUser{
+		.newUser {
 			width: 100%;
 			height: 160rpx;
-			image{
+
+			image {
 				width: 100%;
 				height: 100%;
 			}
 		}
+
 		// 汽车贴膜
-		.autoFilm{
+		.autoFilm {
 			width: 100%;
 			height: 280rpx;
 			background-color: #fff;
 			display: flex;
 			justify-content: space-around;
-			.autoFilm1{
+
+			.autoFilm1 {
 				width: 28%;
 				height: 270rpx;
 				// background-color: pink;
 				display: flex;
 				justify-content: center;
 				flex-wrap: wrap;
-				.autoText{
+
+				.autoText {
 					width: 100%;
 					height: 70rpx;
 					line-height: 70rpx;
 					text-align: center;
 				}
-				image{
+
+				image {
 					width: 100%;
 					height: 190rpx;
 				}
 			}
 		}
+
 		// 视频推荐
-		.videoRecommend{
+		.videoRecommend {
 			width: 100%;
 			height: 500rpx;
 			// background-color: pink;
 			margin-top: 30rpx;
 			margin-bottom: 24rpx;
-			.videoText{
+
+			.videoText {
 				// width: 94.6%;
 				height: 40rpx;
 				background-color: #fff;
@@ -532,15 +606,18 @@
 				justify-content: space-between;
 				padding: 20rpx;
 				border-bottom: 2rpx solid #ccc;
-				.videoLeft{
+
+				.videoLeft {
 					width: 200rpx;
 					display: flex;
-					.videoShu{
+
+					.videoShu {
 						width: 6rpx;
 						height: 40rpx;
 						background-color: #FD8F33;
 					}
-					.videoText1{
+
+					.videoText1 {
 						width: 160rpx;
 						height: 40rpx;
 						line-height: 40rpx;
@@ -549,7 +626,8 @@
 						margin-left: 14rpx;
 					}
 				}
-				.morefilled{
+
+				.morefilled {
 					// color: #F3F4F6!important;
 					// color: pink;
 					// width: 100rpx;
@@ -557,23 +635,27 @@
 					line-height: 40rpx;
 				}
 			}
-			.videoPlay{
+
+			.videoPlay {
 				width: 100%;
 				height: 410rpx;
+
 				// background-color: green;
-				.swiper1{
+				.swiper1 {
 					height: 410rpx;
 					width: 100%;
 					overflow: hidden;
 					position: relative;
-					image{
+
+					image {
 						position: absolute;
 						left: -16%;
 						width: 130%;
 						height: 400rpx;
-						
+
 					}
-					.videoText1{
+
+					.videoText1 {
 						width: 100%;
 						height: 50rpx;
 						line-height: 50rpx;
@@ -585,15 +667,17 @@
 						font-size: 28rpx;
 					}
 				}
-				
+
 			}
 		}
+
 		// 商家推荐
-		.mechantRecommend{
+		.mechantRecommend {
 			width: 100%;
 			height: 806rpx;
 			background-color: #fff;
-			.mechantWord{
+
+			.mechantWord {
 				// width: 94.6%;
 				// background-color: pink;
 				height: 40rpx;
@@ -604,18 +688,21 @@
 				color: #FD8F33;
 				font-weight: 600;
 				display: flex;
-				.mechantShu{
+
+				.mechantShu {
 					width: 6rpx;
 					height: 40rpx;
 					background-color: #FD8F33;
 					margin-right: 20rpx;
 				}
-				.mechantText{
+
+				.mechantText {
 					height: 40rpx;
 					line-height: 40rpx;
 				}
 			}
-			.autoBeautiful{
+
+			.autoBeautiful {
 				// width: 100%;
 				height: 180rpx;
 				// background-color: pink;
@@ -623,16 +710,19 @@
 				justify-content: center;
 				align-items: center;
 				border-bottom: 1px solid #ccc;
-				.autoImg{
+
+				.autoImg {
 					width: 24%;
 					height: 160rpx;
 				}
-				.autoRight{
+
+				.autoRight {
 					flex: 1;
 					height: 160rpx;
 					// background-color: skyblue;
 				}
-				.autoTitle{
+
+				.autoTitle {
 					// width: 100%;
 					height: 40rpx;
 					// background-color: red;
@@ -641,15 +731,18 @@
 					justify-content: space-between;
 					align-items: center;
 					padding: 20rpx;
-					.autoTitle1{
+
+					.autoTitle1 {
 						font-weight: 600;
 						font-size: 38rpx;
 					}
 				}
-				.autoGray{
+
+				.autoGray {
 					color: #7B7A7B;
 				}
-				.autoSrc{
+
+				.autoSrc {
 					font-size: 28rpx;
 					display: flex;
 					// align-items: center;
@@ -660,11 +753,12 @@
 				}
 			}
 		}
+
 		// 下拉触底
-		.bottomText1{
+		.bottomText1 {
 			height: 100rpx;
 			// background-color:pink;
 			// margin-top: 100rpx;
-			}
+		}
 	}
 </style>

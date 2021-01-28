@@ -13,7 +13,7 @@
 		<view v-if="!arr.length" class="noComment">暂无评论</view>
 		<view class="content" :key="i" v-for="(v,i) in arr" v-if="arr.length">
 			<view class="left">
-				<image :src="v.img" style="width: 50rpx;" mode="widthFix"></image>
+				<image :src="v.img === 'undefined'?'http://103.210.21.253/yangchebei/images/default.png':v.img" style="width: 50rpx;" mode="widthFix"></image>
 			</view>
 			<view class="right">
 				<view class="right-top">
@@ -63,13 +63,37 @@
 					wx.checkSession({
 						success:()=>{
 							uni.request({
-							    url: 'http://172.16.14.29:6067/userInfo/userInfo', 
-								 method:'get', 
+							    url: this.pageUrl.pageUrl+'/userInfo/userInfo',
 								 header: {
-									 'token': 'efbe8ad0bacb4b68a28080639bade483'
+									 'token': '88318de7a5b44fc0aa43fadf22e1980a'
 								 },
 								success: (res) => {
 									console.log(res)
+									wx.request({
+										url:'http://106.12.97.151/addComment',
+										method:'post',
+										data:{
+											name:res.data.data.signature,
+											img:res.data.data.img,
+											content:this.val,
+											id:this.id,
+											num:0
+										},
+										success:(res)=>{
+											wx.showToast({
+											  title: '发布成功',
+											  icon: 'success',
+											  duration: 2000
+											})
+										},
+										fail:()=>{
+											wx.showToast({
+											  title: '发布失败',
+											  icon: 'none',
+											  duration: 2000
+											})
+										}
+									})
 							    }
 							});
 						},
@@ -113,7 +137,7 @@
 				},
 				success:(res)=>{
 					this.arr = res.data.data;
-					console.log(this.arr)
+					console.log(this.id)
 				}
 			})
 		}

@@ -16,7 +16,12 @@
     "pages/editAddress/editAddress",
     "pages/orderDetail/orderDetail",
     "pages/paymentResults/paymentResults",
-    "pages/lookOrder/lookOrder"
+    "pages/lookOrder/lookOrder",
+    "pages/productlist/productlist",
+    "pages/shopindex/shopindex",
+    "pages/productindex/productindex",
+    "pages/reviewindex/reviewindex",
+    "pages/service/service"
   ],
   "subPackages": [],
   "window": {
