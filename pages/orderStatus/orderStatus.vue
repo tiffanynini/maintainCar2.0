@@ -23,7 +23,7 @@
 				</view>
 				<view>
 					<text v-if="status==1" @click="switchShowPayment">立即付款</text>
-					<text v-if="status==4" @click="showEvaluate()">去评价</text>
+					<text v-if="false" @click="showEvaluate()">去评价</text>
 				</view>
 			</view>
 			<!-- 评价框 -->

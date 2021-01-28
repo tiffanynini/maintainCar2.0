@@ -9,12 +9,12 @@
    </view>
    <view>
     <view class="img">
-     <image src="../../static/neil-modal/logo.png" mode="heightFix"></image>
+     <image :src="photo" mode="heightFix"></image>
     </view>
    </view>
    <view>
-    <text>梁先森559</text>
-    <text>失败乃成功TM</text>
+    <text>{{name}}</text>
+    <text>{{signature}}</text>
    </view>
    <view>
    </view>
@@ -57,12 +57,42 @@
 <script>
 
  import uniIcons from "@/components/uni-icons/uni-icons.vue";
- export default {
-  data() {
-   return {
-    
-   };
-  }
+	export default {
+		data() {
+			return {
+				//用户头像
+				photo:'../../static/neil-modal/logo.png',
+				// 用户签名
+				signature:'',
+				// 用户名
+				name:'温故知新'
+			}
+		},
+	methods:{
+		getInformation(){
+			uni.request({
+				url: 'http://172.16.14.29:6067/userInfo/userInfo', 
+				method:'get', 
+				header: {
+					'token': '88318de7a5b44fc0aa43fadf22e1980a'
+				},
+				success: (res) => {
+					// console.log(res);
+					if(res.data.data.image!=null){
+						this.photo=res.data.data.image;
+					}
+					this.signature=res.data.data.signature;
+				}
+			}); 
+		},
+  
+	},
+	 onLoad(res) {
+		this.getInformation();
+	 },
+	 onShow(){
+	 	this.getInformation();
+	 }
  }
 </script>
 

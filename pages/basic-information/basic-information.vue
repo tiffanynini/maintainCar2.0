@@ -89,7 +89,7 @@
 				//头像图片路径
 				photo:"../../static/neil-modal/logo.png",
 				//用户昵称
-				name:"未设置",
+				name:"温故知新",
 				// 邮箱开关
 				mailStatus:false,
 				//用户邮箱
@@ -279,7 +279,7 @@
 				    success: (res) => {
 						console.log(res);
 						this.birthday=res.data.data.birthday.substring(0,10);
-						this.email=res.data.data.email;
+						this.mail=res.data.data.email;
 						if(res.data.data.image!=null){
 							this.photo=res.data.data.image;
 						}
@@ -298,7 +298,7 @@
 					data:{
 						'id':1,
 						'birthday':this.birthday,
-						'email':this.email,
+						'email':this.mail,
 						'image':this.photo,
 						'signature':this.signature
 					},

@@ -158,7 +158,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -272,7 +272,12 @@ var _uniIcons = _interopRequireDefault(__webpack_require__(/*! @/components/uni-
 //
 //
 //
-var _default = { data: function data() {return {};} };exports.default = _default;
+var _default = { data: function data() {return { //用户头像
+      photo: '../../static/neil-modal/logo.png', // 用户签名
+      signature: '', // 用户名
+      name: '温故知新' };}, methods: { getInformation: function getInformation() {var _this = this;uni.request({ url: 'http://172.16.14.29:6067/userInfo/userInfo', method: 'get', header: { 'token': '88318de7a5b44fc0aa43fadf22e1980a' }, success: function success(res) {// console.log(res);
+          if (res.data.data.image != null) {_this.photo = res.data.data.image;}_this.signature = res.data.data.signature;} });} }, onLoad: function onLoad(res) {this.getInformation();}, onShow: function onShow() {this.getInformation();} };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 /* 17 */

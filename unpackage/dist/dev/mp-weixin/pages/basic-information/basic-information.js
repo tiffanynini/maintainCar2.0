@@ -253,7 +253,7 @@ __webpack_require__.r(__webpack_exports__);
       //头像图片路径
       photo: "../../static/neil-modal/logo.png",
       //用户昵称
-      name: "未设置",
+      name: "温故知新",
       // 邮箱开关
       mailStatus: false,
       //用户邮箱
@@ -443,7 +443,7 @@ __webpack_require__.r(__webpack_exports__);
         success: function success(res) {
           console.log(res);
           _this4.birthday = res.data.data.birthday.substring(0, 10);
-          _this4.email = res.data.data.email;
+          _this4.mail = res.data.data.email;
           if (res.data.data.image != null) {
             _this4.photo = res.data.data.image;
           }
@@ -462,7 +462,7 @@ __webpack_require__.r(__webpack_exports__);
         data: {
           'id': 1,
           'birthday': this.birthday,
-          'email': this.email,
+          'email': this.mail,
           'image': this.photo,
           'signature': this.signature },
 

@@ -25,7 +25,7 @@
 			</label>
 		</view> -->
 		<button type="primary" @click="status==0?modification():save()">保存</button>
-		<button type="warn" v-if="false" @click="delete1">删除</button>
+		<button type="warn" v-if="status==0" @click="delete1">删除</button>
 	</view>
 </template>
 
