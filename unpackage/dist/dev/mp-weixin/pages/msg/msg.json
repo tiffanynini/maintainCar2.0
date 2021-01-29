@@ -1,9 +1,0 @@
-{
-  "navigationBarTitleText": "消息",
-  "navigationBarBackgroundColor": "#FD8F33",
-  "navigationBarTextStyle": "white",
-  "usingComponents": {
-    "uni-list": "/components/uni-list/uni-list",
-    "uni-list-chat": "/components/uni-list-chat/uni-list-chat"
-  }
-}

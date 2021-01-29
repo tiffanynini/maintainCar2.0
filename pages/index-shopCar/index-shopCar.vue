@@ -262,15 +262,23 @@
 				// 在去结算的时候存商品id
 				// 如果商品的checkedId1为true，就把商品的skuId存进session里
 				// 声明一个空数组
+				// console.log(this.itemsCom[0].commodity,111111);
 				var arr=[];
-				for(var key in arr){
-					if(arr.checkedId==true){
-						arr.push(arr.skuId);
+				for(var key in this.itemsCom[0].commodity){
+					if(this.itemsCom[0].commodity[key].checked1==true){
+						var json1={}
+						var n=Number(this.itemsCom[0].commodity[key].skuId);
+						json1.image=this.itemsCom[0].commodity[key].image;
+						json1.merchantName=this.itemsCom[0].commodity[key].merchantName;
+						json1.name=this.itemsCom[0].commodity[key].name;
+						json1.num=this.itemsCom[0].commodity[key].num;
+						json1.price=this.itemsCom[0].commodity[key].price;
+						json1.totalPrice=this.itemsCom[0].commodity[key].totalPrice;
+						arr.push(json1);
 					}
 				}
-				var arr1=[111,222,333,444];
-				wx.setStorageSync('bbb',arr1);
-				
+				wx.setStorageSync('sku',arr);
+				wx.setStorageSync('totalMoney',this.totalMoney)
 				wx.navigateTo({
 					url:'../index-order/index-order'
 				});
@@ -347,7 +355,7 @@
 				justify-content: flex-start;
 				align-items: center;
 
-				.checkBox {}
+				
 			}
 
 			// 商品

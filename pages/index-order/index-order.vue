@@ -19,71 +19,76 @@
 		</view>
 		<!-- 订单 -->
 		<view class="orderDetail">
-			<view class="orderStore">自营店</view>
-			<!-- 商品信息 -->
-			<view class="orderCommodity">
-				<!-- 图片 -->
-				<view class="orderImg">
-					<image src="../../static/images-index/beatifulcar1.jpg" mode=""></image>
-				</view>
-				<!-- 描述 -->
-				<view class="orderDescript">
-					<view class="orderDes1">
-						汽车贴膜（每10CM）
+			<view class="orderStore">xx汽车店</view>
+			
+			<view class="comInfo1"  :key="index" v-for="(items,index) in commondity">
+				<!-- 商品信息 -->
+				<view class="orderCommodity">
+					<!-- 图片 -->
+					<view class="orderImg">
+						<image :src="items.image" mode=""></image>
 					</view>
-					<view class="orderDes2">汽车类型：轿车 位置：全车</view>
-					<!-- 价格 -->
-					<view class="orderDes3">
-						<view class="">1</view><text>x</text>
-						<view class="">29.9</view>
+					<!-- 描述 -->
+					<view class="orderDescript">
+						<view class="orderDes1">
+							{{items.name}}
+						</view>
+						<view class="orderDes2">汽车类型：轿车 位置：全车</view>
+						<!-- 价格 -->
+						<view class="orderDes3">
+							<view class="">{{items.num}}</view><text>x</text>
+							<view class="">{{items.price}}</view>
+						</view>
 					</view>
 				</view>
+				<!-- 详细信息 -->
+				<view class="detailInfo">
+					<!-- 商品价格 -->
+					<view class="detailPrice">
+						<view class="">商品价格</view>
+						<view class="price1">￥{{items.price}}</view>
+					</view>
+					<!-- 优惠 -->
+					<view class="detailPrice">
+						<view class="">优惠</view>
+						<view class="price1">￥0</view>
+					</view>
+					<!-- 小计 -->
+					<view class="detailPrice">
+						<view class="">小计</view>
+						<view class="price2">￥{{items.totalPrice}}</view>
+					</view>
+					<!-- 邮费 -->
+					<view class="detailPrice">
+						<view class="">邮费</view>
+						<view class="price1">￥0</view>
+					</view>
+				</view>
+				<!-- 支付方式 -->
+				<view class="payType">
+					<view class="">支付方式</view>
+					<!-- 按钮 -->
+					<view class="payBtn">
+						<view class="payBtn1 active">在线支付</view>
+						<view class="payBtn1">货到付款</view>
+					</view>
+					
+				</view>
+				<!-- 订单备注 -->
+				<view class="orderMsg">
+					<text>订单备注</text>
+					<textarea value="" placeholder="" />
+				</view>
 			</view>
-			<!-- 详细信息 -->
-			<view class="detailInfo">
-				<!-- 商品价格 -->
-				<view class="detailPrice">
-					<view class="">商品价格</view>
-					<view class="price1">￥29.9</view>
-				</view>
-				<!-- 优惠 -->
-				<view class="detailPrice">
-					<view class="">优惠</view>
-					<view class="price1">￥0</view>
-				</view>
-				<!-- 小计 -->
-				<view class="detailPrice">
-					<view class="">小计</view>
-					<view class="price2">￥29.9</view>
-				</view>
-				<!-- 邮费 -->
-				<view class="detailPrice">
-					<view class="">邮费</view>
-					<view class="price1">￥0</view>
-				</view>
-			</view>
-			<!-- 支付方式 -->
-			<view class="payType">
-				<view class="">支付方式</view>
-				<!-- 按钮 -->
-				<view class="payBtn">
-					<view class="payBtn1 active">在线支付</view>
-					<view class="payBtn1">货到付款</view>
-				</view>
-				
-			</view>
-			<!-- 订单备注 -->
-			<view class="orderMsg">
-				<text>订单备注</text>
-				<textarea value="" placeholder="" />
-			</view>
+			
+			
 		</view>
 		<!-- 总金额 -->
 		<view class="totalMoney1"></view>
 		<view class="totalMoney">
 			<view class="totalMoney1">
 				<view class="">总额</view>
-				<view class="totalMoneyRed">29.9</view>
+				<view class="totalMoneyRed">{{total}}</view>
 				<view class="">元</view>
 			</view>
 			<!-- 确认订单 -->
@@ -107,7 +112,9 @@
 					receiverName:'小王',
 					receiverAddress:'天府三街',
 					receiverPhone:'111111111'
-				}
+				},
+				commondity:[],
+				total:0
 			};
 		},
 		methods:{
@@ -133,21 +140,57 @@
 					token:this.token
 				},
 				success: (res) => {
-					console.log(res.data.data);
+					// console.log(res.data.data);
 				}
 				
 			});
 			// 取出session
-			var v=wx.getStorageSync('bbb');
-			console.log(v);
+			var sku=wx.getStorageSync('sku');
+			console.log(sku);
+			this.commondity=sku;
+			
+			// 总金额
+			var totalMoney1=wx.getStorageSync('totalMoney');
+			this.total=totalMoney1;
+			// 声明一个空数组
+			// var arr=[];
+			// 再声明一个空json
+			
+			/* for(var i=0;i<skuId1.length;i++){
+				uni.request({
+					url:this.pageUrl.pageUrl+'/sku/findById?id='+skuId1[i],
+					method:'post',
+					header:{
+						token:this.token
+					},
+					success: (res) => {
+						var json1={};
+						// console.log(res.data);
+						// console.log(res.data.name,res.data.number,res.data.price);
+						json1.name=res.data.name;
+						json1.number=res.data.number;
+						json1.price=res.data.price;
+						json1.image=res.data.image;
+						// console.log(json1,'eded');
+						arr.push(json1);
+						/* console.log();
+						console.log(); */
+			// 		}
+			// 	})
+			// }; */
+			// console.log(arr)
 		}
 	}
 </script>
 
 <style lang="less">
 	@import url("../../static/font/iconfont.css");
+	.comInfo1{
+		// background-color: pink;
+		margin-bottom: 20rpx;
+	}
 	.order{
-		height: 100%;
+		// height: 100%;
 		background-color: #F3F4F6;
 		// 地址
 		.addressInfo{
@@ -315,7 +358,7 @@
 			width: 100%;
 		}
 		.totalMoney{
-			position: absolute;
+			position: fixed;
 			bottom: 0;
 			left: 0;
 			height: 100rpx;
