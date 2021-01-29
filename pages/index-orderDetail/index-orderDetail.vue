@@ -38,6 +38,21 @@
 					</view>
 				</view>
 			</view>
+			<!-- 有图 -->
+			<view class="hasImg">
+				<!-- 图片 -->
+				<view class="hasImg1"></view>
+				<!-- 描述 -->
+				<view class="des">
+					<view class="">汽车贴膜（每10CM）</view>
+					<view class="des1">汽车类型：轿车 位置：全车</view>
+					<view class="desPrice">
+						<view class="">1</view>
+						<view class="">x</view>
+						<view class="">29.9</view>
+					</view>
+				</view>
+			</view>
 			<!-- 支付详细 -->
 			<view class="payInfo">
 				<!-- 小计 -->
@@ -106,7 +121,8 @@
 				// ip
 				ip:'http://172.16.14.29:6067',
 				// token
-				token:'88318de7a5b44fc0aa43fadf22e1980a'
+				token:'88318de7a5b44fc0aa43fadf22e1980a',
+				
 			};
 		},
 		methods:{
@@ -178,6 +194,8 @@
 					background-color: red;
 					height: 120rpx;
 					margin-right: 20rpx;
+					background: url(https://zhangwei-1304470545.cos.ap-chengdu.myqcloud.com/chenjie/beatifulcar2.jpg);
+					background-size: contain;
 				}
 				.des{
 					font-size: 28rpx;

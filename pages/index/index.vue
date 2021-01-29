@@ -1,8 +1,9 @@
 <template>
 	<div id="div1">
 		<!-- 搜索框 -->
-		<uni-search-bar placeholder="搜索服务、门店等关键词" :radius="100" @confirm="search" clearButton="auto" cancelButton="none"
-		 :value="msg1"></uni-search-bar>
+		<navigator url="../index-search/index-search">
+			<uni-search-bar placeholder="搜索服务、门店等关键词" :radius="100" clearButton="auto" cancelButton="none"></uni-search-bar>
+		</navigator>
 		<!-- 轮播图 -->
 		<swiper class="swiper" :indicator-dots="indicatorDots" circular="true" :autoplay="autoplay" :interval="interval"
 		 :duration="duration">
@@ -15,19 +16,19 @@
 		<!-- 小图标 -->
 		<view class="litteCon">
 			<view class="litteCon1">
-				<view class="littleConDetail"  @click="enterList(1)">
+				<view class="littleConDetail" @click="enterList(1)">
 					<image mode=""></image>
 					<p>内外洗车</p>
 				</view>
-				<view class="littleConDetail detail2"  @click="enterList(2)">
+				<view class="littleConDetail detail2" @click="enterList(2)">
 					<image mode=""></image>
 					<p>大小保养</p>
 				</view>
-				<view class="littleConDetail detail3"  @click="enterList(3)">
+				<view class="littleConDetail detail3" @click="enterList(3)">
 					<image mode=""></image>
 					<p>美容打蜡</p>
 				</view>
-				<view class="littleConDetail detail4"  @click="enterList(4)">
+				<view class="littleConDetail detail4" @click="enterList(4)">
 					<image mode=""></image>
 					<p>钣金修复</p>
 				</view>
@@ -39,11 +40,11 @@
 					<image mode=""></image>
 					<p>空调清洗</p>
 				</view>
-				<view class="littleConDetail detail7"  @click="enterList(7)">
+				<view class="littleConDetail detail7" @click="enterList(7)">
 					<image mode=""></image>
 					<p>车辆封釉</p>
 				</view>
-				<view class="littleConDetail detail8"  @click="enterList(8)">
+				<view class="littleConDetail detail8" @click="enterList(8)">
 					<image mode=""></image>
 					<p>镀晶贴膜</p>
 				</view>
@@ -238,6 +239,11 @@
 				console.log(e);
 				this.msg1 = e.value;
 				console.log(this.msg1);
+			},
+			search1() {
+				wx.navigateTo({
+					url: '../index-search/index-search'
+				});
 			},
 			//2、轮播图
 			change(e) {
