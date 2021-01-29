@@ -262,7 +262,23 @@
                 "navigationBarTextStyle": "white"
             }
 
-        }
+        },
+		{
+		    "path": "pages/set/set",
+		    "style": {
+		        "navigationBarTitleText": "设置",
+		        "navigationBarBackgroundColor": "#FD8F33",
+		        "navigationBarTextStyle": "white"
+		    }
+		},
+		{
+		    "path": "pages/basic-information/basic-information",
+		    "style": {
+		        "navigationBarTitleText": "基本资料",
+		        "navigationBarBackgroundColor": "#FD8F33",
+		        "navigationBarTextStyle": "white"
+		    }
+		}
     ],
     "globalStyle": {
         "navigationBarTextStyle": "black",
@@ -295,22 +311,6 @@
                 "pagePath": "pages/personInfo/personInfo",
                 "iconPath": "static/images/person1.png",
                 "selectedIconPath": "static/images/person.png"
-            },
-            {
-                "path": "pages/set/set",
-                "style": {
-                    "navigationBarTitleText": "设置",
-                    "navigationBarBackgroundColor": "#FD8F33",
-                    "navigationBarTextStyle": "white"
-                }
-            },
-            {
-                "path": "pages/basic-information/basic-information",
-                "style": {
-                    "navigationBarTitleText": "基本资料",
-                    "navigationBarBackgroundColor": "#FD8F33",
-                    "navigationBarTextStyle": "white"
-                }
             }
         ]
     }
