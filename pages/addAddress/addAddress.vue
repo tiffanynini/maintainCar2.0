@@ -6,7 +6,7 @@
 				<input v-model="address.receiverName" placeholder="请输入收货人" id="receiverName" />
 			</view>
 			<view class="inputContent">
-				<label for="receiverPhone">手机号码</label>
+				<label for="receiverPhone"> 手机号码</label>
 				<input v-model="address.receiverPhone" placeholder="请输入手机号码" id="receiverPhone" @change="checkPhone"/>
 			</view>
 			<view class="inputContent">
