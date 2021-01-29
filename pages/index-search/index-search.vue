@@ -1,12 +1,13 @@
 <template>
 	<view class="div1">
 		<!-- 搜索框 -->
+		
 			<uni-search-bar placeholder="搜索服务、门店等关键词" :radius="100" @confirm="search" clearButton="none" cancelButton="always" :cancelText="cancelText" :value="msg1"  class="search1"></uni-search-bar>
 		<!-- 热门搜索-->
 		<view class="hotSearch">
 			<view class="searchText">热门搜索</view>
 			<view class="searchText2">
-				<view class="[sel==index?'active':'']" :key="index" v-for="(item,index) in hotArray" @click="hotSearch1(index)">{{item.hotText}}</view>
+				<view class="[sel==index?'active':'']" :key="index" v-for="(item,index) in hotArray" @click="hotSearch1(index+1)">{{item.hotText}}</view>
 			</view>
 		</view>
 	</view>
@@ -47,6 +48,9 @@
 			hotSearch1(i){
 				this.sel=i;
 				console.log(this.sel);
+				wx.navigateTo({
+					url: '../index-details/index-details?id=' + this.sel
+				})
 			}
 			
 			

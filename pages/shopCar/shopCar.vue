@@ -55,13 +55,21 @@
 				skuData:[],
 			}
 		},
-		mounted(){
+		onShow(){
 			wx.showLoading({
 			  title: '加载中',
 			  success:()=>{
 				  this.init();
 			  }
 			})
+		},
+		mounted(){
+			// wx.showLoading({
+			//   title: '加载中',
+			//   success:()=>{
+			// 	  this.init();
+			//   }
+			// })
 		},
 		methods:{
 			//初始化渲染页面
