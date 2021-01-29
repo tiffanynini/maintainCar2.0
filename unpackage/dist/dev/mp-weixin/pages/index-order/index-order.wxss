@@ -157,10 +157,15 @@
 .icon-pinglun:before {
   content: "\e60d";
 }
+<<<<<<< HEAD
 .comInfo1 {
   margin-bottom: 20rpx;
 }
 .order {
+=======
+.order {
+  height: 100%;
+>>>>>>> LC
   background-color: #F3F4F6;
 }
 .order .addressInfo {
@@ -340,7 +345,11 @@
   width: 100%;
 }
 .order .totalMoney {
+<<<<<<< HEAD
   position: fixed;
+=======
+  position: absolute;
+>>>>>>> LC
   bottom: 0;
   left: 0;
   height: 100rpx;

@@ -226,11 +226,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+<<<<<<< HEAD
 //
 //
 //
 //
 //
+=======
+>>>>>>> LC
 var _default =
 {
   data: function data() {
@@ -243,10 +246,15 @@ var _default =
       shippingAddress: {
         receiverName: '小王',
         receiverAddress: '天府三街',
+<<<<<<< HEAD
         receiverPhone: '111111111' },
 
       commondity: [],
       total: 0 };
+=======
+        receiverPhone: '111111111' } };
+
+>>>>>>> LC
 
   },
   methods: {
@@ -266,17 +274,26 @@ var _default =
   onLoad: function onLoad() {
     // 收货地址
     uni.request({
+<<<<<<< HEAD
       url: this.pageUrl.pageUrl + '/order/address?userId=1',
+=======
+      url: this.ip + '/order/address?userId=1',
+>>>>>>> LC
       method: 'get',
       header: {
         token: this.token },
 
       success: function success(res) {
+<<<<<<< HEAD
         // console.log(res.data.data);
+=======
+        console.log(res.data.data);
+>>>>>>> LC
       } });
 
 
     // 取出session
+<<<<<<< HEAD
     var sku = wx.getStorageSync('sku');
     console.log(sku);
     this.commondity = sku;
@@ -311,6 +328,10 @@ var _default =
     // 	})
     // }; */
     // console.log(arr)
+=======
+    var v = wx.getStorageSync('bbb');
+    console.log(v);
+>>>>>>> LC
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

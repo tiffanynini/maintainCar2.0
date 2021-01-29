@@ -26,6 +26,10 @@
     "pages/index-beauty/index-beauty",
     "pages/index-details/index-details",
     "pages/index-connect/index-connect",
+<<<<<<< HEAD
+=======
+    "pages/index-search/index-search",
+>>>>>>> LC
     "pages/index-shopCar/index-shopCar",
     "pages/index-evaluate/index-evaluate",
     "pages/index-orderDetail/index-orderDetail",
@@ -79,5 +83,6 @@
       "desc": "scope.userLocation"
     }
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap68.json"
 }
