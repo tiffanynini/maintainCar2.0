@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "基本资料",
+  "navigationBarBackgroundColor": "#FD8F33",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "uni-list": "/components/uni-list/uni-list",
+    "uni-list-item": "/components/uni-list-item/uni-list-item",
+    "min-action-sheet": "/components/min-action-sheet/min-action-sheet",
+    "neil-modal": "/components/neil-modal/neil-modal",
+    "uni-icons": "/components/uni-icons/uni-icons",
+    "time-selector": "/components/wing-time-selector/wing-time-selector"
+  }
+}
