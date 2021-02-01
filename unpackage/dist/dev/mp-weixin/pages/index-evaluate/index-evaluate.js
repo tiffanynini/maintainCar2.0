@@ -253,11 +253,7 @@ var _default =
     this.sId = options.id;
     // console.log(this.sId);
     uni.request({
-<<<<<<< HEAD
       url: this.pageUrl.pageUrl + '/sku/findEvaluateById?goodsId=' + this.sId,
-=======
-      url: this.ip + '/sku/findEvaluateById?goodsId=' + this.sId,
->>>>>>> LC
       method: 'post',
       header: {
         token: this.token },

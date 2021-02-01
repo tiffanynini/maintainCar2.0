@@ -342,11 +342,7 @@ var _default =
       this.options[2].info++;
       // 加入购物车
       uni.request((_uni$request = {
-<<<<<<< HEAD
         url: this.pageUrl.pageUrl + '/cart/add?num=1&skuId=' + this.sId,
-=======
-        url: this.ip + '/cart/add?num=1&skuId=' + this.sId,
->>>>>>> LC
         method: 'post',
         header: {
           token: this.token } }, _defineProperty(_uni$request, "header",
@@ -421,11 +417,7 @@ var _default =
     // console.log(this.sId);
     // 通过商品id查询商品信息
     uni.request({
-<<<<<<< HEAD
       url: this.pageUrl.pageUrl + '/sku/purchaseByGoodsId?goodsId=' + this.sId,
-=======
-      url: this.ip + '/sku/purchaseByGoodsId?goodsId=' + this.sId,
->>>>>>> LC
       method: 'post',
       header: {
         token: this.token },
@@ -441,11 +433,7 @@ var _default =
 
     // 根据商品id获得商品评价信息
     uni.request({
-<<<<<<< HEAD
       url: this.pageUrl.pageUrl + '/sku/findEvaluateById?goodsId=' + this.sId,
-=======
-      url: this.ip + '/sku/findEvaluateById?goodsId=' + this.sId,
->>>>>>> LC
       method: 'post',
       header: {
         token: this.token },
@@ -464,11 +452,7 @@ var _default =
 
     // 通过商品id查询商家信息
     uni.request({
-<<<<<<< HEAD
       url: this.pageUrl.pageUrl + '/sku/findMerchantByGoodsId?goodsId=' + this.sId,
-=======
-      url: this.ip + '/sku/findMerchantByGoodsId?goodsId=' + this.sId,
->>>>>>> LC
       method: 'post',
       header: {
         token: this.token },
@@ -486,11 +470,7 @@ var _default =
 
     // 通过商品id查询全部商品
     uni.request({
-<<<<<<< HEAD
       url: this.pageUrl.pageUrl + '/sku/addByGoodsId?goodsId=' + this.sId,
-=======
-      url: this.ip + '/sku/addByGoodsId?goodsId=' + this.sId,
->>>>>>> LC
       method: 'post',
       header: {
         token: this.token },
@@ -507,11 +487,7 @@ var _default =
 
     // 查询所有购物车
     uni.request({
-<<<<<<< HEAD
       url: this.pageUrl.pageUrl + '/cart/queryUserCart',
-=======
-      url: this.ip + '/cart/queryUserCart',
->>>>>>> LC
       method: 'get',
       header: {
         token: this.token },

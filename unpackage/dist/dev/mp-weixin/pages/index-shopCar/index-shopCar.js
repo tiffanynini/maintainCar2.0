@@ -312,11 +312,7 @@ var _default =
     // 修改购物车的数量
     changeCarNum: function changeCarNum(num, id) {
       uni.request({
-<<<<<<< HEAD
         url: this.pageUrl.pageUrl + '/cart/update?num=' + num + '&skuId=' + id,
-=======
-        url: this.ip + '/cart/update?num=' + num + '&skuId=' + id,
->>>>>>> LC
         method: 'post',
         header: {
           token: this.token },
@@ -358,11 +354,7 @@ var _default =
               success: function success() {
                 // 调删除购物车的接口
                 uni.request({
-<<<<<<< HEAD
                   url: _this.pageUrl.pageUrl + '/cart/removeCartItem?skuId=' + comId,
-=======
-                  url: _this.ip + '/cart/removeCartItem?skuId=' + comId,
->>>>>>> LC
                   method: 'post',
                   header: {
                     token: _this.token },
@@ -402,7 +394,6 @@ var _default =
       // 在去结算的时候存商品id
       // 如果商品的checkedId1为true，就把商品的skuId存进session里
       // 声明一个空数组
-<<<<<<< HEAD
       // console.log(this.itemsCom[0].commodity,111111);
       var arr = [];
       for (var key in this.itemsCom[0].commodity) {
@@ -420,17 +411,6 @@ var _default =
       }
       wx.setStorageSync('sku', arr);
       wx.setStorageSync('totalMoney', this.totalMoney);
-=======
-      var arr = [];
-      for (var key in arr) {
-        if (arr.checkedId == true) {
-          arr.push(arr.skuId);
-        }
-      }
-      var arr1 = [111, 222, 333, 444];
-      wx.setStorageSync('bbb', arr1);
-
->>>>>>> LC
       wx.navigateTo({
         url: '../index-order/index-order' });
 
@@ -442,11 +422,7 @@ var _default =
   onLoad: function onLoad() {var _this2 = this;
     // 查询购物车
     uni.request({
-<<<<<<< HEAD
       url: this.pageUrl.pageUrl + '/cart/queryUserCart',
-=======
-      url: this.ip + '/cart/queryUserCart',
->>>>>>> LC
       header: {
         token: this.token },
 

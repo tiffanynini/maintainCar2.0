@@ -167,6 +167,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
+//
 var _default =
 {
   data: function data() {
@@ -202,6 +203,9 @@ var _default =
     hotSearch1: function hotSearch1(i) {
       this.sel = i;
       console.log(this.sel);
+      wx.navigateTo({
+        url: '../index-details/index-details?id=' + this.sel });
+
     } } };exports.default = _default;
 
 /***/ }),

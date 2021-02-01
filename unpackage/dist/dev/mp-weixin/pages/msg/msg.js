@@ -94,17 +94,10 @@ var components
 try {
   components = {
     uniList: function() {
-<<<<<<< HEAD
-      return __webpack_require__.e(/*! import() | components/uni-list/uni-list */ "components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/components/uni-list/uni-list.vue */ 247))
-    },
-    uniListChat: function() {
-      return __webpack_require__.e(/*! import() | components/uni-list-chat/uni-list-chat */ "components/uni-list-chat/uni-list-chat").then(__webpack_require__.bind(null, /*! @/components/uni-list-chat/uni-list-chat.vue */ 254))
-=======
       return __webpack_require__.e(/*! import() | components/uni-list/uni-list */ "components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/components/uni-list/uni-list.vue */ 379))
     },
     uniListChat: function() {
       return __webpack_require__.e(/*! import() | components/uni-list-chat/uni-list-chat */ "components/uni-list-chat/uni-list-chat").then(__webpack_require__.bind(null, /*! @/components/uni-list-chat/uni-list-chat.vue */ 386))
->>>>>>> LC
     }
   }
 } catch (e) {

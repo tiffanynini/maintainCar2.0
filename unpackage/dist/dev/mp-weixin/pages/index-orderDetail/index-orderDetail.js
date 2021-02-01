@@ -231,6 +231,21 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -239,6 +254,7 @@ var _default =
       ip: 'http://172.16.14.29:6067',
       // token
       token: '88318de7a5b44fc0aa43fadf22e1980a' };
+
 
   },
   methods: {

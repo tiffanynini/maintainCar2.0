@@ -216,6 +216,8 @@
   background-color: red;
   height: 120rpx;
   margin-right: 20rpx;
+  background: url(https://zhangwei-1304470545.cos.ap-chengdu.myqcloud.com/chenjie/beatifulcar2.jpg);
+  background-size: contain;
 }
 .orderDetail .detailInfo .hasImg .des {
   font-size: 28rpx;

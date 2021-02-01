@@ -406,11 +406,7 @@ var _default =
     // wx.setNavigationBarTitle({ title:'222'})
     // }
     uni.request({
-<<<<<<< HEAD
       url: this.pageUrl.pageUrl + '/sku/findGoodsByCategory?category=' + this.categoryId,
-=======
-      url: this.ip + '/sku/findGoodsByCategory?category=' + this.categoryId,
->>>>>>> LC
       method: 'post',
       header: {
         token: this.token },
@@ -425,11 +421,7 @@ var _default =
 
     // 通过类别id，获得类别名称
     uni.request({
-<<<<<<< HEAD
       url: this.pageUrl.pageUrl + '/sku/findByCategoryId?id=' + this.categoryId,
-=======
-      url: this.ip + '/sku/findByCategoryId?id=' + this.categoryId,
->>>>>>> LC
       method: 'get',
       header: {
         token: this.token },

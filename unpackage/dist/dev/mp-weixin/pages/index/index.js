@@ -312,6 +312,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 {
   data: function data() {
     return {
@@ -405,6 +406,11 @@ __webpack_require__.r(__webpack_exports__);
       console.log(e);
       this.msg1 = e.value;
       console.log(this.msg1);
+    },
+    search1: function search1() {
+      wx.navigateTo({
+        url: '../index-search/index-search' });
+
     },
     //2、轮播图
     change: function change(e) {

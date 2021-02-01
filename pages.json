@@ -43,11 +43,7 @@
                 "navigationBarTitleText": "购物车",
                 "navigationBarBackgroundColor": "#FD8F33",
                 "navigationBarTextStyle": "white"
-<<<<<<< HEAD
-            }
-=======
             } 
->>>>>>> LC
         }, {
             "path": "pages/personInfo/personInfo",
             "style": {

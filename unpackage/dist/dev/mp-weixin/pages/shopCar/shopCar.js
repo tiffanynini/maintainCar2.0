@@ -187,13 +187,21 @@ var _default =
       skuData: [] };
 
   },
-  mounted: function mounted() {var _this = this;
+  onShow: function onShow() {var _this = this;
     wx.showLoading({
       title: '加载中',
       success: function success() {
         _this.init();
       } });
 
+  },
+  mounted: function mounted() {
+    // wx.showLoading({
+    //   title: '加载中',
+    //   success:()=>{
+    // 	  this.init();
+    //   }
+    // })
   },
   methods: {
     //初始化渲染页面
