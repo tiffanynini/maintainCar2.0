@@ -191,87 +191,118 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _kModel = _interopRequireDefault(__webpack_require__(/*! @/components/k-model/k-model.vue */ 286));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-// 引入模态框
-var _default = { data: function data() {return { //状态码 1:未付款,2:已付款未发货,3:已发货,4:交易成功,5:交易关闭,6:已评价
-      status: 0, // 页面订单显示状态
-      state: 0, // 显示支付模态框
-      showPayment: false, //显示支付成功状态
-      showPay: false, //显示蒙层状态
-      shadow: false, //显示评论状态
-      evaluateState: false, //用户id
-      userId: 1, //用户数据
-      data: [], //订单评论
-      evaluate: '', //选择哪条订单评论
-      orderId: 0 };}, methods: { initialize: function initialize() {switch (this.status) {//状态码 1:未付款
-        case 1:this.state = "未付款";uni.setNavigationBarTitle({ title: '待付款' });this.arrStatus();break; //状态码 2:已付款未发货
-        case 2:this.state = "待发货";uni.setNavigationBarTitle({ title: '待发货' });this.arrStatus();break; //状态码 3:已发货
-        case 3:this.state = "待收货";uni.setNavigationBarTitle({ title: '待收货' });this.arrStatus();break; //状态码 4:交易成功
-        case 4:this.state = "待评价";uni.setNavigationBarTitle({ title: '待评价' });this.arrStatus();break; //状态码 5:交易关闭
-      }}, //初始化数据
-    arrStatus: function arrStatus() {var _this = this;uni.request({ url: this.pageUrl.pageUrl + '/order/find?userId=' + wx.getStorageSync('id'), header: { 'token': wx.getStorageSync('token') //自定义请求头信息
-        }, success: function success(res) {// console.log(res)
+var _kModel = _interopRequireDefault(__webpack_require__(/*! @/components/k-model/k-model.vue */ 286));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
+{
+  data: function data() {var _ref, _ref2, _ref3;
+    return {
+      //状态码 1:未付款,2:已付款未发货,3:已发货,4:交易成功,5:交易关闭,6:已评价
+      status: 0,
+      // 页面订单显示状态
+      state: 0,
+      // 显示支付模态框
+      showPayment: false,
+      //显示支付成功状态
+      showPay: false,
+      //显示蒙层状态
+      shadow: false,
+      //显示评论状态
+      evaluateState: false,
+      //用户id
+      userId: 1,
+      //用户数据
+      data: [(_ref = {
+
+        astualPay: 2019102100000001,
+        state: 1,
+        name: "汽车贴膜（每10CM）",
+        num: 1,
+        price: 30 }, _defineProperty(_ref, "astualPay",
+      30), _defineProperty(_ref, "orderId",
+      2019102100000001), _defineProperty(_ref, "image",
+      '../../static/images-index/beatifulcar2.jpg'), _ref), (_ref2 = {
+
+
+        astualPay: 2019102100000001,
+        state: 1,
+        name: "汽车贴膜（每10CM）",
+        num: 1,
+        price: 30 }, _defineProperty(_ref2, "astualPay",
+      30), _defineProperty(_ref2, "orderId",
+      2019102100000001), _defineProperty(_ref2, "image",
+      '../../static/images-index/beatifulcar2.jpg'), _ref2), (_ref3 = {
+
+
+        astualPay: 2019102100000001,
+        state: 1,
+        name: "汽车贴膜（每10CM）",
+        num: 1,
+        price: 30 }, _defineProperty(_ref3, "astualPay",
+      30), _defineProperty(_ref3, "orderId",
+      2019102100000001), _defineProperty(_ref3, "image",
+      '../../static/images-index/beatifulcar2.jpg'), _ref3)],
+
+
+      //订单评论
+      evaluate: '',
+      //选择哪条订单评论
+      orderId: 0 };
+
+  },
+  methods: {
+    initialize: function initialize() {
+      switch (this.status) {
+        //状态码 1:未付款
+        case 1:
+          this.state = "未付款";
+          uni.setNavigationBarTitle({
+            title: '待付款' });
+
+          this.arrStatus();
+          break;
+        //状态码 2:已付款未发货
+        case 2:
+          this.state = "待发货";
+          uni.setNavigationBarTitle({
+            title: '待发货' });
+
+          this.arrStatus();
+          break;
+        //状态码 3:已发货
+        case 3:
+          this.state = "待收货";
+          uni.setNavigationBarTitle({
+            title: '待收货' });
+
+          this.arrStatus();
+          break;
+        //状态码 4:交易成功
+        case 4:
+          this.state = "待评价";
+          uni.setNavigationBarTitle({
+            title: '待评价' });
+
+          this.arrStatus();
+          break;
+        //状态码 5:交易关闭
+      }
+    },
+    //初始化数据
+    arrStatus: function arrStatus() {var _this = this;
+      uni.request({
+        url: this.pageUrl.pageUrl + '/order/find?userId=' + wx.getStorageSync('id'),
+        header: {
+          'token': wx.getStorageSync('token') //自定义请求头信息
+        },
+        success: function success(res) {
+          // console.log(res)
           // if(res.data.data.length>0){
-          var arr = [];for (var i = 0; i < res.data.data.length || 0; i++) {if (res.data.data[i].status == _this.status) {arr.push(res.data.data[i]);}}
-          _this.data = arr;
+          var arr = [];
+          for (var i = 0; i < res.data.data.length || 0; i++) {
+            if (res.data.data[i].status == _this.status) {
+              arr.push(res.data.data[i]);
+            }
+          }
+          // this.data=arr;
           // console.log(this.data)
           // }
         } });

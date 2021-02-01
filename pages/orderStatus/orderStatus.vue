@@ -18,7 +18,7 @@
 			</navigator>
 			<view class="operation">
 				<view>
-					<text>共1件商品</text>
+					<text>共{{v.name}}件商品</text>
 					<text>¥ {{v.astualPay}}</text>
 				</view>
 				<view>
@@ -78,7 +78,38 @@
 				//用户id
 				userId:1,
 				//用户数据
-				data:[],
+				data:[
+					{
+						astualPay:2019102100000001,
+						state:1,
+						name:"汽车贴膜（每10CM）",
+						num:1,
+						price:30,
+						astualPay:30,
+						orderId:2019102100000001,
+						image:'../../static/images-index/beatifulcar2.jpg'
+					},
+					{
+						astualPay:2019102100000001,
+						state:1,
+						name:"汽车贴膜（每10CM）",
+						num:1,
+						price:30,
+						astualPay:30,
+						orderId:2019102100000001,
+						image:'../../static/images-index/beatifulcar2.jpg'
+					},
+					{
+						astualPay:2019102100000001,
+						state:1,
+						name:"汽车贴膜（每10CM）",
+						num:1,
+						price:30,
+						astualPay:30,
+						orderId:2019102100000001,
+						image:'../../static/images-index/beatifulcar2.jpg'
+					}
+				],
 				//订单评论
 				evaluate:'',
 				//选择哪条订单评论
@@ -139,7 +170,7 @@
 									arr.push(res.data.data[i])
 								}
 							}
-							this.data=arr;
+							// this.data=arr;
 							// console.log(this.data)
 						// }
 					}

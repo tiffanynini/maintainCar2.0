@@ -197,11 +197,11 @@ var _default =
     } },
 
   onLoad: function onLoad(res) {
-    this.id = wx.getStorageSync('id');
+    // this.id=wx.getStorageSync('id');
     this.getInformation();
   },
   onShow: function onShow() {
-    this.id = wx.getStorageSync('id');
+    // this.id=wx.getStorageSync('id');
     this.getInformation();
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
