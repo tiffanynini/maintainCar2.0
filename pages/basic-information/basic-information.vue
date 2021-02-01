@@ -299,7 +299,7 @@
 					    'token': wx.getStorageSync('token')
 					},
 					data:{
-						'id':wx.getStorage('id'),
+						'id':this.id,
 						'birthday':this.birthday,
 						'email':this.mail,
 						'image':this.photo,

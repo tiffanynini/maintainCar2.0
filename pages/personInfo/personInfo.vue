@@ -77,7 +77,7 @@
 					'token': wx.getStorageSync('token')
 				},
 				success: (res) => {
-					console.log(res);
+					// console.log(res);
 					if(res.data.data.image!=null){
 						this.photo=res.data.data.image;
 					}

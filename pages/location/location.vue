@@ -19,7 +19,7 @@
 					</view>
 				</view>
 				<view @click="skip2" :data-id="v.id" :data-userId="v.userId">
-					<text class="iconfont icon-shezhi font2"></text> 
+					<text class="iconfont icon-shezhi font2"></text>
 				</view>
 			</view>
 		</view>
@@ -65,11 +65,11 @@
 			}
 		},
 		onLoad(res){
-			// this.id=wx.getStorageSync('id');
+			this.id=wx.getStorageSync('id');
 			this.getInformation();
 		},
 		onShow(){
-			// this.id=wx.getStorageSync('id');
+			this.id=wx.getStorageSync('id');
 			this.getInformation();
 		}
 	}
